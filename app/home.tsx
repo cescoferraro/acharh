@@ -25,13 +25,10 @@ export class HomeContainer extends React.Component<any, any> {
             <div>
                 <div className={HomeStyle.app}>
                     <h2>React-boil</h2>
-                    <h2>React-boil</h2>
-                    <h2>React-boil</h2>
-                    <h2>React-boil</h2>
-                    <RaisedButton onClick={() => {
-                        this.props.dispatch(push("/whatver"))
-                    }}
-                        label="Default" primary={true} />
+                    <RaisedButton
+                        onClick={() => { this.props.dispatch(push("/whatver")) }}
+                        fullWidth={true}
+                        label="Go Somewhere" primary={true} />
                 </div>
                 <div className={HomeStyle.container}>
                     <h2>TWO</h2>
