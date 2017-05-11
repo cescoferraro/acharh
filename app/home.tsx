@@ -7,6 +7,7 @@ import { HomeStyle } from "./styles";
 import { push } from 'connected-react-router'
 import * as Debug from 'debug';
 
+
 @withStyles(HomeStyle)
 @firebaseConnect([
     '/app'
@@ -22,18 +23,13 @@ export class HomeContainer extends React.Component<any, any> {
         var debug = Debug("HomeContainer")
         debug('CREATED!');
         return (
-            <div>
-                <div className={HomeStyle.app}>
-                    <h2>React-boil</h2>
-                    <RaisedButton
-                        onClick={() => { this.props.dispatch(push("/whatver")) }}
-                        fullWidth={true}
-                        label="Go Somewhere" primary={true} />
-                </div>
-                <div className={HomeStyle.container}>
-                    <h2>TWO</h2>
-                </div>
-            </div >
+            <div className={HomeStyle.app}>
+                <h2>React-boil</h2>
+                <RaisedButton
+                    onClick={() => { this.props.dispatch(push("/whatver")) }}
+                    fullWidth={true}
+                    label="Go Somewhere" primary={true} />
+            </div>
         )
     }
 }
