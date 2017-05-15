@@ -15,7 +15,15 @@ const LOADERS = (env, isClient)=>{
 			 sourceMap: true,
 			 modules: true,
 			 localIdentName: "[name]_[local]_[hash:base64:3]"}},
-	      {loader: 'postcss-loader'}]
+	      {loader: 'postcss-loader',
+	       options: {
+		   plugins: (loader) => [
+		       require("postcss-cssnext")({
+			   browsers: '> 0%', customProperties: true,
+			   colorFunction: true, customSelectors: true
+		       })
+		   ]
+	       }}]
 	},
 	{ test: /\.tsx?$/, exclude: /node_modules/, loader: "awesome-typescript-loader" },
 	{ enforce: "pre",  exclude: /node_modules/, test: /\.js$/, loader: "source-map-loader" },
@@ -42,14 +50,10 @@ const LOADERS_OPTIONS =  new webpack.LoaderOptionsPlugin({
     minimize: false,
     debug: true,
     options: {
-	context: '/',
-	postcss: [
-	    require("postcss-cssnext")({
-		browsers: '> 0%', customProperties: true,
-		colorFunction: true, customSelectors: true
-	    })]
+	context: '/'
     }
 });
+
 const SERVER_PLUGINS = [LOADERS_OPTIONS];
 const DEVTOOLS = 'source-map'; 
 

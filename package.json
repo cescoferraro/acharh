@@ -4,9 +4,11 @@
     "description": "Cutting edge React.js boilerplate.",
     "main": "index.js",
     "scripts": {
+	"clean": "rm -rf dist/",
 	"dev": "node hot.js",
 	"prod": "webpack --config webpack.config.js --env.production",
 	"dll": "webpack --config webpack.dll.js ",
+	"start": "yarn run clean && yarn run dll && yarn run dev",
 	"client": "webpack --config webpack.client.js --env.production",
 	"server": "webpack --config webpack.server.js --env.production",
 	"test": "echo \"Error: no test specified\" && exit 1"
