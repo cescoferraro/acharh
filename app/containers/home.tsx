@@ -3,7 +3,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux'
 import { firebaseConnect, dataToJS } from 'react-redux-firebase'
-import { HomeStyle } from "./styles";
+import { HomeStyle } from "../css";
+
 import { push } from 'connected-react-router'
 import * as Debug from 'debug';
 
