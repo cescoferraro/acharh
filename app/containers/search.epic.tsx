@@ -37,16 +37,10 @@ export const searchEpic = action$ => {
             return Observable.fromPromise(
                 getFirebase().database().ref("adds").once("value")
             ).map((allAdds: any) => {
-                console.log("action.payload ", action.payload)
-                console.log(typeof action.payload)
-                console.log(action)
-                console.log("action.payload ", action.payload === "")
                 Object.keys(allAdds.val()).map(
                     ID => {
                         let Add = (allAdds.val()[ID])
-                        if (HasSearchQuery(action, Add)) {
-                            filtered.push(Add)
-                        }
+                        if (HasSearchQuery(action, Add)) { filtered.push(Add) }
                     }
                 )
                 return allAdds

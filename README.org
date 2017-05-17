@@ -1,47 +1,6 @@
-#+TITLE: React-boil 
+#+TITLE: Achars 
 
 Cutting edge React.js Boilerplate. This is created as a template for my cookie cutter called react-cutter.
 The goal here is to enable developers deliver tommorow's web today faster.
 
-👀 `react` as the view
-
-🔀 `react-router` v4 as the router.
-
-🚄 `express` server.
-
-🔥 Redux store ready! All the cool tooling and extensions.
-
-🚀 Redux-Observable to perform async redux actions.
-
-🖌 PostCSS lets you use next css syntax now.
-
-🖌 Isomorphic-style-loader injects only css critical path to the website.
-
-🌍 Server Side Rendering.
-
-🌍 Connected-react-router syncs the react-router state inside redux store
-
-📦 All source is bundled using Webpack v2.
-
-🚀 Full ES2017+ support + Strict Types. Thanks Typescript!
-
-🔥 Extreme live development using webpack/react native tooling.
-
-🍃 Tree-shaking, courtesy of Webpack.
-
-🎛 Preconfigured to support development and optimised production builds.
-
-🤖 Auto generated Vendor DLL for smooth development experiences.
-
-* TODO 
-
-🎭 `jest` as the test framework. -- YET TO BE IMPLEMENTED --
-
-😎 Progressive Web Application ready, with offline support, via a Service Worker. -- NOT YET IMPLEMENTED --
-
-
-🏜 Asset bundling support. e.g. images/fonts.
-
-✂️ Code splitting - easily define code split points in your source using `react-async-component`.
-
-
+👀 🔀 🚄 🔥 🚀 🖌 🖌 🌍 🌍 📦 🚀 🔥 🍃 🎛 🤖 

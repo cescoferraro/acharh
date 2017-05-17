@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const extras = require("./internal/webpack/extras.js");
 
 module.exports = env => {
@@ -15,8 +14,8 @@ module.exports = env => {
 	    path:  path.join(__dirname, 'dist'),
 	    filename: 'client.js'
 	},
-	devtool: require("./internal/webpack/extras.js").DEVTOOLS,
-	plugins:require("./internal/webpack/extras.js").CLIENT_PLUGINS(env,true), 
-	module: require("./internal/webpack/extras.js").LOADERS(env),
-	resolve: require("./internal/webpack/extras.js").resolve 
+	devtool: extras.DEVTOOLS,
+	plugins: extras.CLIENT_PLUGINS(env,true), 
+	module:  extras.LOADERS(env),
+	resolve: extras.resolve 
     } ); };
