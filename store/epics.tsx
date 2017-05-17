@@ -1,5 +1,7 @@
 import { combineEpics } from "redux-observable";
 import "rxjs";
+import { searchEpic } from "../app/containers/search.epic";
+import { routerEpic } from "../app/containers/router.epic";
 
 
 const pingEpic = action$ =>
@@ -7,5 +9,5 @@ const pingEpic = action$ =>
         .mapTo({ type: 'PONG' });
 
 export const RootEpic = combineEpics(
-    pingEpic
+    pingEpic, searchEpic, routerEpic
 );

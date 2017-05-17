@@ -1,5 +1,6 @@
 import { reactReduxFirebase, firebaseStateReducer } from "react-redux-firebase";
 import { combineReducers } from "redux";
+import { DisplaySearchReducer } from "../app/containers/search.epic";
 
 function todos(state = [], action) {
 
@@ -14,5 +15,6 @@ function todos(state = [], action) {
 }
 export let allReducers = combineReducers({
     todos: todos,
+    DisplaySearchReducer: DisplaySearchReducer,
     firebase: firebaseStateReducer
 })
