@@ -11,13 +11,13 @@ import { logger } from "./logger";
 
 
 export const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyCR1eRcu-FHxG6Yp1RarrBq1wKWWi8Ha2k",
-    authDomain: "craigs-8e724.firebaseapp.com",
-    databaseURL: "https://craigs-8e724.firebaseio.com",
-    projectId: "craigs-8e724",
-    storageBucket: "craigs-8e724.appspot.com",
-    enableRedirectHandling: false,
-    messagingSenderId: "794041684762"
+    apiKey: "AIzaSyAKk3VUcJLr4mDI6r7tCoc-5W-OJnxwmlw",
+    authDomain: "achars-82daf.firebaseapp.com",
+    databaseURL: "https://achars-82daf.firebaseio.com",
+    projectId: "achars-82daf",
+    storageBucket: "achars-82daf.appspot.com",
+    messagingSenderId: "1011360147154",
+    enableRedirectHandling: false
 };
 
 let ReplacebleEpicMiddleware = createEpicMiddleware(RootEpic);
