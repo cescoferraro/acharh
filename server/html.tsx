@@ -1,19 +1,18 @@
 import * as React from "react"
-const type = "text/javascript";
-import { renderToString, renderToStaticMarkup } from "react-dom/server"
+const type = "text/javascript"
+import { renderToStaticMarkup, renderToString } from "react-dom/server"
+import { Provider as ReduxProvider } from "react-redux"
+import { StaticRouter } from "react-router-dom"
+import * as injectTapEventPlugin from "react-tap-event-plugin"
+import { configureStore } from "../store/createStore"
 import { Router } from "../app/router"
-import { WithStylesContext } from "../shared/components/styles.context";
-import getMuiTheme from "material-ui/styles/getMuiTheme";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import *  as injectTapEventPlugin from "react-tap-event-plugin";
-import { Provider as ReduxProvider } from "react-redux";
-import { configureStore } from "../store/createStore";
-import { StaticRouter } from "react-router-dom";
-
+import { WithStylesContext } from "../shared/components/styles.context"
+import getMuiTheme from "material-ui/styles/getMuiTheme"
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 
 export const HTML = ({ production, userAgent, url, store, title }) => {
-    var css = []
-    let container = renderToString(
+    let css = []
+    const container = renderToString(
         <WithStylesContext onInsertCss={styles => { css.push(styles._getCss()) }}>
             <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: userAgent })}>
                 <StaticRouter location={url} context={{}}>
@@ -22,8 +21,7 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                     </ReduxProvider>
                 </StaticRouter>
             </MuiThemeProvider>
-        </WithStylesContext>
-    )
+        </WithStylesContext>)
     return (<html>
         <head>
             <link rel="shortcut icon" href="icons/favicon.ico" />

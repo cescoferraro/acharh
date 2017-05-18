@@ -5,10 +5,9 @@ import { NoMatch } from "../shared/components/nomatch";
 import * as Debug from 'debug';
 Debug.enable("*")
 
-
 export let Router = () => {
     var debug = Debug("ROUTER")
-    debug('Request if being handled!');
+    debug("Request if being handled!");
     return (
         <Switch>
             <Route exact path="/" component={HomeContainer} />
