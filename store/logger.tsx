@@ -12,5 +12,5 @@ export const logger = createLogger({
         const identifier = "@@reactReduxFirebase"
         const fromFirebase = (action.type.substr(0, identifier.length) === identifier)
         return !isServer() && (!fromFirebase || false)
-    },
+    }
 })

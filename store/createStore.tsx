@@ -16,7 +16,7 @@ export const FIREBASE_CONFIG = {
     enableRedirectHandling: false,
     messagingSenderId: "1011360147154",
     projectId: "achars-82daf",
-    storageBucket: "achars-82daf.appspot.com",
+    storageBucket: "achars-82daf.appspot.com"
 }
 
 const ReplacebleEpicMiddleware = createEpicMiddleware(RootEpic)

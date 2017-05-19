@@ -15,7 +15,7 @@ if (module.hot) {
         [
             "../store/createStore.tsx",
             "../app/router.tsx",
-            "./renderer.tsx",
+            "./renderer.tsx"
         ],
         () => {
             unmountComponentAtNode(tag)
