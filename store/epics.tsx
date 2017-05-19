@@ -7,6 +7,4 @@ const pingEpic = (action$) =>
     action$.filter((action) => action.type === "PING")
         .mapTo({ type: "PONG" })
 
-export const RootEpic = combineEpics(
-    pingEpic, searchEpic, routerEpic,
-)
+export const RootEpic = combineEpics(pingEpic, searchEpic, routerEpic)

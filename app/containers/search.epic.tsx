@@ -7,7 +7,7 @@ export const SEARCH_ACTION_NAME = "SEARCH"
 export function SEARCH_ACTION(query: string): Action<any> {
     return {
         payload: query,
-        type: SEARCH_ACTION_NAME,
+        type: SEARCH_ACTION_NAME
     }
 }
 
@@ -15,7 +15,7 @@ export const DISPLAY_SEARCH_ACTION_NAME = "SEARCH_FIREBASE"
 export const DISPLAY_SEARCH = (query: string): Action<any> => {
     return {
         payload: query,
-        type: DISPLAY_SEARCH_ACTION_NAME,
+        type: DISPLAY_SEARCH_ACTION_NAME
     }
 }
 
@@ -44,7 +44,7 @@ export const searchEpic = (action$) => {
                     return allAdds
                 }).mapTo({
                     payload: filtered,
-                    type: DISPLAY_SEARCH_ACTION_NAME,
+                    type: DISPLAY_SEARCH_ACTION_NAME
                 })
 
         })

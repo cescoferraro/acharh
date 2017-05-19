@@ -16,7 +16,7 @@ const Empty = () => (<h2>Empty</h2>)
 @connect(({ firebase, todos, DisplaySearchReducer }) => ({
     actualSearch: DisplaySearchReducer,
     adds: dataToJS(firebase, "/adds"),
-    app: dataToJS(firebase, "/app"),
+    app: dataToJS(firebase, "/app")
 }), APP_ACTIONS)
 export class HomeContainer extends React.Component<any, any> {
 

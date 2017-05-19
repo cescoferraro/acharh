@@ -7,7 +7,7 @@ const ROUTER_EMITTER_ACTION_NAME = "ROUTER-EMIITER"
 export const ROUTER_EMITTER = (url: string): Action<any> => {
     return {
         payload: url,
-        type: ROUTER_EMITTER_ACTION_NAME,
+        type: ROUTER_EMITTER_ACTION_NAME
     }
 }
 

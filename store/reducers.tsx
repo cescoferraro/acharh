@@ -13,7 +13,5 @@ function todos(state = [], action) {
     }
 }
 export let allReducers = combineReducers({
-    DisplaySearchReducer,
-    firebase,
-    todos,
+    DisplaySearchReducer, firebase, todos
 })

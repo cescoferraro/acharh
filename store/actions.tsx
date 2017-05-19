@@ -6,6 +6,6 @@ export const APP_ACTIONS = (dispatch) => {
     return bindActionCreators({
         dispatch,
         ROUTER_EMITTER,
-        SEARCH_ACTION,
+        SEARCH_ACTION
     }, dispatch)
 }
