@@ -31,7 +31,7 @@ export class HomeContainer extends React.Component<any, any> {
         /* debug(this.props)*/
 
         const handleClick = () => {
-            console.log("this is:", this)
+            this.props.ROUTER_EMITTER("/whatever")
         }
         const FirebaseAdds = !isLoaded(this.props.adds) ? <Loading /> :
             isEmpty(this.props.adds) ? <Empty /> :

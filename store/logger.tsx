@@ -11,6 +11,6 @@ export const logger = createLogger({
     predicate: (getState, action) => {
         const identifier = "@@reactReduxFirebase"
         const fromFirebase = (action.type.substr(0, identifier.length) === identifier)
-        return !isServer && (!fromFirebase || action.type === "@@reactReduxFirebase/SET")
+        return !isServer() && (!fromFirebase || false)
     },
 })

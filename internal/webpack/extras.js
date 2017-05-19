@@ -18,6 +18,7 @@ const LOADERS = (env, isClient)=>{
 	      {loader: 'postcss-loader',
 	       options: {
 		   plugins: (loader) => [
+		       require('postcss-import')({ root: loader.resourcePath }),
 		       require("postcss-cssnext")({
 			   browsers: '> 0%', customProperties: true,
 			   colorFunction: true, customSelectors: true
@@ -36,12 +37,12 @@ const LOADERS = (env, isClient)=>{
 		    name: "fonts/font-[sha512:hash:base64:7].[ext]"
 		}}]},
 	{ test: /\.(jpe?g|png|gif|svg)$/,
-	    use:[
-		{loader: 'file-loader',
-		 options:{
-		     emitFile: isClient,
-		     name: "fonts/font-[sha512:hash:base64:7].[ext]"
-		 }}]}];
+	  use:[
+	      {loader: 'file-loader',
+	       options:{
+		   emitFile: isClient,
+		   name: "fonts/font-[sha512:hash:base64:7].[ext]"
+	       }}]}];
     return ( {rules: rules} ); 
 };
 
@@ -73,7 +74,7 @@ const CLIENT_PLUGINS = env => {
 		context: process.cwd(),
 		manifest: require("../../dist/dll/vendor.json")
 	    }));
-    };
+    }
     return  ( og );
 };
 
