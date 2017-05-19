@@ -11,9 +11,10 @@ import getMuiTheme from "material-ui/styles/getMuiTheme"
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 
 export const HTML = ({ production, userAgent, url, store, title }) => {
-    let css = []
+    const css = []
+    const inserter = (styles) => { css.push(styles._getCss()) }
     const container = renderToString(
-        <WithStylesContext onInsertCss={(styles) => { css.push(styles._getCss()) }}>
+        <WithStylesContext onInsertCss={inserter}>
             <MuiThemeProvider muiTheme={getMuiTheme({ userAgent })}>
                 <StaticRouter location={url} context={{}}>
                     <ReduxProvider store={store}>
@@ -22,17 +23,30 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 </StaticRouter>
             </MuiThemeProvider>
         </WithStylesContext>)
-    return (<html>
-        <head>
-            <link rel="shortcut icon" href="icons/favicon.ico" />
-            <style type="text/css">{css.join('  ')}</style>
-            <title>{title}</title>
-        </head>
-        <body>
-            <div id="root"
-                dangerouslySetInnerHTML={{ __html: container }} />
-            {production ? null : <script type={type} async src="/dll/vendor.js"></script>}
-            <script type={type} async src="/client.js"></script>
-        </body>
-    </html>)
+    const vendor = production ? null : (
+        <script
+        type={type}
+        async={true}
+        src="/dll/vendor.js"
+        />)
+    return (
+        <html>
+            <head>
+                <link rel="shortcut icon" href="icons/favicon.ico" />
+                <style type="text/css">{css.join(" ")}</style>
+                <title>{title}</title>
+            </head>
+            <body>
+                <div
+                    id="root"
+                    dangerouslySetInnerHTML={{ __html: container }}
+                />
+                {vendor}
+                <script
+                    type={type}
+                    async={true}
+                    src="/client.js"
+                />
+            </body>
+        </html>)
 }

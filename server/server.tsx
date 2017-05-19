@@ -23,10 +23,12 @@ export default function serverRenderer({ production, clientStats, serverStats, t
         const store = configureStore()
         res.send("<!DOCTYPE html>" +
             renderToStaticMarkup(
-                <HTML title={title}
+                <HTML
+                    title={title}
                     production={production}
                     userAgent={req.headers["user-agent"]}
-                    url={req.url} store={store}
+                    url={req.url}
+                    store={store}
                 />))
     }
 }
