@@ -23,12 +23,8 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 </StaticRouter>
             </MuiThemeProvider>
         </WithStylesContext>)
-    const vendor = production ? null : (
-        <script
-        type={type}
-        async={true}
-        src="/dll/vendor.js"
-        />)
+    const vendor = production ?
+		   null : (<script type={type} async={true} src="/dll/vendor.js" />)
     return (
         <html>
             <head>
