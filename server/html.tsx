@@ -1,5 +1,4 @@
 import * as React from "react"
-const type = "text/javascript"
 import { renderToStaticMarkup, renderToString } from "react-dom/server"
 import { Provider as ReduxProvider } from "react-redux"
 import { StaticRouter } from "react-router-dom"
@@ -12,7 +11,10 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 
 export const HTML = ({ production, userAgent, url, store, title }) => {
     const css = []
+    const type = "text/javascript"
     const inserter = (styles) => { css.push(styles._getCss()) }
+    const vendor = production ? null :
+        (<script type={type} async={true} src="/dll/vendor.js" />)
     const container = renderToString(
         <WithStylesContext onInsertCss={inserter}>
             <MuiThemeProvider muiTheme={getMuiTheme({ userAgent })}>
@@ -23,9 +25,6 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 </StaticRouter>
             </MuiThemeProvider>
         </WithStylesContext>)
-    const vendor = production ? null :
-        (<script type={type} async={true} src="/dll/vendor.js" />)
-
     return (
         <html>
             <head>
