@@ -19,14 +19,20 @@ const Empty = () => (<h2>Empty</h2>)
     app: dataToJS(firebase, "/app"),
 }), APP_ACTIONS)
 export class HomeContainer extends React.Component<any, any> {
+
     constructor(props) {
         super(props)
         this.props.SEARCH_ACTION(" ")
     }
+
     public render() {
         /* let debug = Debug("HomeContainer")*/
         /* debug("CREATED!")*/
         /* debug(this.props)*/
+
+        const handleClick = () => {
+            console.log("this is:", this)
+        }
         const FirebaseAdds = !isLoaded(this.props.adds) ? <Loading /> :
             isEmpty(this.props.adds) ? <Empty /> :
                 Object.keys(this.props.adds).
@@ -38,7 +44,6 @@ export class HomeContainer extends React.Component<any, any> {
         const app = !isLoaded(this.props.app) ? <Loading /> :
             isEmpty(this.props.app) ? <Empty /> :
                 <h2>{this.props.app.title}</h2>
-
         return (
             <div className={HomeStyle.app}>
                 {app}
@@ -46,9 +51,11 @@ export class HomeContainer extends React.Component<any, any> {
                 {/* {FrontEndAdds} */}
                 <h2>React-boil</h2>
                 <RaisedButton
-                    onClick={() => { this.props.ROUTER_EMITTER("/whatver") }}
+                    onClick={handleClick}
                     fullWidth={true}
-                    label="Go Somewhere" primary={true} />
+                    label="Go Somewhere"
+                    primary={true}
+                />
             </div >
         )
     }

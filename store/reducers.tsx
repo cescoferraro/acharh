@@ -1,20 +1,19 @@
-import { reactReduxFirebase, firebaseStateReducer } from "react-redux-firebase";
-import { combineReducers } from "redux";
-import { DisplaySearchReducer } from "../app/containers/search.epic";
+import { firebaseStateReducer as firebase } from "react-redux-firebase"
+import { combineReducers } from "redux"
+import { DisplaySearchReducer } from "../app/containers/search.epic"
 
 function todos(state = [], action) {
-
     switch (action.type) {
-        case 'TODO':
+        case "TODO":
             return state.concat([action.text])
-        case 'ADD_TODO':
+        case "ADD_TODO":
             return state.concat([action.text])
         default:
             return state
     }
 }
 export let allReducers = combineReducers({
-    todos: todos,
-    DisplaySearchReducer: DisplaySearchReducer,
-    firebase: firebaseStateReducer
+    DisplaySearchReducer,
+    firebase,
+    todos,
 })

@@ -11,7 +11,8 @@ import { configureStore } from "../store/createStore"
 import { StaticRouter } from "react-router-dom"
 import { dataToJS, watchEvent, actionTypes } from "react-redux-firebase"
 import { getFirebase } from "react-redux-firebase"
-global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest
+import { XMLHttpRequest } from "xmlhttprequest"
+global.XMLHttpRequest = XMLHttpRequest
 
 injectTapEventPlugin()
 

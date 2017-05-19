@@ -19,14 +19,14 @@ export const FIREBASE_CONFIG = {
     storageBucket: "achars-82daf.appspot.com",
 }
 
-let ReplacebleEpicMiddleware = createEpicMiddleware(RootEpic)
+const ReplacebleEpicMiddleware = createEpicMiddleware(RootEpic)
 
 export const configureStore = (history: any = {}) => {
     const startup = { todos: ["Use Redux"] }
     const FirebaseStoreCreator = compose(reactReduxFirebase(FIREBASE_CONFIG))(createStore)
     const middlewares = applyMiddleware(routerMiddleware(history), logger, ReplacebleEpicMiddleware)
     const composeEnhancers = composeWithDevTools(middlewares)
-    let store = FirebaseStoreCreator(
+    const store = FirebaseStoreCreator(
         connectRouter(history)(allReducers),
         startup, composeEnhancers)
 
@@ -37,7 +37,7 @@ export const configureStore = (history: any = {}) => {
         })
         module.hot.accept(["./epics.tsx"], () => {
             const nextRootEpic = require("./epics.tsx").RootEpic
-            ReplacebleEpicMiddleware.replaceEpic(nextRootEpic);
+            ReplacebleEpicMiddleware.replaceEpic(nextRootEpic)
         })
     }
 

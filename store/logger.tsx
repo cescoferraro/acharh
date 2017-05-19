@@ -9,6 +9,6 @@ export const logger = createLogger({
     predicate: (getState, action) => {
         const identifier = "@@reactReduxFirebase"
         const fromFirebase = (action.type.substr(0, identifier.length) === identifier)
-        return !fromFirebase
+        return !fromFirebase || action.type === "@@reactReduxFirebase/SET"
     },
 })

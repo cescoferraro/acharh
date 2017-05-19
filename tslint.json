@@ -1,8 +1,9 @@
 {
-    "extends": ["tslint:latest"],
+    "extends": ["tslint:latest", "tslint-react"],
     "rules":{
 	"semicolon": [true, "never"],
 	"no-console": [false],
+	"no-var-requires": false,
 	"ordered-imports": false 
     }
 }
