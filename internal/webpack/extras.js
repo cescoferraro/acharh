@@ -26,12 +26,7 @@ const LOADERS = (env, isClient)=>{
 	       }}]
 	},
 	{ test: /\.tsx?$/, exclude: /node_modules/, loader: "awesome-typescript-loader" },
-	{ test: /\.ts$/, exclude: /node_modules/, enforce: 'pre', loader: 'tslint-loader',
-	  options: {
-	      configFile: "tslint.json",
-	      emitErrors: true 
-	  }
-	},
+	{ test: /\.tsx?$/, exclude: /node_modules/, loader: 'tslint-loader', enforce: 'pre' },
 	{ enforce: "pre",  exclude: /node_modules/, test: /\.js$/, loader: "source-map-loader" },
 	{ test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
 	  use:[
@@ -40,8 +35,7 @@ const LOADERS = (env, isClient)=>{
 		    emitFile: isClient,
 		    name: "fonts/font-[sha512:hash:base64:7].[ext]"
 		}}]},
-	{
-	    test: /\.(jpe?g|png|gif|svg)$/,
+	{ test: /\.(jpe?g|png|gif|svg)$/,
 	    use:[
 		{loader: 'file-loader',
 		 options:{

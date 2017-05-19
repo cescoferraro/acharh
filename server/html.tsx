@@ -13,8 +13,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 export const HTML = ({ production, userAgent, url, store, title }) => {
     let css = []
     const container = renderToString(
-        <WithStylesContext onInsertCss={styles => { css.push(styles._getCss()) }}>
-            <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: userAgent })}>
+        <WithStylesContext onInsertCss={(styles) => { css.push(styles._getCss()) }}>
+            <MuiThemeProvider muiTheme={getMuiTheme({ userAgent })}>
                 <StaticRouter location={url} context={{}}>
                     <ReduxProvider store={store}>
                         <Router />

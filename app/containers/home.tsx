@@ -8,8 +8,8 @@ import { isEmpty, isLoaded } from "react-redux-firebase"
 import { APP_ACTIONS } from "../../store/actions"
 import { HomeStyle } from "../css"
 
-const Loading = () => <h2>Loading</h2>
-const Empty = () => <h2>Empty</h2>
+const Loading = () => (<h2>Loading</h2>)
+const Empty = () => (<h2>Empty</h2>)
 
 @withStyles(HomeStyle)
 @firebaseConnect(["/app", "/adds"])
@@ -24,16 +24,16 @@ export class HomeContainer extends React.Component<any, any> {
         this.props.SEARCH_ACTION(" ")
     }
     public render() {
-        let = debug = Debug("HomeContainer")
-        debug("CREATED!")
-        debug(this.props)
+        /* let debug = Debug("HomeContainer")*/
+        /* debug("CREATED!")*/
+        /* debug(this.props)*/
         const FirebaseAdds = !isLoaded(this.props.adds) ? <Loading /> :
             isEmpty(this.props.adds) ? <Empty /> :
                 Object.keys(this.props.adds).
                     map((add) => <h2 key={Math.random()}>{add}</h2>)
 
-        const FrontEndAdds = Object.keys(this.props.DisplaySearchReducer).
-            map((add) => <h2 key={Math.random()}>{this.props.DisplaySearchReducer[add].email}</h2>)
+        /* const FrontEndAdds = Object.keys(this.props.DisplaySearchReducer).*/
+        /* map((add) => <h2 key={Math.random()}>{this.props.DisplaySearchReducer[add].email}</h2>)*/
 
         const app = !isLoaded(this.props.app) ? <Loading /> :
             isEmpty(this.props.app) ? <Empty /> :
@@ -43,7 +43,7 @@ export class HomeContainer extends React.Component<any, any> {
             <div className={HomeStyle.app}>
                 {app}
                 {FirebaseAdds}
-                {FrontEndAdds}
+                {/* {FrontEndAdds} */}
                 <h2>React-boil</h2>
                 <RaisedButton
                     onClick={() => { this.props.ROUTER_EMITTER("/whatver") }}

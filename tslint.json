@@ -2,6 +2,7 @@
     "extends": ["tslint:latest"],
     "rules":{
 	"semicolon": [true, "never"],
+	"no-console": [false],
 	"ordered-imports": false 
     }
 }
