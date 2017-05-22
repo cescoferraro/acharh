@@ -1,24 +1,20 @@
-import * as Debug from "debug"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import RaisedButton from "material-ui/RaisedButton"
 import * as React from "react"
 import { connect } from "react-redux"
 import { dataToJS, firebaseConnect } from "react-redux-firebase"
-import { isEmpty, isLoaded } from "react-redux-firebase"
 import { APP_ACTIONS } from "../../store/actions"
 import { HomeStyle } from "../css"
+import { Helmet } from "react-helmet"
+import { compose } from "recompose"
+import { isEmpty, isLoaded } from "react-redux-firebase"
+import { Loading, Empty } from "../../shared/components/helpers"
+import { FilterComponent } from "./filter.component"
 
-const Loading = () => (<h2>Loading</h2>)
-const Empty = () => (<h2>Empty</h2>)
 
-@withStyles(HomeStyle)
-@firebaseConnect(["/app", "/adds"])
-@connect(({ firebase, todos, DisplaySearchReducer }) => ({
-    actualSearch: DisplaySearchReducer,
-    adds: dataToJS(firebase, "/adds"),
-    app: dataToJS(firebase, "/app")
-}), APP_ACTIONS)
-export class HomeContainer extends React.Component<any, any> {
+
+
+export class HomeContainerClass extends React.Component<any, any> {
 
     constructor(props) {
         super(props)
@@ -26,29 +22,22 @@ export class HomeContainer extends React.Component<any, any> {
     }
 
     public render() {
-        /* let debug = Debug("HomeContainer")*/
-        /* debug("CREATED!")*/
-        /* debug(this.props)*/
 
         const handleClick = () => {
             this.props.ROUTER_EMITTER("/whatever")
         }
-        const FirebaseAdds = !isLoaded(this.props.adds) ? <Loading /> :
-            isEmpty(this.props.adds) ? <Empty /> :
-                Object.keys(this.props.adds).
-                    map((add) => <h2 key={Math.random()}>{add}</h2>)
-
-        /* const FrontEndAdds = Object.keys(this.props.DisplaySearchReducer).*/
-        /* map((add) => <h2 key={Math.random()}>{this.props.DisplaySearchReducer[add].email}</h2>)*/
-
-        const app = !isLoaded(this.props.app) ? <Loading /> :
-            isEmpty(this.props.app) ? <Empty /> :
-                <h2>{this.props.app.title}</h2>
-        return (
+        const app = (!isLoaded(this.props.app) ?
+            <Loading /> : isEmpty(this.props.app) ? <Empty /> :
+                <h2>{this.props.app.title}</h2>)
+        const NFL = (
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>AchaRS CESCO</title>
+                <link rel="canonical" href="http://achars.cescoferraro.xyz" />
+            </Helmet>
+        )
+        const extras = (
             <div className={HomeStyle.app}>
-                {app}
-                {FirebaseAdds}
-                {/* {FrontEndAdds} */}
                 <h2>React-boil</h2>
                 <RaisedButton
                     onClick={handleClick}
@@ -56,7 +45,37 @@ export class HomeContainer extends React.Component<any, any> {
                     label="Go Somewhere"
                     primary={true}
                 />
+            </div>
+        )
+        return (
+            <div className={HomeStyle.container}>
+                {NFL}
+                {extras}
+                {app}
+                <FilterComponent
+                    SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
+                    filters={this.props.filters}
+                    groups={this.props.groups}
+                />
+                {this.props.DisplaySearchReducer.map(
+                    (add) => (
+                        <div key={Math.random()}>
+                            <h2>{add.title}</h2>
+                        </div>
+                    )
+                )}
             </div >
         )
     }
 }
+export const HomeContainer = compose(
+    withStyles(HomeStyle),
+    firebaseConnect(["/app", "/adds", "/groups"]),
+    connect(({ firebase, todos, filters, DisplaySearchReducer }) => ({
+        filters,
+        DisplaySearchReducer,
+        adds: dataToJS(firebase, "/adds"),
+        groups: dataToJS(firebase, "/groups"),
+        app: dataToJS(firebase, "/app")
+    }), APP_ACTIONS)
+)(HomeContainerClass)

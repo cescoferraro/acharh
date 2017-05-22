@@ -1,12 +1,10 @@
 import { createStore, applyMiddleware, compose } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
-import { reactReduxFirebase, firebaseStateReducer } from "react-redux-firebase"
-import { combineReducers } from "redux"
+import { reactReduxFirebase } from "react-redux-firebase"
 import { createEpicMiddleware } from "redux-observable"
 import { RootEpic } from "./epics"
 import { routerMiddleware, connectRouter } from "connected-react-router"
 import { allReducers } from "./reducers"
-import { createLogger } from "redux-logger"
 import { logger } from "./logger"
 
 export const FIREBASE_CONFIG = {

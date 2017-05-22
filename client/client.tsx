@@ -1,8 +1,4 @@
-import * as React from "react"
-import * as ReactDOM from "react-dom"
 import { Router } from "../app/router"
-import { AppContainer } from "react-hot-loader"
-import { WithStylesContext } from "../shared/components/styles.context"
 import { Renderer, tag } from "./renderer"
 import * as injectTapEventPlugin from "react-tap-event-plugin"
 import { unmountComponentAtNode } from "react-dom"

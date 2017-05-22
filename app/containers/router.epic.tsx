@@ -1,6 +1,5 @@
 import "rxjs"
 import { Observable } from "rxjs"
-import { getFirebase } from "react-redux-firebase"
 import { push } from "connected-react-router"
 
 const ROUTER_EMITTER_ACTION_NAME = "ROUTER-EMIITER"

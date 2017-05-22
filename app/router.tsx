@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Route, Switch, Link } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import { HomeContainer } from "./containers/home"
 import { NoMatch } from "../shared/components/nomatch"
 import * as Debug from "debug"

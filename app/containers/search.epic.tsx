@@ -1,7 +1,6 @@
 import "rxjs"
 import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
-import { push } from "connected-react-router"
 
 export const SEARCH_ACTION_NAME = "SEARCH"
 export function SEARCH_ACTION(query: string): Action<any> {
