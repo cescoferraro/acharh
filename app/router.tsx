@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom"
 import { HomeContainer } from "./containers/home"
 import { NoMatch } from "../shared/components/nomatch"
 import * as Debug from "debug"
-
 Debug.enable("*")
 
 export let Router = () => {
