@@ -11,6 +11,21 @@ class FilterComponentClass extends React.Component<any, any> {
     }
 
     public render() {
+        const setCategory = (event, index, category) => {
+            this.props.SET_FILTERS_ACTION({ category })
+        }
+        const setGroup = (event, index, group) => {
+            this.props.SET_FILTERS_ACTION({ group, category: 0 })
+        }
+        const eachItem = (group) => (
+            <MenuItem
+                key={Math.random()}
+                value={group.code}
+                primaryText={group.name}
+            />
+        )
+        const isCurrentGroup = (group) => (group.code === this.props.filters.group)
+        const eachCategory = (group) => (group.children.map(eachItem))
         return (
             !isLoaded(this.props.groups) ?
                 <Loading /> : isEmpty(this.props.groups) ? <Empty /> :
@@ -21,20 +36,9 @@ class FilterComponentClass extends React.Component<any, any> {
                                 floatingLabelText="Categoria"
                                 fullWidth={true}
                                 value={this.props.filters.group}
-                                onChange={
-                                    (event, index, valuerr) => {
-                                        this.props.SET_FILTERS_ACTION({ group: valuerr, category: 0 })
-                                    }
-                                }
+                                onChange={setGroup}
                             >
-                                {this.props.groups.map(
-                                    (group) => (
-                                        <MenuItem
-                                            key={Math.random()}
-                                            value={group.code}
-                                            primaryText={group.name}
-                                        />
-                                    ))}
+                                {this.props.groups.map(eachItem)}
                             </SelectField>
 
                             <SelectField
@@ -42,27 +46,9 @@ class FilterComponentClass extends React.Component<any, any> {
                                 floatingLabelText="Categoria"
                                 fullWidth={true}
                                 value={this.props.filters.category}
-                                onChange={
-                                    (event, index, value) => {
-                                        this.props.SET_FILTERS_ACTION({ category: value })
-                                    }
-                                }
+                                onChange={setCategory}
                             >
-
-                                {this.props.groups.filter((group) => {
-                                    return group.code === this.props.filters.group
-                                }).map((group) => (
-                                    group.children.map(
-                                        (service) => (
-                                            <MenuItem
-                                                key={Math.random()}
-                                                value={service.code}
-                                                primaryText={service.name}
-                                            />
-
-                                        )
-                                    )
-                                ))}
+                                {this.props.groups.filter(isCurrentGroup).map(eachCategory)}
                             </SelectField>
                         </div>))
 

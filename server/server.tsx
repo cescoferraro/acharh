@@ -4,7 +4,6 @@ import * as injectTapEventPlugin from "react-tap-event-plugin"
 import { XMLHttpRequest } from "xmlhttprequest"
 import { HTML } from "./html"
 import { configureStore } from "../store/createStore"
-import Test from "./test"
 
 global.XMLHttpRequest = XMLHttpRequest
 injectTapEventPlugin()
