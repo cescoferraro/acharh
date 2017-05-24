@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Helmet } from "react-helmet"
-import { Renderer. Vendor } from "./renderer"
-
+import { Renderer, Vendor } from "./renderer"
 
 export const HTML = ({ production, userAgent, url, store, title }) => {
     const App = Renderer(url, userAgent, store)

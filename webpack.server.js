@@ -1,7 +1,7 @@
 const path = require('path');
 const extras = require("./internal/webpack/extras.js");
 
-module.exports = ( env ) => ( {
+module.exports = ( env= {production:false} ) => ( {
     name: 'server',
     target: 'node',
     entry: env.production ? "./server/production":'./server/server',
@@ -10,7 +10,7 @@ module.exports = ( env ) => ( {
         filename: 'server.js',
         libraryTarget: 'commonjs2'
     },
-    devtool: 'source-map',
+    devtool: extras.DEVTOOLS(env), 
     module:  extras.LOADERS(env,false),
     resolve: extras.resolve,
     plugins: extras.SERVER_PLUGINS 

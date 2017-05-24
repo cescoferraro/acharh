@@ -1,7 +1,7 @@
 const path = require('path');
 const extras = require("./internal/webpack/extras.js");
 
-module.exports = env => {
+module.exports = ( env = {production:false}) => {
     console.log("hello");
     console.log(env);
     return ( {
@@ -14,7 +14,7 @@ module.exports = env => {
 	    path:  path.join(__dirname, 'dist'),
 	    filename: 'client.js'
 	},
-	devtool: extras.DEVTOOLS,
+	devtool: extras.DEVTOOLS(env),
 	plugins: extras.CLIENT_PLUGINS(env,true), 
 	module:  extras.LOADERS(env),
 	resolve: extras.resolve 

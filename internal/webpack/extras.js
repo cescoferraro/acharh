@@ -60,7 +60,9 @@ const LOADERS_OPTIONS =  new webpack.LoaderOptionsPlugin({
 });
 
 const SERVER_PLUGINS = [LOADERS_OPTIONS];
-const DEVTOOLS = 'source-map'; 
+const DEVTOOLS = (env)=> {
+    return  ( env.production ? "eval" : "eval" );
+}; 
 
 const CLIENT_PLUGINS = env => {
     const og = [
@@ -81,7 +83,6 @@ const CLIENT_PLUGINS = env => {
     }
     return  ( og );
 };
-
 
 module.exports = {
     resolve: resolve,

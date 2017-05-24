@@ -1,21 +1,32 @@
 import * as React from "react"
+import TextField from "material-ui/TextField"
 import { compose } from "recompose"
 import SelectField from "material-ui/SelectField"
 import MenuItem from "material-ui/MenuItem"
 import { isEmpty, isLoaded } from "react-redux-firebase"
 import { Loading, Empty } from "../../shared/components/helpers"
+import { states } from "../../shared/states"
 
 class FilterComponentClass extends React.Component<any, any> {
     constructor(props) {
         super(props)
     }
-
     public render() {
         const setCategory = (event, index, category) => {
             this.props.SET_FILTERS_ACTION({ category })
+            this.props.FILTER_ACTION()
+        }
+        const setUf = (event, index, uf) => {
+            this.props.SET_FILTERS_ACTION({ uf })
+            this.props.FILTER_ACTION()
         }
         const setGroup = (event, index, group) => {
             this.props.SET_FILTERS_ACTION({ group, category: 0 })
+            this.props.FILTER_ACTION()
+        }
+        const setKeyword = (event, keyword) => {
+            this.props.SET_FILTERS_ACTION({ keyword })
+            this.props.FILTER_ACTION()
         }
         const eachItem = (group) => (
             <MenuItem
@@ -24,36 +35,63 @@ class FilterComponentClass extends React.Component<any, any> {
                 primaryText={group.name}
             />
         )
+        const Nenhum = (text) => (
+            <MenuItem
+                value={0}
+                primaryText={text}
+            />
+        )
         const isCurrentGroup = (group) => (group.code === this.props.filters.group)
         const eachCategory = (group) => (group.children.map(eachItem))
+        const estadosItems = states
+            .map((estado: any) => (
+                <MenuItem
+                    key={Math.random()}
+                    value={estado.code}
+                    primaryText={estado.name}
+                />)
+            )
         return (
             !isLoaded(this.props.groups) ?
                 <Loading /> : isEmpty(this.props.groups) ? <Empty /> :
                     (
                         <div>
                             <SelectField
+                                id={"WhateverUF"}
+                                floatingLabelText="UF"
+                                fullWidth={true}
+                                value={this.props.filters.uf}
+                                onChange={setUf}
+                            >
+                                {Nenhum("All Groups!")}
+                                {estadosItems}
+                            </SelectField>
+                            <SelectField
                                 id={"Whatever"}
-                                floatingLabelText="Categoria"
+                                floatingLabelText="Groups"
                                 fullWidth={true}
                                 value={this.props.filters.group}
                                 onChange={setGroup}
                             >
+                                {Nenhum("All Groups!")}
                                 {this.props.groups.map(eachItem)}
                             </SelectField>
-
                             <SelectField
                                 id={"anotherWhatever"}
-                                floatingLabelText="Categoria"
+                                floatingLabelText="Categories"
                                 fullWidth={true}
                                 value={this.props.filters.category}
                                 onChange={setCategory}
                             >
+                                {Nenhum("All Catagories!")}
                                 {this.props.groups.filter(isCurrentGroup).map(eachCategory)}
                             </SelectField>
+                            <TextField
+                                fullWidth={true}
+                                onChange={setKeyword}
+                                floatingLabelText="Floating Label Text"
+                            /><br />
                         </div>))
-
     }
 }
-export const FilterComponent = compose(
-
-)(FilterComponentClass)
+export const FilterComponent = compose()(FilterComponentClass)

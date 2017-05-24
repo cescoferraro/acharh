@@ -1,20 +1,20 @@
-import withStyles from "isomorphic-style-loader/lib/withStyles"
 import * as React from "react"
-import { connect } from "react-redux"
-import { dataToJS, firebaseConnect } from "react-redux-firebase"
-import { APP_ACTIONS } from "../../store/actions"
-import { HomeStyle } from "../css"
-import { Helmet } from "react-helmet"
 import { compose } from "recompose"
-import { FilterComponent } from "./filter.component"
+import { connect } from "react-redux"
+import { Helmet } from "react-helmet"
+import { dataToJS, firebaseConnect } from "react-redux-firebase"
+import withStyles from "isomorphic-style-loader/lib/withStyles"
+import { HomeStyle } from "../css"
 import { Extras } from "./extras"
 import { AddsList } from "./adds.list"
+import { FilterComponent } from "./filter.component"
+import { APP_ACTIONS } from "../../store/actions"
 
 export class HomeContainerClass extends React.Component<any, any> {
 
     constructor(props) {
         super(props)
-        this.props.SEARCH_ACTION(" ")
+        this.props.FILTER_ACTION()
     }
 
     public render() {
@@ -28,10 +28,12 @@ export class HomeContainerClass extends React.Component<any, any> {
                 <Extras
                     app={this.props.app}
                     css={HomeStyle.app}
+                    FILTER_ACTION={this.props.FILTER_ACTION}
                     ROUTER_EMITTER={this.props.ROUTER_EMITTER}
                 />
                 <FilterComponent
                     SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
+                    FILTER_ACTION={this.props.FILTER_ACTION}
                     filters={this.props.filters}
                     groups={this.props.groups}
                 />

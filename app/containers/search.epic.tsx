@@ -10,7 +10,7 @@ export function SEARCH_ACTION(query: string): Action<any> {
     }
 }
 
-export const DISPLAY_SEARCH_ACTION_NAME = "SEARCH_FIREBASE"
+export const DISPLAY_SEARCH_ACTION_NAME = "DISPLAY_SEARCH_FIREBASE"
 export const DISPLAY_SEARCH = (query: string): Action<any> => {
     return {
         payload: query,
