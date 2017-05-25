@@ -1,3 +1,4 @@
+import withStyles from "isomorphic-style-loader/lib/withStyles"
 import * as React from "react"
 import TextField from "material-ui/TextField"
 import { compose } from "recompose"
@@ -6,6 +7,8 @@ import MenuItem from "material-ui/MenuItem"
 import { isEmpty, isLoaded } from "react-redux-firebase"
 import { Loading, Empty } from "../../shared/components/helpers"
 import { states } from "../../shared/states"
+import { filtersCSS } from "../css"
+import * as classNames from "classnames"
 
 class FilterComponentClass extends React.Component<any, any> {
     constructor(props) {
@@ -55,43 +58,50 @@ class FilterComponentClass extends React.Component<any, any> {
             !isLoaded(this.props.groups) ?
                 <Loading /> : isEmpty(this.props.groups) ? <Empty /> :
                     (
-                        <div>
-                            <SelectField
-                                id={"WhateverUF"}
-                                floatingLabelText="UF"
-                                fullWidth={true}
-                                value={this.props.filters.uf}
-                                onChange={setUf}
-                            >
-                                {Nenhum("All Groups!")}
-                                {estadosItems}
-                            </SelectField>
-                            <SelectField
-                                id={"Whatever"}
-                                floatingLabelText="Groups"
-                                fullWidth={true}
-                                value={this.props.filters.group}
-                                onChange={setGroup}
-                            >
-                                {Nenhum("All Groups!")}
-                                {this.props.groups.map(eachItem)}
-                            </SelectField>
-                            <SelectField
-                                id={"anotherWhatever"}
-                                floatingLabelText="Categories"
-                                fullWidth={true}
-                                value={this.props.filters.category}
-                                onChange={setCategory}
-                            >
-                                {Nenhum("All Catagories!")}
-                                {this.props.groups.filter(isCurrentGroup).map(eachCategory)}
-                            </SelectField>
-                            <TextField
-                                fullWidth={true}
-                                onChange={setKeyword}
-                                floatingLabelText="Floating Label Text"
-                            /><br />
+                        <div className={filtersCSS.container}>
+                            <div className={classNames(filtersCSS.flex)}>
+                                <SelectField
+                                    id={"Whatever"}
+                                    floatingLabelText="Groups"
+                                    fullWidth={true}
+                                    value={this.props.filters.group}
+                                    onChange={setGroup}
+                                >
+                                    {Nenhum("All Groups!")}
+                                    {this.props.groups.map(eachItem)}
+                                </SelectField>
+                                <SelectField
+                                    id={"anotherWhatever"}
+                                    floatingLabelText="Categories"
+                                    fullWidth={true}
+                                    value={this.props.filters.category}
+                                    onChange={setCategory}
+                                >
+                                    {Nenhum("All Catagories!")}
+                                    {this.props.groups.filter(isCurrentGroup).map(eachCategory)}
+                                </SelectField>
+                            </div>
+                            <div className={classNames(filtersCSS.flex)}>
+                                <div className={filtersCSS.uf}>
+                                    <SelectField
+                                        id={"WhateverUF"}
+                                        floatingLabelText="UF"
+                                        fullWidth={true}
+                                        value={this.props.filters.uf}
+                                        onChange={setUf}
+                                    >
+                                        {Nenhum("All Groups!")}
+                                        {estadosItems}
+                                    </SelectField></div>
+                                <div className={filtersCSS.keyword}>
+                                    <TextField
+                                        fullWidth={true}
+                                        onChange={setKeyword}
+                                        floatingLabelText="Floating Label Text"
+                                    />
+                                </div>
+                            </div>
                         </div>))
     }
 }
-export const FilterComponent = compose()(FilterComponentClass)
+export const FilterComponent = compose(withStyles(filtersCSS))(FilterComponentClass)

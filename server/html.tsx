@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import { Renderer, Vendor } from "./renderer"
+import { compose } from "recompose"
 
 export const HTML = ({ production, userAgent, url, store, title }) => {
     const App = Renderer(url, userAgent, store)
@@ -14,7 +15,7 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 {HelmetApp.meta.toComponent()}
                 {HelmetApp.link.toComponent()}
                 <link rel="shortcut icon" href="icons/favicon.ico" />
-                <style type="text/css">{App[1].join(" ")}</style>
+                <style type="text/css"> {App[1].join(" ")} </style>
             </head>
             <body {...BodyAttr} >
                 <div

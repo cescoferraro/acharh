@@ -11,18 +11,15 @@ export const Extras = ({ FILTER_ACTION, css, app, ROUTER_EMITTER }) => {
             <h2>{app.title}</h2>)
     return (
         <div className={css}>
-
             {title}
             <RaisedButton
                 onClick={handleClick}
-                fullWidth={true}
                 label="Go Somewhere"
                 primary={true}
             />
             <br />
             <RaisedButton
                 onClick={handleAdds}
-                fullWidth={true}
                 label="Update ADDS"
                 primary={true}
             />

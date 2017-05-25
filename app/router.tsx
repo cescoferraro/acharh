@@ -4,16 +4,25 @@ import { HomeContainer } from "./containers/home"
 import { NoMatch } from "../shared/components/nomatch"
 import { InsertAdd } from "./containers/add.form"
 import * as Debug from "debug"
+import { Bar } from "./bar/bar"
+import withStyles from "isomorphic-style-loader/lib/withStyles"
+import { compose } from "recompose"
+import { routerCSS } from "./css"
 Debug.enable("*")
 
-export let Router = () => {
+export let Router = compose(
+    withStyles(routerCSS)
+)(() => {
     const debug = Debug("ROUTER")
     debug("Request if being handled!")
     return (
-        <Switch>
-            <Route exact={true} path="/" component={HomeContainer} />
-            <Route exact={true} path="/insert" component={InsertAdd} />
-            <Route component={NoMatch} />
-        </Switch>
+        <div className={routerCSS.container}>
+            <Route component={Bar} />
+            <Switch>
+                <Route exact={true} path="/" component={HomeContainer} />
+                <Route exact={true} path="/insert" component={InsertAdd} />
+                <Route component={NoMatch} />
+            </Switch>
+        </div>
     )
-}
+})

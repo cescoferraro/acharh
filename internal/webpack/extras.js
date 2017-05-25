@@ -26,12 +26,7 @@ const LOADERS = (env, isClient)=>{
 		   ]
 	       }}]
 	},
-	{ test: /\.tsx?$/, exclude: /node_modules/, loader: "awesome-typescript-loader" },
-	{ test: /\.tsx?$/,
-	  exclude: /node_modules/, 
-	  loader: 'tslint-loader', 
-	  enforce: 'pre' ,
-	  options:{typeCheck:true}},
+	{ test: /\.tsx?$/, exclude: /node_modules/, loader: "ts-loader" },
 	{ enforce: "pre",  exclude: /node_modules/, test: /\.js$/, loader: "source-map-loader" },
 	{ test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
 	  use:[
