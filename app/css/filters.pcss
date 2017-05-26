@@ -9,13 +9,28 @@
 }
 .container{
     background-color: red;
-    padding: var(--filterPadding);
-    height: 150px;
+    /* padding: var(--filterPadding); */
+    z-index:100;
+    height: 182px;
+    position:absolute;
+    bottom:0px;
+    width:100vw;
 }
-
+.containerHidden{
+    height:36px;
+    background-color: red;
+    z-index:100;
+    position:absolute;
+    bottom:0px;
+    width:100vw;
+}
 .uf{
     width: 30%;
 }
 .keyword{
     width: 70%;
+}
+
+.hidden{
+    display: none !important;
 }

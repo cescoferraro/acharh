@@ -14,6 +14,7 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 {HelmetApp.title.toComponent()}
                 {HelmetApp.meta.toComponent()}
                 {HelmetApp.link.toComponent()}
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href="icons/favicon.ico" />
                 <style type="text/css"> {App[1].join(" ")} </style>
             </head>

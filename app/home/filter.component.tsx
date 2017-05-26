@@ -5,6 +5,7 @@ import { compose } from "recompose"
 import SelectField from "material-ui/SelectField"
 import MenuItem from "material-ui/MenuItem"
 import { isEmpty, isLoaded } from "react-redux-firebase"
+import RaisedButton from "material-ui/RaisedButton"
 import { Loading, Empty } from "../../shared/components/helpers"
 import { states } from "../../shared/states"
 import { filtersCSS } from "../css"
@@ -14,6 +15,7 @@ class FilterComponentClass extends React.Component<any, any> {
     constructor(props) {
         super(props)
     }
+
     public render() {
         const setCategory = (event, index, category) => {
             this.props.SET_FILTERS_ACTION({ category })
@@ -54,12 +56,19 @@ class FilterComponentClass extends React.Component<any, any> {
                     primaryText={estado.name}
                 />)
             )
+        const showHide = () => {
+            this.props.SET_HOME_STORE_ACTION({ hidden: !this.props.home.hidden })
+        }
+        const hideFilter = !this.props.home.hidden ?
+            classNames(filtersCSS.flex) : classNames(filtersCSS.hidden)
+        const hideContainer = !this.props.home.hidden ?
+            classNames(filtersCSS.container) : classNames(filtersCSS.containerHidden)
         return (
             !isLoaded(this.props.groups) ?
                 <Loading /> : isEmpty(this.props.groups) ? <Empty /> :
                     (
-                        <div className={filtersCSS.container}>
-                            <div className={classNames(filtersCSS.flex)}>
+                        <div className={hideContainer}>
+                            <div className={hideFilter}>
                                 <SelectField
                                     id={"Whatever"}
                                     floatingLabelText="Groups"
@@ -81,7 +90,7 @@ class FilterComponentClass extends React.Component<any, any> {
                                     {this.props.groups.filter(isCurrentGroup).map(eachCategory)}
                                 </SelectField>
                             </div>
-                            <div className={classNames(filtersCSS.flex)}>
+                            <div className={hideFilter}>
                                 <div className={filtersCSS.uf}>
                                     <SelectField
                                         id={"WhateverUF"}
@@ -101,6 +110,7 @@ class FilterComponentClass extends React.Component<any, any> {
                                     />
                                 </div>
                             </div>
+                            <RaisedButton fullWidth={true} onClick={showHide} label="Filters" />
                         </div>))
     }
 }

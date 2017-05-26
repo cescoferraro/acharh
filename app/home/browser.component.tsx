@@ -24,12 +24,17 @@ class BrowserComponentClass extends React.Component<any, any> {
                     <link rel="canonical" href="http://achars.cescoferraro.xyz" />
                 </Helmet>
                 <FilterComponent
+                    home={this.props.home}
+                    SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
                     SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
                     FILTER_ACTION={this.props.FILTER_ACTION}
                     filters={this.props.filters}
                     groups={this.props.groups}
                 />
-                <AddsList adds={this.props.DisplaySearchReducer} />
+                <AddsList
+                    home={this.props.home}
+                    adds={this.props.DisplaySearchReducer}
+                />
             </div >
         )
     }

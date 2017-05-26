@@ -13,7 +13,7 @@ import { BrowserComponent } from "./browser.component"
 export class HomeContainerClass extends React.Component<any, any> {
     constructor(props) {
         super(props)
-        console.log("cesco")
+        console.warn("[HOME]")
         /* this.props.FILTER_ACTION()*/
     }
 
@@ -21,7 +21,9 @@ export class HomeContainerClass extends React.Component<any, any> {
         const browser = () => (
             <BrowserComponent
                 SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
+                SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
                 FILTER_ACTION={this.props.FILTER_ACTION}
+                home={this.props.home}
                 filters={this.props.filters}
                 groups={this.props.groups}
                 DisplaySearchReducer={this.props.DisplaySearchReducer}
@@ -43,8 +45,9 @@ export class HomeContainerClass extends React.Component<any, any> {
 export const HomeContainer = compose(
     withStyles(HomeStyle),
     firebaseConnect(["/app", "/adds", "/groups"]),
-    connect(({ firebase, todos, filters, DisplaySearchReducer }) => ({
+    connect(({ firebase, home, todos, filters, DisplaySearchReducer }) => ({
         filters,
+        home,
         DisplaySearchReducer,
         adds: dataToJS(firebase, "/adds"),
         groups: dataToJS(firebase, "/groups"),

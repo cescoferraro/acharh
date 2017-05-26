@@ -1,8 +1,8 @@
 import { combineEpics } from "redux-observable"
 import "rxjs"
-import { searchEpic } from "../app/containers/search.epic"
-import { filterEpic } from "../app/containers/filter.epic"
-import { routerEpic } from "../app/containers/router.epic"
+import { searchEpic } from "../app/home/search.epic"
+import { filterEpic } from "../app/home/filter.epic"
+import { routerEpic } from "../app/home/router.epic"
 
 const pingEpic = (action$) =>
     action$.filter((action) => action.type === "PING")

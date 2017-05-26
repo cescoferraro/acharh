@@ -12,25 +12,23 @@ import { APP_ACTIONS } from "../../store/actions"
 
 class TabsExampleSwipeableClass extends React.Component<any, any> {
 
-    constructor(props) {
-        super(props)
-    }
+    constructor(props) { super(props) }
 
     public componentWillMount() {
         console.warn("[TABS]")
         switch (this.props.computedMatch.url) {
             case "/":
-                this.props.SET_HOME_TAB_ACTION({ tab: 0 })
+                this.props.SET_HOME_STORE_ACTION({ tab: 0 })
                 break
             case "/insert":
-                this.props.SET_HOME_TAB_ACTION({ tab: 1 })
+                this.props.SET_HOME_STORE_ACTION({ tab: 1 })
                 break
         }
     }
     public render() {
         const handleChange = (value) => {
             const urls = ["/", "/insert"]
-            this.props.SET_HOME_TAB_ACTION({ tab: value })
+            this.props.SET_HOME_STORE_ACTION({ tab: value })
             this.props.ROUTER_EMITTER(urls[value])
         }
         return (
@@ -43,12 +41,7 @@ class TabsExampleSwipeableClass extends React.Component<any, any> {
                     onChange={handleChange}
                     value={this.props.home.tab}
                 >
-
-                    <Tab
-                        icon={<InboxIcon />}
-                        label="BROWSE"
-                        value={0}
-                    />
+                    <Tab icon={<InboxIcon />} label="BROWSE" value={0} />
                     <Tab icon={<FaceIcon />} label="INSERT" value={1} />
                 </Tabs>
                 <SwipeableViews
