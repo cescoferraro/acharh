@@ -5,35 +5,33 @@ import FaceIcon from "material-ui/svg-icons/action/face.js"
 import InboxIcon from "material-ui/svg-icons/content/inbox.js"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { connect } from "react-redux"
-import { push } from "connected-react-router"
 import { withRouter } from "react-router"
 import { tabsCSS } from "../css"
 import { compose } from "recompose"
+import { APP_ACTIONS } from "../../store/actions"
 
 class TabsExampleSwipeableClass extends React.Component<any, any> {
 
     constructor(props) {
         super(props)
-        this.state = { slideIndex: 0 }
     }
 
+    public componentWillMount() {
+        console.warn("[TABS]")
+        switch (this.props.computedMatch.url) {
+            case "/":
+                this.props.SET_HOME_TAB_ACTION({ tab: 0 })
+                break
+            case "/insert":
+                this.props.SET_HOME_TAB_ACTION({ tab: 1 })
+                break
+        }
+    }
     public render() {
         const handleChange = (value) => {
-            this.setState({
-                slideIndex: value
-            },
-                () => {
-                    switch (value) {
-                        case 0:
-                            this.props.dispatch(push("/"))
-                            break
-                        case 1:
-                            this.props.dispatch(push("/blog"))
-                            break
-                    }
-                }
-            )
-
+            const urls = ["/", "/insert"]
+            this.props.SET_HOME_TAB_ACTION({ tab: value })
+            this.props.ROUTER_EMITTER(urls[value])
         }
         return (
             <div
@@ -43,19 +41,19 @@ class TabsExampleSwipeableClass extends React.Component<any, any> {
                 <Tabs
                     className={tabsCSS.tabs}
                     onChange={handleChange}
-                    value={this.state.slideIndex}
+                    value={this.props.home.tab}
                 >
 
                     <Tab
                         icon={<InboxIcon />}
-                        label="ADDS"
+                        label="BROWSE"
                         value={0}
                     />
-                    <Tab icon={<FaceIcon />} label="BLOG" value={1} />
+                    <Tab icon={<FaceIcon />} label="INSERT" value={1} />
                 </Tabs>
                 <SwipeableViews
                     className={tabsCSS.container}
-                    index={this.state.slideIndex}
+                    index={this.props.home.tab}
                     onChangeIndex={handleChange}
                 >
                     {this.props.children}
@@ -68,6 +66,7 @@ export const TabsAchaRS = compose(
     withRouter,
     withStyles(tabsCSS),
     connect((state) => ({
-        app: state.app
-    }))
+        app: state.app,
+        home: state.home
+    }), APP_ACTIONS)
 )(TabsExampleSwipeableClass)

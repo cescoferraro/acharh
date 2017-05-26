@@ -1,49 +1,41 @@
 import * as React from "react"
+import { InsertAdd } from "./add.form"
 import { compose } from "recompose"
 import { connect } from "react-redux"
-import { Helmet } from "react-helmet"
 import { dataToJS, firebaseConnect } from "react-redux-firebase"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { HomeStyle } from "../css"
-import { AddsList } from "./adds.list"
-import { FilterComponent } from "./filter.component"
 import { APP_ACTIONS } from "../../store/actions"
-import { Route } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import { TabsAchaRS } from "./tabs"
+import { BrowserComponent } from "./browser.component"
 
 export class HomeContainerClass extends React.Component<any, any> {
     constructor(props) {
         super(props)
         console.log("cesco")
-        this.props.FILTER_ACTION()
+        /* this.props.FILTER_ACTION()*/
     }
 
     public render() {
+        const browser = () => (
+            <BrowserComponent
+                SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
+                FILTER_ACTION={this.props.FILTER_ACTION}
+                filters={this.props.filters}
+                groups={this.props.groups}
+                DisplaySearchReducer={this.props.DisplaySearchReducer}
+            />
+        )
         return (
-            <TabsAchaRS>
-                <Route
-                    exact={true}
-                    path="/"
-                    render={() => {
-                        return (<div className={HomeStyle.container}>
-                            <Helmet>
-                                <meta charSet="utf-8" />
-                                <title>AchaRS</title>
-                                <link rel="canonical" href="http://achars.cescoferraro.xyz" />
-                            </Helmet>
-                            <FilterComponent
-                                SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
-                                FILTER_ACTION={this.props.FILTER_ACTION}
-                                filters={this.props.filters}
-                                groups={this.props.groups}
-                            />
-                            <AddsList
-                                adds={this.props.DisplaySearchReducer}
-                            />
-                        </div >)
-                    }}
-                />
-            </TabsAchaRS>
+            <div>
+                <Switch>
+                    <TabsAchaRS>
+                        <Route exact={true} path="/" render={browser} />
+                        <Route path="/insert" exact={true} component={InsertAdd} />
+                    </TabsAchaRS>
+                </Switch>
+            </div>
         )
     }
 }

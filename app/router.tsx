@@ -18,11 +18,9 @@ export let Router = compose(
     return (
         <div className={routerCSS.container}>
             <Route component={Bar} />
-            <Switch>
-                <Route exact={true} path="/" component={HomeContainer} />
-                <Route exact={true} path="/insert" component={InsertAdd} />
-                <Route component={NoMatch} />
-            </Switch>
+            <Route exact={true} path="/" component={HomeContainer} />
+            <Route exact={true} path="/insert" component={HomeContainer} />
+            <Route component={NoMatch} />
         </div>
     )
 })
