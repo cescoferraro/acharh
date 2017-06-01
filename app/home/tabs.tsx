@@ -6,13 +6,15 @@ import InboxIcon from "material-ui/svg-icons/content/inbox.js"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
-import { tabsCSS } from "../css"
+import * as tabsCSS from "../css/tabs.pcss"
 import { compose } from "recompose"
 import { APP_ACTIONS } from "../../store/actions"
 
 class TabsExampleSwipeableClass extends React.Component<any, any> {
 
-    constructor(props) { super(props) }
+    constructor(props) {
+        super(props)
+    }
 
     public componentWillMount() {
         console.warn("[TABS]")

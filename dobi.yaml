@@ -1,0 +1,21 @@
+meta:
+    project: achars 
+    default: dev 
+    include: ['./internal/dobi/development.yaml',
+                './internal/dobi/utils.yaml', 
+                './internal/dobi/production.yaml']
+
+env=vars:
+    variables:
+      - VERSION=0.0.1
+
+mount=source:
+    bind: .
+    path: /srv/achars
+
+image=dev:
+    image: cescoferraro/achars
+    tags: ["dev"]
+    dockerfile: internal/docker/Dockerfile.dev
+    description: "Build the dev-image"
+ 

@@ -3,7 +3,7 @@ import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
 
 export const SEARCH_ACTION_NAME = "SEARCH"
-export function SEARCH_ACTION(query: string): Action<any> {
+export function SEARCH_ACTION(query: string): IAction<any> {
     return {
         payload: query,
         type: SEARCH_ACTION_NAME
@@ -11,7 +11,7 @@ export function SEARCH_ACTION(query: string): Action<any> {
 }
 
 export const DISPLAY_SEARCH_ACTION_NAME = "DISPLAY_SEARCH_FIREBASE"
-export const DISPLAY_SEARCH = (query: string): Action<any> => {
+export const DISPLAY_SEARCH = (query: string): IAction<any> => {
     return {
         payload: query,
         type: DISPLAY_SEARCH_ACTION_NAME

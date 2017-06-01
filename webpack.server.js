@@ -4,7 +4,7 @@ const extras = require("./internal/webpack/extras.js");
 module.exports = ( env= {production:false} ) => ( {
     name: 'server',
     target: 'node',
-    entry: env.production ? "./server/production":'./server/server',
+    entry: './server/server',
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'server.js',

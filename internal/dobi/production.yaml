@@ -1,0 +1,25 @@
+job=build:
+    description: "Runs Webpack Production"
+    use: dev
+    artifact: dist/ 
+    mounts: [source]
+    interactive: true
+    command:  npm run prod
+    depends: [vars]
+
+image=production:
+    image: cescoferraro/achars
+    tags: ["{env.VERSION}"]
+    dockerfile: internal/docker/Dockerfile
+    depends: [vars,build]
+    description: "Build the frontend-image"
+
+job=preview:
+    net-mode: host
+    use: dev
+    mounts: [source]
+    interactive: true
+    command: node dist/server.js
+    depends: [vars,build]
+    env:
+      - "NODE_ENV=production"

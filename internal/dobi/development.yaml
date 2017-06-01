@@ -1,0 +1,8 @@
+job=hot:
+    net-mode: host
+    description: "Runs Webpack Production"
+    use: dev
+    mounts: [source]
+    interactive: true
+    command:  npm start 
+    depends: [vars]

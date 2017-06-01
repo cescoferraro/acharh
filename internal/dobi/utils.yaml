@@ -1,0 +1,13 @@
+job=shell:
+    description: "Shell into dev container"
+    use: dev
+    mounts: [source]
+    interactive: true
+    command: bash 
+    depends: [vars]
+
+job=delete:
+    description: "delete www/ folder"
+    use: dev
+    mounts: [source]
+    command:  rm -rf dist/

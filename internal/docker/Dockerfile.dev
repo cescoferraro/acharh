@@ -1,0 +1,8 @@
+FROM node:8 
+# DEV DEPENDENCIES
+RUN npm i -g typescript 
+RUN npm i -g tslint 
+RUN npm i -g webpack 
+
+# GOPATH
+WORKDIR /srv/achars

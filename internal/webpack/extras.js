@@ -15,6 +15,12 @@ const LOADERS = (env, isClient)=>{
 			 sourceMap: true,
 			 modules: true,
 			 localIdentName: "[name]_[local]_[hash:base64:3]"}},
+	      {
+		  loader: 'typed-css-modules-loader',
+		  options: {
+		      searchDir: "**/*.pcss"
+		  }
+	      },
 	      {loader: 'postcss-loader',
 	       options: {
 		   plugins: (loader) => [

@@ -1,4 +1,6 @@
 import * as React from "react"
+import { isEmpty, isLoaded } from "react-redux-firebase"
+import { Loading, Empty } from "../../shared/components/helpers"
 import { InsertAdd } from "./add.form"
 import { compose } from "recompose"
 import { connect } from "react-redux"
@@ -29,12 +31,20 @@ export class HomeContainerClass extends React.Component<any, any> {
                 DisplaySearchReducer={this.props.DisplaySearchReducer}
             />
         )
+        const insert = () => (
+            !isLoaded(this.props.groups) ?
+                <Loading /> : isEmpty(this.props.groups) ? <Empty /> :
+                    (
+                        <InsertAdd
+                            groups={this.props.groups}
+                            SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION} />)
+        )
         return (
             <div>
                 <Switch>
                     <TabsAchaRS>
                         <Route exact={true} path="/" render={browser} />
-                        <Route path="/insert" exact={true} component={InsertAdd} />
+                        <Route path="/insert" exact={true} render={insert} />
                     </TabsAchaRS>
                 </Switch>
             </div>
