@@ -5,7 +5,7 @@ job=build:
     mounts: [source]
     interactive: true
     command:  npm run prod
-    depends: [vars]
+    depends: [vars, clean]
 
 image=production:
     image: cescoferraro/achars
@@ -15,11 +15,11 @@ image=production:
     description: "Build the frontend-image"
 
 job=preview:
-    net-mode: host
+    ports: ["4000:4000"]
     use: dev
     mounts: [source]
     interactive: true
-    command: node dist/server.js
+    command: node production.js
     depends: [vars,build]
     env:
       - "NODE_ENV=production"

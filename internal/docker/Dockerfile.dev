@@ -1,4 +1,4 @@
-FROM node:8 
+FROM node:6 
 # DEV DEPENDENCIES
 RUN npm i -g typescript 
 RUN npm i -g tslint 

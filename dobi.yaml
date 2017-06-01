@@ -19,3 +19,9 @@ image=dev:
     dockerfile: internal/docker/Dockerfile.dev
     description: "Build the dev-image"
  
+
+job=clean:
+    description: "Delete dist/ folder"
+    use: dev
+    mounts: [source]
+    command: rm -rf dist/ 

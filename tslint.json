@@ -14,7 +14,6 @@
      ],
      "no-console": [false],
      "no-var-requires": false,
-     "ignoreDefinitionFiles":true,
      "no-unused-variable": true,
      "ordered-imports": false,
      "object-literal-sort-keys":false
