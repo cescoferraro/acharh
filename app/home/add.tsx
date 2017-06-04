@@ -20,10 +20,10 @@ export const Add = ({ add, groups }) => {
             <h3>🥇 CATEGORY: {CATEGORY} </h3>
             <h3> ESTADO: {UF} </h3>
             <h3> REGIAO:  IMPLEMENTAR!! </h3>
-            <h3>👁‍🗨 CONFIRMADO: {add.confirmed ? "confirmado" : "não tá confirmado"} </h3>
-            <h3>👁‍🗨 PAGO: {add.paid ? "pago" : "não tá pago"} </h3>
+            <h3>👁‍🗨 CONFIRMADO: {add.confirmed ? "🥇🥇🥇🥇🥇🥇" : "🥉🥉🥉🥉🥉🥉🥉"} </h3>
+            <h3>👁‍🗨 PAGO: {add.paid ? "💰💰💰"  : " 🌵🌵🌵🌵"} </h3>
             <h3>⚗️ CITY: {ciTY === undefined ? "undefined" : ciTY.name} </h3>
+
         </Card>
     )
-
 }

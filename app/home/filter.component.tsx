@@ -68,6 +68,8 @@ class FilterComponentClass extends React.Component<any, any> {
         }
         const hideFilter = !this.props.home.hidden ?
             classNames(filtersCSS.flex) : classNames(filtersCSS.hidden)
+        const buttonLabel = !this.props.home.hidden ?
+            "ESCONDER FILTROS" : "EXIBIR FILTROS"
         const hideContainer = !this.props.home.hidden ?
             classNames(filtersCSS.container) : classNames(filtersCSS.containerHidden)
         return (
@@ -130,7 +132,7 @@ class FilterComponentClass extends React.Component<any, any> {
                                     />
                                 </div>
                             </div>
-                            <RaisedButton fullWidth={true} onClick={showHide} label="Filters" />
+                            <RaisedButton fullWidth={true} onClick={showHide} label={buttonLabel} />
                         </div >))
     }
 }

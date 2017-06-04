@@ -26,19 +26,29 @@ export const filterEpic = (action$, store) => {
                     return array[1]
                 })
                 .filter(byUF(reduxFilter.uf))
+                .filter(onlyConfirmed())
                 .filter(byGroup(reduxFilter.group))
                 .filter(byCategory(reduxFilter.category))
                 .filter(byKeyword(reduxFilter.keyword))
                 .toArray()
+                .map(paidFirst)
                 .map(displayResults)
         })
 }
+
+const paidFirst = (adds) => (adds.sort((a, b) => {
+    return (a.paid === b.paid) ? 0 : a.paid ? -1 : 1
+}))
 
 const displayResults = (array) => {
     return {
         payload: array,
         type: DISPLAY_SEARCH_ACTION_NAME
     }
+}
+
+const onlyConfirmed = () => (add: any) => {
+    return add.confirmed ? true : false
 }
 
 const byKeyword = (keyword) => (add: any) => {
