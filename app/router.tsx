@@ -10,7 +10,6 @@ import { routerCSS } from "./css"
 export let Router = compose(
     withStyles(routerCSS)
 )(() => {
-    console.log("sdjkfnsdf")
     return (
         <div className={routerCSS.container}>
             <Route component={Bar} />

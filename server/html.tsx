@@ -8,7 +8,7 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
     const HtmlAttr = HelmetApp.htmlAttributes.toComponent()
     const BodyAttr = HelmetApp.bodyAttributes.toComponent()
     return (
-        <html {...HtmlAttr}>
+        <html lang="pt" {...HtmlAttr}>
             <head>
                 {HelmetApp.title.toComponent()}
                 {HelmetApp.meta.toComponent()}

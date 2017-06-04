@@ -11,10 +11,10 @@
     "test": "jest",
     "build": "webpack -p --config webpack.config.js --env.production",
     "docker/build": "docker build -f internal/docker/Dockerfile -t cescoferraro/achars:latest .",
-    "docker/run": "docker run -p 4000:4000 cescoferraro/achars:latest",
-    "docker/preview": "yarn docker/build && yarn docker/run",
     "docker/push": "docker push cescoferraro/achars:latest",
-    "push": "yarn run build && yarn run docker/build && yarn run docker/push"
+    "docker/preview": "yarn docker/build && yarn docker/run",
+    "docker/run": "docker run -p 4000:4000 cescoferraro/achars:latest",
+    "push": "yarn run clean && yarn run build && yarn run docker/build && yarn run docker/push"
   },
   "author": "",
   "license": "ISC",
