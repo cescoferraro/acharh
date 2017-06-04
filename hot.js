@@ -15,7 +15,7 @@ app.get('/vendor.json', function (req, res) {
     res.sendFile("./vendor.json",{root: "./dll"});
 });
 
-app.use(webpackDevMiddleware(compiler, {noInfo: false}));
+app.use(webpackDevMiddleware(compiler, {noInfo: true}));
 
 app.use(WebpackHotMiddleware(
     compiler.compilers.find(compiler => compiler.name === 'client')));

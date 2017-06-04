@@ -16,7 +16,6 @@ export class HomeContainerClass extends React.Component<any, any> {
     constructor(props) {
         super(props)
         console.warn("[HOME]")
-        /* this.props.FILTER_ACTION()*/
     }
 
     public render() {

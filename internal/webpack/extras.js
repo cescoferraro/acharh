@@ -7,6 +7,12 @@ const resolve = {
 };
 
 const LOADERS = (env, isClient)=>{
+    const typed = env.production ? [] : [{
+	loader: 'typed-css-modules-loader',
+	options: {
+	    searchDir: "**/*.pcss"
+	}
+    }];
     let rules = [
 	{ test: /\.(pcss)$/,
 	  use:[ 
@@ -16,12 +22,7 @@ const LOADERS = (env, isClient)=>{
 			 sourceMap: true,
 			 modules: true,
 			 localIdentName: "[name]_[local]_[hash:base64:3]"}},
-	      {
-		  loader: 'typed-css-modules-loader',
-		  options: {
-		      searchDir: "**/*.pcss"
-		  }
-	      },
+	      ... typed,
 	      {loader: 'postcss-loader',
 	       options: {
 		   plugins: (loader) => [
