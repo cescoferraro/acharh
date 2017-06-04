@@ -1,5 +1,0 @@
-var connecter = require('connect')
-var http = require('http')
-var app = connecter()
-app.use(require("./dist/server.tsx").default({ title: "Production", production: true }))
-app.listen(4000)

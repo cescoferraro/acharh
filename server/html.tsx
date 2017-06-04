@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import { Renderer, Vendor } from "./renderer"
-import { compose } from "recompose"
 
 export const HTML = ({ production, userAgent, url, store, title }) => {
     const App = Renderer(url, userAgent, store)
@@ -23,11 +22,13 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                     id="root"
                     dangerouslySetInnerHTML={{ __html: App[0] }}
                 />
+
                 <Vendor
-                    path={"/dll/vendor.js"}
+                    path={"/vendor.js"}
                     isProduction={production}
                 />
-                <script type={"text/javascript"} async={true} src={"/client.js"} />
+
+                <script type={"text/javascript"} async={true} src={"/js/client.js"} />
             </body>
         </html>)
 }

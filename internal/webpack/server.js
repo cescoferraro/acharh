@@ -1,13 +1,13 @@
 const path = require('path');
-const extras = require("./internal/webpack/extras.js");
+const extras = require("./extras.js");
 
 module.exports = ( env= {production:false} ) => ( {
     name: 'server',
     target: 'node',
-    entry: './server/server',
+    entry: './server/middleware',
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'server.js',
+        path: path.join(__dirname, '../../dist'),
+        filename: 'js/middleware.js',
         libraryTarget: 'commonjs2'
     },
     devtool: extras.DEVTOOLS(env), 

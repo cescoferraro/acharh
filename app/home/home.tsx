@@ -41,6 +41,7 @@ export class HomeContainerClass extends React.Component<any, any> {
                             SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
                         />)
         )
+
         return (
             <div>
                 <Switch>

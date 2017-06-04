@@ -1,16 +1,14 @@
 const path = require('path');
-const extras = require("./internal/webpack/extras.js");
+const extras = require("./extras.js");
 
 module.exports = ( env = {production:false}) => {
     return ( {
 	name: 'client',
 	target: 'web',
-	entry: ['react-hot-loader/patch', 
-		'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&overlay=false',
-		'./client/client' ],
+	entry: extras.HOTLOADER(['./client/client'],env),
 	output: {
-	    path:  path.join(__dirname, 'dist'),
-	    filename: 'client.js'
+	    path:  path.join(__dirname, '../../dist'),
+	    filename: 'js/client.js'
 	},
 	devtool: extras.DEVTOOLS(env),
 	plugins: extras.CLIENT_PLUGINS(env,true), 

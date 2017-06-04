@@ -11,13 +11,15 @@ export const Add = ({ add, groups }) => {
     const UF = states.filter((state) => (state.code === add.uf))[0].name
     const ciTY = states.filter((state) => (state.code === add.uf))[0].children
         .filter((city) => (city.code === add.city))[0]
+
     return (
         <Card key={Math.random()}>
             <h2>{add.title}</h2>
             <h2>{add.description}</h2>
             <h3> 🎱 GROUP: {GROUP}</h3>
             <h3>🥇 CATEGORY: {CATEGORY} </h3>
-            <h3>👁‍🗨 ESTADO: {UF} </h3>
+            <h3> ESTADO: {UF} </h3>
+            <h3> REGIAO:  IMPLEMENTAR!! </h3>
             <h3>👁‍🗨 CONFIRMADO: {add.confirmed ? "confirmado" : "não tá confirmado"} </h3>
             <h3>👁‍🗨 PAGO: {add.paid ? "pago" : "não tá pago"} </h3>
             <h3>⚗️ CITY: {ciTY === undefined ? "undefined" : ciTY.name} </h3>

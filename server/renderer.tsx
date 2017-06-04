@@ -9,7 +9,6 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider"
 
 export const Renderer = (url, userAgent, store) => {
     const css = []
-
     const inserter = (s) => { css.push(s._getCss()) }
     const Container = renderToString(
         <WithStylesContext onInsertCss={inserter}>

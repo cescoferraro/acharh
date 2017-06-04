@@ -35,7 +35,6 @@ export const filterEpic = (action$, store) => {
 }
 
 const displayResults = (array) => {
-    console.log(array)
     return {
         payload: array,
         type: DISPLAY_SEARCH_ACTION_NAME

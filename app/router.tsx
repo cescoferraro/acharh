@@ -10,9 +10,9 @@ import { routerCSS } from "./css"
 export let Router = compose(
     withStyles(routerCSS)
 )(() => {
+    console.log("sdjkfnsdf")
     return (
         <div className={routerCSS.container}>
-
             <Route component={Bar} />
             <Route exact={true} path="/" component={HomeContainer} />
             <Route exact={true} path="/insert" component={HomeContainer} />

@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const resolve = {
     extensions: ['.js', '.tsx', '.json', 'pcss']
@@ -50,7 +51,15 @@ const LOADERS = (env, isClient)=>{
 	       }}]}];
     return ( {rules: rules} ); 
 };
+const HOTLOADER = (entry, env)=>{
+    if (!env.production) {
+	return ['react-hot-loader/patch',
+		'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&overlay=false', 
+		...entry]; 
+    }
+    return entry;
 
+};
 
 const LOADERS_OPTIONS =  new webpack.LoaderOptionsPlugin({
     minimize: false,
@@ -66,28 +75,36 @@ const DEVTOOLS = (env)=> {
 }; 
 
 const CLIENT_PLUGINS = env => {
-    const og = [
-	new webpack.HotModuleReplacementPlugin(),
+    let og = [];
+    if (env.production){
+	og.push(
+	    new CopyWebpackPlugin([ {from: "./server/server.js",to:"./server.js"} ]),
+	    new CopyWebpackPlugin([ {from: "./server/index.html",to:"./index.html"} ])
+	);
+    } else {
+	og.push(
+	    new webpack.HotModuleReplacementPlugin(),
+	    new webpack.DllReferencePlugin({
+		context: process.cwd(),
+		manifest: require("../../dll/vendor.json")
+	    }));
+    }
+    og.push(
 	new webpack.NamedModulesPlugin(),
 	new webpack.NoEmitOnErrorsPlugin(),
 	new FaviconsWebpackPlugin({
 	    prefix: 'icons/',
 	    logo: './shared/icon/favicon.png'
 	}),
-	LOADERS_OPTIONS];
-    if (env.production !== true){
-	og.push(
-	    new webpack.DllReferencePlugin({
-		context: process.cwd(),
-		manifest: require("../../dist/dll/vendor.json")
-	    }));
-    }
+	LOADERS_OPTIONS
+    );
     return  ( og );
 };
 
 module.exports = {
     resolve: resolve,
     SERVER_PLUGINS: SERVER_PLUGINS,
+    HOTLOADER:HOTLOADER,
     DEVTOOLS: DEVTOOLS,
     CLIENT_PLUGINS: CLIENT_PLUGINS,
     LOADERS: LOADERS 
