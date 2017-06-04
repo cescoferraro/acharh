@@ -12,6 +12,7 @@ export let Router = compose(
 )(() => {
     return (
         <div className={routerCSS.container}>
+
             <Route component={Bar} />
             <Route exact={true} path="/" component={HomeContainer} />
             <Route exact={true} path="/insert" component={HomeContainer} />

@@ -1,5 +1,5 @@
 import * as _ from "lodash"
-
+import { addFactory } from "./add.form"
 export const SET_HOME_STORE_ACTION_NAME = "SET_HOME_STORE"
 export function SET_HOME_STORE_ACTION(filter: IHome): IAction<IHome> {
     return {
@@ -10,17 +10,7 @@ export function SET_HOME_STORE_ACTION(filter: IHome): IAction<IHome> {
 
 const startup: IHome = {
     tab: 0,
-    add: {
-        id: " dsfsdf",
-        title: " dsfsdf",
-        description: "initial",
-        confirmed: true,
-        paid: true,
-        group: 45797,
-        category: 2915,
-        uf: 21,
-        city: 528
-    }
+    add: addFactory()
 }
 
 export const HomeReducers = (state: IHome = startup, action: IAction<IHome>) => {

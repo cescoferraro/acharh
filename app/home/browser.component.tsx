@@ -33,6 +33,7 @@ class BrowserComponentClass extends React.Component<any, any> {
                 />
                 <AddsList
                     home={this.props.home}
+                    groups={this.props.groups}
                     adds={this.props.DisplaySearchReducer}
                 />
             </div >

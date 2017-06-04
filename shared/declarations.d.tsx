@@ -10,7 +10,6 @@ interface IAction<T> {
 }
 
 interface IAdd {
-    id: string
     title: string
     description: string
     uf: number

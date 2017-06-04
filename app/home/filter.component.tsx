@@ -14,6 +14,7 @@ import * as classNames from "classnames"
 class FilterComponentClass extends React.Component<any, any> {
     constructor(props) {
         super(props)
+
     }
 
     public render() {
@@ -52,7 +53,6 @@ class FilterComponentClass extends React.Component<any, any> {
         )
         const isCurrentGroup = (group) => (group.code === this.props.filters.group)
         const isCurrentState = (state) => (state.code === this.props.filters.uf)
-        console.log(states.filter(isCurrentState).map((state) => (state.children)))
         const eachCategory = (group) => (group.children.map(eachItem))
         const eachState = (state) => (state.children.map(eachItem))
         const estadosItems = states

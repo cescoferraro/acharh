@@ -2,14 +2,34 @@ import * as React from "react"
 import RaisedButton from "material-ui/RaisedButton"
 import { compose } from "recompose"
 import { reduxForm, Field } from "redux-form"
-import { TextField, SelectField, Checkbox, Toggle } from "redux-form-material-ui"
+import { TextField, SelectField, Toggle } from "redux-form-material-ui"
 import { connect } from "react-redux"
 import MenuItem from "material-ui/MenuItem"
 import { states } from "../../shared/states"
 import * as faker from "faker"
-import withStyles from 'isomorphic-style-loader/lib/withStyles'
+import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { addFormCSS } from "../css"
 
+const getRandomIntInclusive = (min, max) => {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}
+export const addFactory = (groups = [{ code: 3849, children: [{ code: 970 }] }]) => {
+    const randomGroup = groups.map((group) => (group.code))[Math.floor(Math.random() * groups.length)]
+    const childrens = groups.filter((group) => (group.code === randomGroup))[0].children
+    const randomCategory = childrens[Math.floor(Math.random() * childrens.length)].code
+    return ({
+        title: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        group: randomGroup,
+        category: randomCategory,
+        uf: getRandomIntInclusive(1, 27),
+        city: getRandomIntInclusive(1, 27),
+        confirmed: Math.random() >= 0.5,
+        paid: Math.random() >= 0.5
+    })
+}
 export const InsertAdd = compose(
     withStyles(addFormCSS),
     connect((state) => ({
@@ -21,9 +41,9 @@ export const InsertAdd = compose(
         enableReinitialize: true,
         form: "myForm"
     })
-)(({ groups, handleSubmit, load, SET_HOME_STORE_ACTION, change, home, pristine, submitting, reset }) => {
+)(({ groups, INSERT_ADD, handleSubmit, load, SET_HOME_STORE_ACTION, change, home, pristine, submitting, reset }) => {
     const submit = (form: IAdd) => {
-        console.log(form)
+        INSERT_ADD(form)
     }
 
     const Nenhum = (text) => (
@@ -40,11 +60,6 @@ export const InsertAdd = compose(
                 primaryText={estado.name}
             />)
         )
-    const getRandomIntInclusive = (min, max) => {
-        min = Math.ceil(min)
-        max = Math.floor(max)
-        return Math.floor(Math.random() * (max - min + 1)) + min
-    }
 
     const eachItem = (group) => {
         return (
@@ -56,20 +71,7 @@ export const InsertAdd = compose(
         )
     }
     const randomADD = () => {
-        const randomGroup = groups.map((group) => (group.code))[Math.floor(Math.random() * groups.length)]
-        const childrens = groups.filter((group) => (group.code === randomGroup))[0].children
-        const randomCategory = childrens[Math.floor(Math.random() * childrens.length)].code
-        const add: IAdd = {
-            id: faker.random.uuid(),
-            title: faker.name.findName(),
-            description: faker.company.catchPhraseDescriptor(),
-            group: randomGroup,
-            category: randomCategory,
-            uf: getRandomIntInclusive(1, 27),
-            city: getRandomIntInclusive(1, 27),
-            confirmed: Math.random() >= 0.5,
-            paid: Math.random() >= 0.5
-        }
+        const add: IAdd = addFactory(groups)
         SET_HOME_STORE_ACTION({ add })
     }
 
@@ -161,15 +163,13 @@ export const InsertAdd = compose(
                 </div>
             </div>
             <RaisedButton
-                disabled={pristine || submitting}
                 onClick={handleSubmit(submit)}
                 fullWidth={true}
-                label="SUBMIT"
+                label="CESCO"
             />
             <br />
             <br />
             <RaisedButton
-                disabled={pristine || submitting}
                 onClick={reset}
                 fullWidth={true}
                 label="RESET"

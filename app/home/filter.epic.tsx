@@ -18,7 +18,13 @@ export const filterEpic = (action$, store) => {
             const reduxFilter = store.getState().filters
             return Observable.fromPromise(
                 getFirebase().database().ref("adds").once("value"))
-                .flatMap((db: any) => Observable.from(db.val()))
+                .flatMap((db: any) => {
+                    return Observable.pairs(db.val())
+                })
+                .map((array) => {
+                    const id = array[0]
+                    return array[1]
+                })
                 .filter(byUF(reduxFilter.uf))
                 .filter(byGroup(reduxFilter.group))
                 .filter(byCategory(reduxFilter.category))

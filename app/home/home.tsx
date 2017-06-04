@@ -37,7 +37,9 @@ export class HomeContainerClass extends React.Component<any, any> {
                     (
                         <InsertAdd
                             groups={this.props.groups}
-                            SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION} />)
+                            INSERT_ADD={this.props.INSERT_ADD}
+                            SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
+                        />)
         )
         return (
             <div>
