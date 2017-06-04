@@ -64,13 +64,13 @@ class FilterComponentClass extends React.Component<any, any> {
                 />)
             )
         const showHide = () => {
-            this.props.SET_HOME_STORE_ACTION({ hidden: !this.props.home.hidden })
+            this.props.SET_FILTERS_ACTION({ hidden: !this.props.filters.hidden })
         }
-        const hideFilter = !this.props.home.hidden ?
+        const hideFilter = !this.props.filters.hidden ?
             classNames(filtersCSS.flex) : classNames(filtersCSS.hidden)
-        const buttonLabel = !this.props.home.hidden ?
+        const buttonLabel = !this.props.filters.hidden ?
             "ESCONDER FILTROS" : "EXIBIR FILTROS"
-        const hideContainer = !this.props.home.hidden ?
+        const hideContainer = !this.props.filters.hidden ?
             classNames(filtersCSS.container) : classNames(filtersCSS.containerHidden)
         return (
             !isLoaded(this.props.groups) ?

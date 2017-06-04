@@ -15,7 +15,7 @@ export function SET_FILTERS_ACTION(filter: IFilters): IAction<IFilters> {
     }
 }
 
-const startup = { city: 0, hidden: false, uf: 0, group: 0, keyword: "", category: 0 }
+const startup = { city: 0, hidden: true, uf: 0, group: 0, keyword: "", category: 0 }
 
 export const filters = (state = startup, action) => {
     switch (action.type) {

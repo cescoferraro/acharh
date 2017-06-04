@@ -6,10 +6,10 @@ import * as classNames from "classnames"
 import { Add } from "./add"
 export const AddsList = compose(
     withStyles(addCSS)
-)(({ adds, home, groups }) => {
+)(({ adds, filters, groups }) => {
     const list = (adds.map((add) => (<Add key={Math.random()} groups={groups} add={add} />))
     )
-    const hideContainer = !home.hidden ?
+    const hideContainer = !filters.hidden ?
         classNames(addCSS.container) : classNames(addCSS.containerHidden)
 
     return (

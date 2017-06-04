@@ -32,7 +32,7 @@ class BrowserComponentClass extends React.Component<any, any> {
                     groups={this.props.groups}
                 />
                 <AddsList
-                    home={this.props.home}
+                    filters={this.props.filters}
                     groups={this.props.groups}
                     adds={this.props.DisplaySearchReducer}
                 />
