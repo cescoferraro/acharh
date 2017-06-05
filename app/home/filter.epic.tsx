@@ -76,25 +76,25 @@ const byUF = (uf) => (add: any) => {
                 return false
             }
         case 29:
-            if ([16, 21, 24].includes(add.uf)) {
+            if ([25, 19, 13, 8].includes(add.uf)) {
                 return true
             } else {
                 return false
             }
         case 30:
-            if ([16, 21, 24].includes(add.uf)) {
+            if ([7, 9, 11, 12].includes(add.uf)) {
                 return true
             } else {
                 return false
             }
         case 31:
-            if ([16, 21, 24].includes(add.uf)) {
+            if ([5, 15, 6, 17, 20, 18, 26, 2, 27].includes(add.uf)) {
                 return true
             } else {
                 return false
             }
         case 32:
-            if ([16, 21, 24].includes(add.uf)) {
+            if ([1, 3, 23, 14, 10, 22, 4].includes(add.uf)) {
                 return true
             } else {
                 return false
