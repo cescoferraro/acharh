@@ -1,4 +1,5 @@
 import { rsCities } from "./cities/rs"
+import { prCities } from "./cities/pr"
 import { scCities } from "./cities/sc"
 
 export const states: any = [
@@ -18,7 +19,7 @@ export const states: any = [
     { name: "Minas Gerais", uf: "MG", code: 13, children: [] },
     { name: "Pará", uf: "PA", code: 14, children: [] },
     { name: "Paraíba", uf: "PB", code: 15, children: [] },
-    { name: "Paraná", uf: "PR", code: 16, children: [] },
+    { name: "Paraná", uf: "PR", code: 16, children: prCities },
     { name: "Pernambuco", uf: "PE", code: 17, children: [] },
     { name: "Piauí", uf: "PI", code: 18, children: [] },
     { name: "Rio de Janeiro", uf: "RJ", code: 19, children: [] },

@@ -16,7 +16,6 @@ class FilterComponentClass extends React.Component<any, any> {
         super(props)
 
     }
-
     public render() {
         const setCategory = (event, index, category) => {
             this.props.SET_FILTERS_ACTION({ category })
