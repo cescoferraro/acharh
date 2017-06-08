@@ -3,7 +3,7 @@ let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const resolve = {
-    extensions: ['.js', '.tsx', '.json', 'pcss']
+    extensions: ['.js', '.ts', '.tsx', '.json', 'pcss']
 };
 
 const LOADERS = (env, isClient)=>{

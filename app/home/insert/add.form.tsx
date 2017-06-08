@@ -5,10 +5,10 @@ import { reduxForm, Field } from "redux-form"
 import { TextField, SelectField, Toggle } from "redux-form-material-ui"
 import { connect } from "react-redux"
 import MenuItem from "material-ui/MenuItem"
-import { states } from "../../shared/states"
+import { states } from "../../../shared/states"
 import * as faker from "faker"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
-import { addFormCSS } from "../css"
+import * as  addFormCSS from "./add.form.pcss"
 
 const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min)

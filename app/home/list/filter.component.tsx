@@ -5,10 +5,10 @@ import { compose } from "recompose"
 import SelectField from "material-ui/SelectField"
 import MenuItem from "material-ui/MenuItem"
 import { isEmpty, isLoaded } from "react-redux-firebase"
-import { Loading, Empty } from "../../shared/components/helpers"
+import { Loading, Empty } from "../../../shared/components/helpers"
 import RaisedButton from "material-ui/RaisedButton"
-import { states } from "../../shared/states"
-import * as  filtersCSS from "../css/filters.pcss"
+import { states } from "../../../shared/states"
+import * as  filtersCSS from "./filters.pcss"
 import * as classNames from "classnames"
 
 class FilterComponentClass extends React.Component<any, any> {

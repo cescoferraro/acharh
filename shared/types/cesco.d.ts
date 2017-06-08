@@ -1,0 +1,3 @@
+interface IGurizinho {
+    pau: number
+}

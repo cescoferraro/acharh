@@ -6,7 +6,7 @@ import InboxIcon from "material-ui/svg-icons/content/inbox.js"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
-import * as tabsCSS from "../css/tabs.pcss"
+import * as tabsCSS from "./tabs.pcss"
 import { compose } from "recompose"
 import { APP_ACTIONS } from "../../store/actions"
 
@@ -18,20 +18,23 @@ class TabsExampleSwipeableClass extends React.Component<any, any> {
 
     public componentWillMount() {
         console.warn("[TABS]")
-        switch (this.props.computedMatch.url) {
-            case "/":
-                this.props.SET_HOME_STORE_ACTION({ tab: 0 })
-                break
-            case "/insert":
-                this.props.SET_HOME_STORE_ACTION({ tab: 1 })
-                break
+        const url = this.props.location.pathname
+        if (url === "/") {
+            this.props.SET_HOME_STORE_ACTION({ tab: 0 })
+        }
+        if (url === "/insert") {
+            this.props.SET_HOME_STORE_ACTION({ tab: 1 })
         }
     }
+
     public render() {
         const handleChange = (value) => {
             const urls = ["/", "/insert"]
             this.props.SET_HOME_STORE_ACTION({ tab: value })
-            this.props.ROUTER_EMITTER(urls[value])
+            this.props.ROUTER_EMITTER({
+                pathname: urls[value]
+                // this is the trick!
+            })
         }
         return (
             <div

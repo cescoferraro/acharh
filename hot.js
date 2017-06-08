@@ -7,11 +7,11 @@ const config = require('./webpack.config.js')({production:false});
 const compiler = webpack(config);
 const app = express();
 
-app.get('/vendor.js', function (req, res) {
+app.get('/vendor.js', (req, res) => {
     res.sendFile("./vendor.js",{root: "./dll"});
 }); 
 
-app.get('/vendor.json', function (req, res) {
+app.get('/vendor.json', (req, res) => {
     res.sendFile("./vendor.json",{root: "./dll"});
 });
 

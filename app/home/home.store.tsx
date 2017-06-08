@@ -1,6 +1,7 @@
 import * as _ from "lodash"
-import { addFactory } from "./add.form"
+import { addFactory } from "./insert/add.form"
 export const SET_HOME_STORE_ACTION_NAME = "SET_HOME_STORE"
+
 export function SET_HOME_STORE_ACTION(filter: IHome): IAction<IHome> {
     return {
         type: SET_HOME_STORE_ACTION_NAME,

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { compose } from "recompose"
-import { barCSS } from "../css"
+import * as  barCSS from "./bar.pcss"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { APP_ACTIONS } from "../../store/actions"
 import { dataToJS, firebaseConnect } from "react-redux-firebase"

@@ -24,3 +24,7 @@ interface IHome {
     tab: number
     add: IAdd
 }
+interface ICesco {
+    tico: number
+
+}

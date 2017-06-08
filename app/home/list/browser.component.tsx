@@ -3,7 +3,8 @@ import { AddsList } from "./adds.list"
 import { FilterComponent } from "./filter.component"
 import { Helmet } from "react-helmet"
 import { compose } from "recompose"
-import { HomeStyle } from "../css"
+import * as HomeStyle from "../home.pcss"
+import { Link } from "react-router-dom"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 
 class BrowserComponentClass extends React.Component<any, any> {

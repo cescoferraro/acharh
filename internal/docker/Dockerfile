@@ -1,4 +1,4 @@
-FROM  node:6
+FROM  mhart/alpine-node:latest
 WORKDIR /srv/achars
 RUN npm i express
 ADD dist/ /srv/achars/

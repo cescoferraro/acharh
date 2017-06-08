@@ -1,9 +1,8 @@
 import { bindActionCreators } from "redux"
-import { SEARCH_ACTION } from "../app/home/search.epic"
-import { FILTER_ACTION } from "../app/home/filter.epic"
-import { INSERT_ADD } from "../app/home/insert.epic"
-import { ROUTER_EMITTER } from "../app/home/router.epic"
-import { SET_FILTERS_ACTION } from "../app/home/filter.store"
+import { FILTER_ACTION } from "../app/home/list/filter.epic"
+import { INSERT_ADD } from "../app/home/insert/insert.epic"
+import { ROUTER_EMITTER } from "../app/router.epic"
+import { SET_FILTERS_ACTION } from "../app/home/list/filter.store"
 import { SET_HOME_STORE_ACTION } from "../app/home/home.store"
 
 export const APP_ACTIONS = (dispatch) => {
@@ -13,7 +12,6 @@ export const APP_ACTIONS = (dispatch) => {
         SET_FILTERS_ACTION,
         FILTER_ACTION,
         INSERT_ADD,
-        ROUTER_EMITTER,
-        SEARCH_ACTION
+        ROUTER_EMITTER
     }, dispatch)
 }

@@ -1,7 +1,7 @@
 import "rxjs"
 import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
-import { DISPLAY_SEARCH_ACTION_NAME } from "./search.epic"
+import { DISPLAY_SEARCH_ACTION_NAME } from "../insert/search.epic"
 export const FILTER_ACTION_NAME = "FILTER"
 
 export function FILTER_ACTION(): IAction<any> {
@@ -22,11 +22,12 @@ export const filterEpic = (action$, store) => {
                     return Observable.pairs(db.val())
                 })
                 .map((array) => {
-                    const id = array[0]
-                    return array[1]
+                    const result: any = array[1]
+                    result.id = array[0]
+                    return result
                 })
-                .filter(byUF(reduxFilter.uf))
                 .filter(onlyConfirmed())
+                .filter(byUF(reduxFilter.uf))
                 .filter(byGroup(reduxFilter.group))
                 .filter(byCategory(reduxFilter.category))
                 .filter(byKeyword(reduxFilter.keyword))

@@ -1,3 +1,4 @@
+import { rjCities } from "./cities/rj"
 import { spCities } from "./cities/sp"
 import { rsCities } from "./cities/rs"
 import { prCities } from "./cities/pr"
@@ -31,7 +32,7 @@ export const states: any = [
     // SUDOESTE
     { name: "Espírito Santo", uf: "ES", code: 8, children: [{ name: "randomc", code: 1 }] },
     { name: "Minas Gerais", uf: "MG", code: 13, children: [{ name: "randomc", code: 1 }] },
-    { name: "Rio de Janeiro", uf: "RJ", code: 19, children: [{ name: "randomc", code: 1 }] },
+    { name: "Rio de Janeiro", uf: "RJ", code: 19, children: rjCities },
     { name: "São Paulo", uf: "SP", code: 25, children: spCities },
     // SUL
     { name: "Rio Grande  do Sul", uf: "RS", code: 21, children: rsCities },
