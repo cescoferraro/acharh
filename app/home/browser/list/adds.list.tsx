@@ -1,7 +1,7 @@
 import * as React from "react"
 import { compose } from "recompose"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
-import * as addCSS from "./add.pcss"
+import * as addCSS from "../css/add.pcss"
 import * as classNames from "classnames"
 import { Add } from "./add"
 

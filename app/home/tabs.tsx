@@ -3,14 +3,16 @@ import { Tabs, Tab } from "material-ui/Tabs"
 import SwipeableViews from "react-swipeable-views"
 import FaceIcon from "material-ui/svg-icons/action/face.js"
 import InboxIcon from "material-ui/svg-icons/content/inbox.js"
-import withStyles from "isomorphic-style-loader/lib/withStyles"
-import { connect } from "react-redux"
-import { withRouter } from "react-router"
-import * as tabsCSS from "./tabs.pcss"
-import { compose } from "recompose"
-import { APP_ACTIONS } from "../../store/actions"
 
-class TabsExampleSwipeableClass extends React.Component<any, any> {
+interface ITabsAcharsProps {
+    ROUTER_EMITTER: any
+    location: any
+    CSS: any
+    home: any
+    SET_HOME_STORE_ACTION: any
+}
+
+export class TabsAchaRS extends React.Component<ITabsAcharsProps, ITabsAcharsProps> {
 
     constructor(props) {
         super(props)
@@ -39,10 +41,10 @@ class TabsExampleSwipeableClass extends React.Component<any, any> {
         return (
             <div
                 id="tabs"
-                className={tabsCSS.page}
+                className={this.props.CSS.page}
             >
                 <Tabs
-                    className={tabsCSS.tabs}
+                    className={this.props.CSS.tabs}
                     onChange={handleChange}
                     value={this.props.home.tab}
                 >
@@ -50,7 +52,7 @@ class TabsExampleSwipeableClass extends React.Component<any, any> {
                     <Tab icon={<FaceIcon />} label="INSERT" value={1} />
                 </Tabs>
                 <SwipeableViews
-                    className={tabsCSS.container}
+                    className={this.props.CSS.tabcontainer}
                     index={this.props.home.tab}
                     onChangeIndex={handleChange}
                 >
@@ -60,11 +62,3 @@ class TabsExampleSwipeableClass extends React.Component<any, any> {
         )
     }
 }
-export const TabsAchaRS = compose(
-    withRouter,
-    withStyles(tabsCSS),
-    connect((state) => ({
-        app: state.app,
-        home: state.home
-    }), APP_ACTIONS)
-)(TabsExampleSwipeableClass)

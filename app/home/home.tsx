@@ -1,18 +1,21 @@
 import * as React from "react"
 import { Route, Switch } from "react-router-dom"
 import { isEmpty, isLoaded } from "react-redux-firebase"
-import { AddPage } from "./list/add.modal"
-import { InsertAdd } from "./insert/add.form"
 import { compose } from "recompose"
 import { connect } from "react-redux"
 import { dataToJS, firebaseConnect } from "react-redux-firebase"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
-import { AddModal } from "./list/add.page"
+import { withRouter } from "react-router"
+
 import * as HomeStyle from "./home.pcss"
-import { APP_ACTIONS } from "../../store/actions"
-import { TabsAchaRS } from "./tabs"
 import { Loading, Empty } from "../../shared/components/helpers"
-import { BrowserComponent } from "./list/browser.component"
+
+import { TabsAchaRS } from "./tabs"
+import { APP_ACTIONS } from "../../store/actions"
+import { AddModal } from "./browser/list/add.page"
+import { AddPage } from "./browser/list/add.modal"
+import { InsertAdd } from "./insert/add.form"
+import { BrowserComponent } from "./browser/browser.component"
 
 export class HomeContainerClass extends React.Component<any, any> {
     public previousLocation = this.props.location
@@ -39,10 +42,9 @@ export class HomeContainerClass extends React.Component<any, any> {
                 SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
                 SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
                 FILTER_ACTION={this.props.FILTER_ACTION}
-                home={this.props.home}
                 filters={this.props.filters}
                 groups={this.props.groups}
-                DisplaySearchReducer={this.props.DisplaySearchReducer}
+                filteredAdds={this.props.filteredAdds}
             />
         )
         const insert = () => (
@@ -56,23 +58,24 @@ export class HomeContainerClass extends React.Component<any, any> {
                         />)
         )
         const { location } = this.props
-        const isModal = !!(
-            location.state &&
-            location.state.modal &&
-            this.previousLocation !== location // not initial render
+        const isModal = !!(location.state && location.state.modal && this.previousLocation !== location)
+        const thing = (
+            <TabsAchaRS
+                location={location}
+                CSS={HomeStyle}
+                home={this.props.home}
+                SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
+                ROUTER_EMITTER={this.props.ROUTER_EMITTER}
+            >
+                <Route exact={true} path="/" render={browser} />
+                <Route path="/insert" exact={true} render={insert} />
+            </TabsAchaRS>
         )
-        console.log(location)
+        const specific = (<Route path="/add/:id" component={AddPage} />)
         return (
             <div>
                 <Switch location={isModal ? this.previousLocation : location}>
-                    {
-                        location.pathname.startsWith("/add") ?
-                            <Route path="/add/:id" component={AddPage} />
-                            : <TabsAchaRS>
-                                <Route exact={true} path="/" render={browser} />
-                                <Route path="/insert" exact={true} render={insert} />
-                            </TabsAchaRS>
-                    }
+                    {location.pathname.startsWith("/add") ? specific : thing}
                 </Switch>
                 {isModal ? <Route path="/add/:id" component={AddModal} /> : null}
             </div>
@@ -81,12 +84,13 @@ export class HomeContainerClass extends React.Component<any, any> {
 }
 
 export const HomeContainer = compose(
+    withRouter,
     withStyles(HomeStyle),
     firebaseConnect(["/app", "/adds", "/groups"]),
-    connect(({ firebase, home, todos, filters, DisplaySearchReducer }) => ({
+    connect(({ firebase, home, todos, filters, filteredAdds }) => ({
         filters,
         home,
-        DisplaySearchReducer,
+        filteredAdds,
         adds: dataToJS(firebase, "/adds"),
         groups: dataToJS(firebase, "/groups"),
         app: dataToJS(firebase, "/app")

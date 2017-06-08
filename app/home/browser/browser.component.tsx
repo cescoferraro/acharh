@@ -1,10 +1,9 @@
 import * as React from "react"
-import { AddsList } from "./adds.list"
-import { FilterComponent } from "./filter.component"
+import { AddsList } from "./list/adds.list"
+import { FilterComponent } from "./filter/filter.component"
 import { Helmet } from "react-helmet"
 import { compose } from "recompose"
 import * as HomeStyle from "../home.pcss"
-import { Link } from "react-router-dom"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 
 class BrowserComponentClass extends React.Component<any, any> {
@@ -25,7 +24,6 @@ class BrowserComponentClass extends React.Component<any, any> {
                     <link rel="canonical" href="http://achars.cescoferraro.xyz" />
                 </Helmet>
                 <FilterComponent
-                    home={this.props.home}
                     SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
                     SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
                     FILTER_ACTION={this.props.FILTER_ACTION}
@@ -35,7 +33,7 @@ class BrowserComponentClass extends React.Component<any, any> {
                 <AddsList
                     filters={this.props.filters}
                     groups={this.props.groups}
-                    adds={this.props.DisplaySearchReducer}
+                    adds={this.props.filteredAdds}
                 />
             </div >
         )

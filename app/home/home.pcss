@@ -1,9 +1,32 @@
-@import "../vars.pcss";
-
+@import "../css/base.pcss";
 
 .container {
     height: calc(100vh - 72px - 64px );
     background-color: var(--test);
     position:absolute;
     width: 100vw;
+}
+
+
+.page{
+    height: calc( 100vh - 64px);
+    position: absolute;
+    width:100vw;
+    top:64px;
+
+}
+
+.tabcontainer {
+    position: relative;
+    height: calc(100vh - 72px - 64px);
+    background-color: silver;
+    overflow: hidden;
+}
+
+.tabs {
+    color: red;
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+
 }

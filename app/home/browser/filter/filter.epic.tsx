@@ -1,7 +1,7 @@
 import "rxjs"
 import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
-import { DISPLAY_SEARCH_ACTION_NAME } from "../insert/search.epic"
+import { DISPLAY_FILTERED_ADDS_ACTION_NAME } from "../../insert/search.epic"
 export const FILTER_ACTION_NAME = "FILTER"
 
 export function FILTER_ACTION(): IAction<any> {
@@ -44,7 +44,7 @@ const paidFirst = (adds) => (adds.sort((a, b) => {
 const displayResults = (array) => {
     return {
         payload: array,
-        type: DISPLAY_SEARCH_ACTION_NAME
+        type: DISPLAY_FILTERED_ADDS_ACTION_NAME
     }
 }
 

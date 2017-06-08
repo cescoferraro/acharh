@@ -1,16 +1,13 @@
 import * as React from "react"
 import { Route, Switch } from "react-router-dom"
-import { HomeContainer } from "./home/home"
 import { Bar } from "./bar/bar"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
-import { compose } from "recompose"
-import * as routerCSS from "./router.pcss"
+import * as baseCSS from "./css/base.pcss"
+import { HomeContainer } from "./home/home"
 
-export let Router = compose(
-    withStyles(routerCSS)
-)(() => {
+export let Router = withStyles(baseCSS)(() => {
     return (
-        <div className={routerCSS.container}>
+        <div >
             <Route component={Bar} />
             <Switch>
                 <Route path="/" component={HomeContainer} />

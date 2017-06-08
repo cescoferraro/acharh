@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Card } from "material-ui/Card"
-import { states } from "../../../shared/states"
+import { states } from "../../../../shared/states"
 import { Link } from "react-router-dom"
 
 export const Add = ({ add, groups }) => {
