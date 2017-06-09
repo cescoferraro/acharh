@@ -29,7 +29,7 @@ export const AddModal = ({ history, match }) => {
                     padding: 15,
                     border: "2px solid #444"
                 }}>
-                <h1>skdfdsfkdsf</h1>
+                <h1>{match.params.id}</h1>
                 <button type="button" onClick={back}>
                     Close
         </button>

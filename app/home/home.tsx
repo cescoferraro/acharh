@@ -91,7 +91,6 @@ export const HomeContainer = compose(
         filters,
         home,
         filteredAdds,
-        adds: dataToJS(firebase, "/adds"),
         groups: dataToJS(firebase, "/groups"),
         app: dataToJS(firebase, "/app")
     }), APP_ACTIONS)

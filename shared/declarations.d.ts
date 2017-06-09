@@ -9,22 +9,47 @@ interface IAction<T> {
     meta?: any
 }
 
+interface IAdress {
+    name: string
+    numero: number
+    complemento: string
+    bairro: string
+    cep: number
+    uf: number
+    city: number
+}
+
+interface IResponsavel {
+    razaosocial: string
+    cnpj: number
+    endereco: IAdress
+    cargoCriador: string
+    cel: number
+    email: string
+    facebook: string
+    website: string
+    intagram: string
+    twitter: string
+    linkedin: string
+}
+
 interface IAdd {
     title: string
     description: string
     uf: number
-    confirmed: boolean
-    paid: boolean
-    group: number
     city: number
-    category: number
+    paid: boolean
+    confirmed: boolean
+
+    // website: string
+    // telefone
+    // images: string[]
+    // criadoPor: IUSer
+    // responsável: IResposavel
+    // endereco: IAddress
 }
 
 interface IHome {
     tab: number
     add: IAdd
-}
-interface ICesco {
-    tico: number
-
 }
