@@ -4,11 +4,6 @@ import { states } from "../../../../shared/states"
 import { Link } from "react-router-dom"
 
 export const Add = ({ add, groups }) => {
-    /* const GROUP = groups !== undefined ? groups.filter((group) => (group.code === add.group))[0].name : "??"
-     * const CATEGORY = groups !== undefined ?
-     *     groups.filter((group) => (group.code === add.group))[0].children
-     *         .filter((category) => (category.code === add.category))[0].name : "sdjhfbsdf"
-     */
     const UF = states.filter((state) => (state.code === add.uf))[0].name
     const ciTY = states.filter((state) => (state.code === add.uf))[0].children
         .filter((city) => (city.code === add.city))[0]
