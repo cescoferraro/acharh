@@ -52,11 +52,15 @@ export class HomeContainerClass extends React.Component<any, any> {
                         <InsertAddForm
                             groups={this.props.groups}
                             INSERT_ADD={this.props.INSERT_ADD}
-                            SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
+                            setHomeStore={this.props.SET_HOME_STORE_ACTION}
                         />)
         )
         const { location } = this.props
-        const isModal = !!(location.state && location.state.modal && this.previousLocation !== location)
+        const isModal = !!(
+            location.state &&
+            location.state.modal &&
+            this.previousLocation !== location
+        )
         const thing = (
             <TabsAchaRS
                 location={location}

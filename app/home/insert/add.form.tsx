@@ -21,7 +21,7 @@ const FormComponent = ({
     INSERT_ADD,
     handleSubmit,
     formState,
-    SET_HOME_STORE_ACTION,
+    setHomeStore,
     home,
     pristine,
     submitting,
@@ -29,7 +29,7 @@ const FormComponent = ({
 }) => {
     const randomADD = () => {
         const add: IAdd = addFactory(groups)
-        SET_HOME_STORE_ACTION({ add })
+        setHomeStore({ add })
     }
     return (
         <form className={addFormCSS.container}>
