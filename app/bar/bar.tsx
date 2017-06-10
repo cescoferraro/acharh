@@ -11,7 +11,8 @@ export const Bar = compose(
     withStyles(barCSS),
     firebaseConnect(["/app"]),
     connect(({ firebase }) => ({
-        app: dataToJS(firebase, "/app")
+
+        app: dataToJS(firebase, "/app", {})
     }), APP_ACTIONS)
 )(({ app, ROUTER_EMITTER, FILTER_ACTION }) => {
     return (

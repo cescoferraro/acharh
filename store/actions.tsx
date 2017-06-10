@@ -1,5 +1,5 @@
 import { bindActionCreators } from "redux"
-import { FILTER_ACTION } from "../app/home/browser/filter/filter.epic"
+import { FILTER_ACTION } from "../app/home/browser/filter/filter.store"
 import { INSERT_ADD } from "../app/home/insert/insert.epic"
 import { ROUTER_EMITTER } from "../app/router.epic"
 import { SET_FILTERS_ACTION } from "../app/home/browser/filter/filter.store"

@@ -23,15 +23,6 @@ export const Add = ({ add, groups }) => {
                             <div key={Math.random()}>
                                 <h3>Categories</h3>
                                 <p>{groups.filter((group) => (group.code === cat.main))[0].name}</p>
-                            </div>)
-                    }
-                )
-            }
-            {
-                add.categories.map(
-                    (cat) => {
-                        return (
-                            <div key={Math.random()}>
                                 <h3>Sub Groups</h3>
                                 <p>{groups.filter((group) => (group.code === cat.main))[0]
                                     .children.filter((category) => (category.code === cat.sub))[0].name}</p>

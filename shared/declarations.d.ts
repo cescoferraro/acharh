@@ -51,5 +51,4 @@ interface IAdd {
 
 interface IHome {
     tab: number
-    add: IAdd
 }

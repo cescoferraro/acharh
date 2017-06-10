@@ -4,20 +4,29 @@ import withStyles from "isomorphic-style-loader/lib/withStyles"
 import * as addCSS from "../css/add.pcss"
 import * as classNames from "classnames"
 import { Add } from "./add"
-import { isLoaded } from 'react-redux-firebase'
+import { isLoaded, isEmpty } from "react-redux-firebase"
 
 export const AddsList = compose(
     withStyles(addCSS)
 )(({ adds, filters, groups }) => {
     const list = !isLoaded(groups)
-        ? <h2>hehehehehe</h2>
-        : (adds.map((add) => (<Add key={Math.random()} groups={groups} add={add} />)))
-    const hideContainer = !filters.hidden ?
-        classNames(addCSS.container) : classNames(addCSS.containerHidden)
-
+        ? <h2>LATER</h2>
+        : isEmpty(groups)
+            ? <h3>hey</h3> :
+            (adds.map((add) =>
+                (
+                    <Add
+                        key={Math.random()}
+                        groups={groups}
+                        add={add}
+                    />
+                )))
+    const hideContainer = filters.hidden ?
+        classNames(addCSS.containerHidden) :
+        classNames(addCSS.container)
     return (
         <div className={hideContainer}>
-            {adds.length === 0 ? <h2>List is empty!</h2> : list}
+            {list}
         </div>
     )
 })

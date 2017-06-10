@@ -1,2 +1,2 @@
 export const container: string;
-export const hey: string;
+export const flex: string;

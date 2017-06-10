@@ -1,15 +1,8 @@
 import "rxjs"
 import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
-import { DISPLAY_FILTERED_ADDS_ACTION_NAME } from "../../insert/search.epic"
-export const FILTER_ACTION_NAME = "FILTER"
-
-export function FILTER_ACTION(): IAction<any> {
-    return {
-        type: FILTER_ACTION_NAME,
-        payload: {}
-    }
-}
+import { FILTER_ACTION_NAME } from "./adds.store"
+import { DISPLAY_FILTERED_ADDS_ACTION_NAME } from "./filter.store"
 
 export const filterEpic = (action$, store) => {
     return action$

@@ -7,7 +7,7 @@ import { HomeContainer } from "./home/home"
 
 export let Router = withStyles(baseCSS)(() => {
     return (
-        <div >
+        <div>
             <Route component={Bar} />
             <Switch>
                 <Route path="/" component={HomeContainer} />

@@ -6,15 +6,13 @@ import { connect } from "react-redux"
 import { dataToJS, firebaseConnect } from "react-redux-firebase"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { withRouter } from "react-router"
-
 import * as HomeStyle from "./home.pcss"
 import { Loading, Empty } from "../../shared/components/helpers"
-
 import { TabsAchaRS } from "./tabs"
 import { APP_ACTIONS } from "../../store/actions"
 import { AddModal } from "./browser/list/add.page"
 import { AddPage } from "./browser/list/add.modal"
-import { InsertAdd } from "./insert/add.form"
+import { InsertAddForm } from "./insert/add.form"
 import { BrowserComponent } from "./browser/browser.component"
 
 export class HomeContainerClass extends React.Component<any, any> {
@@ -51,7 +49,7 @@ export class HomeContainerClass extends React.Component<any, any> {
             !isLoaded(this.props.groups) ?
                 <Loading /> : isEmpty(this.props.groups) ? <Empty /> :
                     (
-                        <InsertAdd
+                        <InsertAddForm
                             groups={this.props.groups}
                             INSERT_ADD={this.props.INSERT_ADD}
                             SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
@@ -91,7 +89,7 @@ export const HomeContainer = compose(
         filters,
         home,
         filteredAdds,
-        groups: dataToJS(firebase, "/groups"),
-        app: dataToJS(firebase, "/app")
+        groups: dataToJS(firebase, "/groups", {}),
+        app: dataToJS(firebase, "/app", {})
     }), APP_ACTIONS)
 )(HomeContainerClass)
