@@ -10,6 +10,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import { states } from "../../../../shared/states"
 import * as  filtersCSS from "../css/filter.pcss"
 import * as classNames from "classnames"
+import { eachItem } from "../../shared"
 
 class FilterComponentClass extends React.Component<any, any> {
     constructor(props) {
@@ -37,13 +38,6 @@ class FilterComponentClass extends React.Component<any, any> {
             this.props.SET_FILTERS_ACTION({ keyword })
             this.props.FILTER_ACTION()
         }
-        const eachItem = (group) => (
-            <MenuItem
-                key={Math.random()}
-                value={group.code}
-                primaryText={group.name}
-            />
-        )
         const Nenhum = (text) => (
             <MenuItem
                 value={0}

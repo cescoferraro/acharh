@@ -4,7 +4,7 @@ import { Field } from "redux-form"
 import { states } from "../../../../shared/states"
 import MenuItem from "material-ui/MenuItem"
 
-const estadosItems = states
+export const estadosItems = states
     .filter((uf) => (!uf.region))
     .map((estado: any) => (
         <MenuItem
@@ -13,15 +13,17 @@ const estadosItems = states
             primaryText={estado.name}
         />))
 
-export const FormUF = ({ }) => (
-    <Field
-        name="uf"
-        floatingLabelText="UF"
-        component={SelectField}
-        fullWidth={true}
-        hintText="Select a plan"
-    >
-        <MenuItem value={0} primaryText="Todos Estados" />
-        {estadosItems}
-    </Field>
-)
+export const FormUF = ({ }) => {
+    return (
+        <Field
+            name="uf"
+            floatingLabelText="UF"
+            component={SelectField}
+            fullWidth={true}
+            hintText="Select a plan"
+        >
+            <MenuItem value={0} primaryText="Todos Estados" />
+            {estadosItems}
+        </Field>
+    )
+}

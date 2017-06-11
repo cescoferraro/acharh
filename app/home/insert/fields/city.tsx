@@ -3,16 +3,7 @@ import { SelectField } from "redux-form-material-ui"
 import { Field } from "redux-form"
 import { states } from "../../../../shared/states"
 import MenuItem from "material-ui/MenuItem"
-
-const eachItem = (group) => {
-    return (
-        <MenuItem
-            key={Math.random()}
-            value={group.code}
-            primaryText={group.name}
-        />
-    )
-}
+import { eachItem } from "../../shared"
 
 const eachCity = (state) => (state.children.map(eachItem))
 const isCurrentState = (uf) =>

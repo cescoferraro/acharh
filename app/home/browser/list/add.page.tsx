@@ -1,11 +1,11 @@
 import * as React from "react"
+import { Helmet } from "react-helmet"
 
 export const AddModal = ({ history, match }) => {
     const back = (e) => {
         e.stopPropagation()
         history.goBack()
     }
-    console.log(match)
     return (
         <div
             onClick={back}
@@ -18,6 +18,10 @@ export const AddModal = ({ history, match }) => {
                 background: "rgba(0, 0, 0, 0.15)"
             }}
         >
+
+            <Helmet>
+                <title>{match.params.id}</title>
+            </Helmet>
             <div
                 className="modal"
                 style={{

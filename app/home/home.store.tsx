@@ -1,4 +1,5 @@
 import * as _ from "lodash"
+import { addFactory } from "../../shared/add.factory"
 
 export const SET_HOME_STORE_ACTION_NAME = "SET_HOME_STORE"
 
@@ -10,7 +11,8 @@ export function SET_HOME_STORE_ACTION(filter: IHome): IAction<IHome> {
 }
 
 const startup: IHome = {
-    tab: 0
+    tab: 0,
+    add: addFactory()
 }
 
 export const HomeReducers = (state: IHome = startup, action: IAction<IHome>) => {

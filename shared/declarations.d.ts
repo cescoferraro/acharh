@@ -18,21 +18,28 @@ interface IAdress {
     uf: number
     city: number
 }
+interface IUser {
+    name: string
+    email: string
+}
 
 interface IResponsavel {
     razaosocial: string
     cnpj: number
     endereco: IAdress
     cargoCriador: string
-    cel: number
     email: string
+    cel: number
     facebook: string
     website: string
     intagram: string
     twitter: string
     linkedin: string
 }
-
+interface ICategory {
+    main: number
+    sub: number
+}
 interface IAdd {
     title: string
     description: string
@@ -40,7 +47,7 @@ interface IAdd {
     city: number
     paid: boolean
     confirmed: boolean
-
+    categories: ICategory[]
     // website: string
     // telefone
     // images: string[]
@@ -51,4 +58,5 @@ interface IAdd {
 
 interface IHome {
     tab: number
+    add: IAdd
 }

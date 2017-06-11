@@ -1,47 +1,76 @@
-import * as React from "react"
-import { FieldArray, Field } from "redux-form"
+import CancelIcon from "material-ui/svg-icons/navigation/cancel"
+import AddIcon from "material-ui/svg-icons/content/add-circle"
 
-export const Categories = ({ }) => {
-    return (<FieldArray name="members" component={renderMembers} />)
+import IconButton from "material-ui/IconButton"
+import * as React from "react"
+import * as  addFormCSS from "../css/add.form.pcss"
+import MenuItem from "material-ui/MenuItem"
+import { FieldArray, Field } from "redux-form"
+import { SelectField } from "redux-form-material-ui"
+import { TextField } from "redux-form-material-ui"
+import { categoryFactory } from "../../../../shared/add.factory"
+export const Categories = ({ categories }) => {
+    return (
+        <FieldArray
+            name="categories"
+            categories={categories}
+            component={renderMembers}
+        />
+    )
 }
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
-    <div>
-        <label>{label}</label>
-        <div>
-            <input {...input} type={type} placeholder={label} />
-            {touched && error && <span>{error}</span>}
-        </div>
-    </div>
-)
+const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) => {
+    const catMain = categories
+        .map((cat: any) => (
+            <MenuItem
+                key={Math.random()}
+                value={cat.code}
+                primaryText={cat.name}
 
-const renderMembers = ({ fields, meta: { error, submitFailed } }) => (
-    <ul>
-        <li>
-            <button type="button" onClick={() => fields.push({})}>Add Member</button>
-            {submitFailed && error && <span>{error}</span>}
-        </li>
-        {fields.map((member, index) => (
-            <li key={index}>
-                <button
-                    type="button"
-                    title="Remove Member"
-                    onClick={() => fields.remove(index)}
-                />
-                <h4>Member #{index + 1}</h4>
-                <Field
-                    name={`${member}.firstName`}
-                    type="text"
-                    component={renderField}
-                    label="First Name"
-                />
-                <Field
-                    name={`${member}.lastName`}
-                    type="text"
-                    component={renderField}
-                    label="Last Name"
-                />
-            </li>
-        ))}
-    </ul>
-)
+            />))
+    const pushcat = () => {
+        fields.push(categoryFactory(categories))
+    }
+    return (
+        <div>
+            <div className={addFormCSS.flex}>
+                <h4>Categories</h4>
+                <IconButton onClick={pushcat}>
+                    <AddIcon />
+                </IconButton>
+            </div>
+            {
+                fields.map((member, index) => (
+                    <div className={addFormCSS.flex} key={index}>
+                        <div className={addFormCSS.quarenta}>
+                            <Field
+                                name={`${member}.main`}
+                                component={SelectField}
+                                type="number"
+                                fullWidth={true}
+                                label="First Name"
+                            >
+                                <MenuItem primaryText="BLOCK" value={0} />
+                                {catMain}
+                            </Field>
+                        </div>
+                        <div className={addFormCSS.quarenta}>
+                            <Field
+                                name={`${member}.sub`}
+                                type="number"
+                                component={TextField}
+                                fullWidth={true}
+                                label="Last Name"
+                            />
+                        </div>
+                        <div className={addFormCSS.dez}>
+                            <IconButton onClick={() => fields.remove(index)}>
+                                <CancelIcon />
+                            </IconButton>
+                        </div>
+                    </div>
+                ))
+            }
+        </div >
+    )
+}

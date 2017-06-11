@@ -5,6 +5,6 @@ export const RandomButton = ({ send }) => {
     return <RaisedButton
         onClick={send}
         fullWidth={true}
-        label="CESCO"
+        label="Random ADD"
     />
 }

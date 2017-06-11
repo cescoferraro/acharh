@@ -12,9 +12,12 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
             <head>
                 {HelmetApp.title.toComponent()}
                 {HelmetApp.meta.toComponent()}
+
                 {HelmetApp.link.toComponent()}
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href="icons/favicon.ico" />
+                <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
                 <style type="text/css"> {App[1].join(" ")} </style>
             </head>
             <body {...BodyAttr} >

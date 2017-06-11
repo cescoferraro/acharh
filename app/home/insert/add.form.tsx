@@ -3,8 +3,8 @@ import { compose } from "recompose"
 import { reduxForm } from "redux-form"
 import { connect } from "react-redux"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
-
 import * as  addFormCSS from "./css/add.form.pcss"
+import Divider from "material-ui/Divider"
 import { FormTitle } from "./fields/title"
 import { FormUF } from "./fields/uf"
 import { FormCity } from "./fields/city"
@@ -31,22 +31,31 @@ const FormComponent = ({
         const add: IAdd = addFactory(groups)
         setHomeStore({ add })
     }
+    const submit = (add) => {
+        INSERT_ADD(add)
+        setHomeStore({ add: addFactory(groups) })
+    }
     return (
-        <form className={addFormCSS.container}>
-            <FormTitle />
-            <FormDescription />
-            <div className={addFormCSS.flex}>
-                <FormUF />
-                <FormCity formState={formState} />
+        <div className={addFormCSS.container}>
+            <div>
+                <form className={addFormCSS.form}>
+                    <FormTitle />
+                    <FormDescription />
+                    <div className={addFormCSS.flex}>
+                        <FormUF />
+                        <FormCity formState={formState} />
+                    </div>
+                    <div className={addFormCSS.flex}>
+                        <FormPaid />
+                        <FormConfirmed />
+                    </div>
+                    <Divider />
+                    <Categories categories={groups} />
+                    <SubmitButton send={handleSubmit(submit)} />
+                    <RandomButton send={randomADD} />
+                </form>
             </div>
-            <div className={addFormCSS.flex}>
-                <FormPaid />
-                <FormConfirmed />
-            </div>
-            <Categories />
-            <SubmitButton send={handleSubmit(INSERT_ADD)} />
-            <RandomButton send={randomADD} />
-        </form>
+        </div>
     )
 }
 
@@ -54,9 +63,13 @@ export const InsertAddForm = compose(
     withStyles(addFormCSS),
     connect((state) => ({
         formState: state.form,
-        initialValues: addFactory()
+        initialValues: state.home.add
     })),
     reduxForm({
+        enableReinitialize: true,
+        onChange: (value, dispatch, props) => {
+            props.setHomeStore({ add: props.formState.myForm.values })
+        },
         form: "myForm"
     })
 )(FormComponent)

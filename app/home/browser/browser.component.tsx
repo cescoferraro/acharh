@@ -23,17 +23,17 @@ class BrowserComponentClass extends React.Component<any, any> {
                     <title>AchaRS</title>
                     <link rel="canonical" href="http://achars.cescoferraro.xyz" />
                 </Helmet>
+                <AddsList
+                    filters={this.props.filters}
+                    groups={this.props.groups}
+                    adds={this.props.filteredAdds}
+                />
                 <FilterComponent
                     SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
                     SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
                     FILTER_ACTION={this.props.FILTER_ACTION}
                     filters={this.props.filters}
                     groups={this.props.groups}
-                />
-                <AddsList
-                    filters={this.props.filters}
-                    groups={this.props.groups}
-                    adds={this.props.filteredAdds}
                 />
             </div >
         )
