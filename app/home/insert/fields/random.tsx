@@ -1,10 +1,15 @@
 import * as React from "react"
 import RaisedButton from "material-ui/RaisedButton"
+import { addFactory } from "../../../../shared/add.factory"
 
-export const RandomButton = ({ send }) => {
+export const RandomButton = ({ setHomeStore, groups }) => {
+    const randomADD = () => {
+        const add: IAdd = addFactory(groups)
+        setHomeStore({ add })
+    }
     return <RaisedButton
-        onClick={send}
+        onClick={randomADD}
         fullWidth={true}
-        label="Random ADD"
+        label="Embaralhar"
     />
 }

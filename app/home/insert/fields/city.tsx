@@ -11,10 +11,10 @@ const isCurrentState = (uf) =>
 
 export const FormCity = ({ formState }) => {
     const uf = formState.myForm === undefined ? 0 :
-        formState.myForm.values.uf
+        formState.myForm.values.address.uf
     return (
         <Field
-            name="city"
+            name="address.city"
             floatingLabelText="CIdade"
             component={SelectField}
             fullWidth={true}

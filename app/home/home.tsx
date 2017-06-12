@@ -10,8 +10,8 @@ import * as HomeStyle from "./home.pcss"
 import { Loading, Empty } from "../../shared/components/helpers"
 import { TabsAchaRS } from "./tabs"
 import { APP_ACTIONS } from "../../store/actions"
-import { AddModal } from "./browser/list/add.page"
-import { AddPage } from "./browser/list/add.modal"
+import { AddModal } from "./details/add.page"
+import { AddPage } from "./details/add.modal"
 import { InsertAddForm } from "./insert/add.form"
 import { BrowserComponent } from "./browser/browser.component"
 
@@ -33,6 +33,7 @@ export class HomeContainerClass extends React.Component<any, any> {
             this.previousLocation = this.props.location
         }
     }
+
 
     public render() {
         const browser = () => (

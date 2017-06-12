@@ -4,64 +4,51 @@ import Divider from "material-ui/Divider"
 import IconButton from "material-ui/IconButton"
 import * as React from "react"
 import * as  addFormCSS from "../css/add.form.pcss"
-import MenuItem from "material-ui/MenuItem"
 import { FieldArray, Field } from "redux-form"
-import { SelectField } from "redux-form-material-ui"
 import { TextField } from "redux-form-material-ui"
-import { categoryFactory } from "../../../../shared/add.factory"
-export const Categories = ({ categories }) => {
+import { phoneFactory } from "../../../../shared/add.factory"
+export const Phones = ({ }) => {
     return (
         <FieldArray
-            name="categories"
-            categories={categories}
+            name="phones"
             component={renderMembers}
         />
     )
 }
 
-const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) => {
-    const catMain = categories
-        .map((cat: any) => (
-            <MenuItem
-                key={Math.random()}
-                value={cat.code}
-                primaryText={cat.name}
-
-            />))
+const renderMembers = ({ fields, meta: { error, submitFailed } }) => {
     const pushcat = () => {
-        fields.push(categoryFactory(categories))
+        fields.push(phoneFactory())
     }
     return (
         <div>
             <div className={addFormCSS.flex}>
-                <h4>Categories</h4>
+                <h4>Phones</h4>
                 <Divider />
                 <IconButton onClick={pushcat}>
                     <AddIcon />
                 </IconButton>
             </div>
             {
-                fields.map((member, index) => (
-                    <div className={addFormCSS.flex} key={index}>
-                        <div className={addFormCSS.quarenta}>
+                fields.map((member, index) => {
+                    console.log(`${member}.${index}`)
+                    return <div className={addFormCSS.flex} key={index}>
+                        <div className={addFormCSS.vinte}>
                             <Field
-                                name={`${member}.main`}
-                                component={SelectField}
-                                type="number"
-                                fullWidth={true}
-                                label="First Name"
-                            >
-                                <MenuItem primaryText="BLOCK" value={0} />
-                                {catMain}
-                            </Field>
-                        </div>
-                        <div className={addFormCSS.quarenta}>
-                            <Field
-                                name={`${member}.sub`}
-                                type="number"
+                                name={`${member}.ddd`}
                                 component={TextField}
+                                type="number"
                                 fullWidth={true}
-                                label="Last Name"
+                                label="Phone DDD"
+                            />
+                        </div>
+                        <div className={addFormCSS.setenta}>
+                            <Field
+                                name={`${member}.number`}
+                                component={TextField}
+                                type="number"
+                                fullWidth={true}
+                                label="Phone Number"
                             />
                         </div>
                         <div className={addFormCSS.dez}>
@@ -70,7 +57,7 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
                             </IconButton>
                         </div>
                     </div>
-                ))
+                })
             }
         </div >
     )

@@ -20,7 +20,7 @@ class BrowserComponentClass extends React.Component<any, any> {
             <div className={HomeStyle.container}>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>AchaRS</title>
+                    <title>AchaRH | Anúncios </title>
                     <link rel="canonical" href="http://achars.cescoferraro.xyz" />
                 </Helmet>
                 <AddsList

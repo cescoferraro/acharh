@@ -12,7 +12,8 @@ export function SET_HOME_STORE_ACTION(filter: IHome): IAction<IHome> {
 
 const startup: IHome = {
     tab: 0,
-    add: addFactory()
+    add: addFactory(),
+    detail: addFactory()
 }
 
 export const HomeReducers = (state: IHome = startup, action: IAction<IHome>) => {

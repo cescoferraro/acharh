@@ -16,7 +16,7 @@ export const estadosItems = states
 export const FormUF = ({ }) => {
     return (
         <Field
-            name="uf"
+            name="address.uf"
             floatingLabelText="UF"
             component={SelectField}
             fullWidth={true}

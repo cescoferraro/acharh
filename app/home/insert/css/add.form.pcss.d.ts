@@ -5,3 +5,8 @@ export const dez: string;
 export const vinte: string;
 export const trinta: string;
 export const quarenta: string;
+export const cinquenta: string;
+export const sessenta: string;
+export const setenta: string;
+export const oitenta: string;
+export const noventa: string;

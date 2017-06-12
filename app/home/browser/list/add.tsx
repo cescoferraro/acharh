@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Card } from "material-ui/Card"
-import { states } from "../../../../shared/states"
+/* import { states } from "../../../../shared/states"*/
 import { Link } from "react-router-dom"
 import * as addCSS from "../css/add.pcss"
 
@@ -10,8 +10,11 @@ export const Add = ({ add, groups }) => {
         <div className={addCSS.add}>
             <Card key={Math.random()}>
                 <Link key={add.id} to={to}> + DETAILS</Link>
-                <h2>{add.title}</h2>
-                <h2>{add.description}</h2>
+                <h3>Title</h3>
+                <h3>{add.title}</h3>
+                <h3>Descrição</h3>
+                <p>{add.description}</p>
+                <h3>👁‍🗨 CONFIRMADO: {add.confirmed ? "🥇🥇🥇🥇🥇🥇" : "🥉🥉🥉🥉🥉🥉🥉"} </h3>
                 <div>
                     <h3>Categories</h3>
                     {
@@ -34,10 +37,7 @@ export const Add = ({ add, groups }) => {
                         ) : <div><h2>Not Categorie</h2></div>
                     }
                 </div>
-                <h3> ESTADO: {states.filter((state) => (state.code === add.uf))[0].name} </h3>
-                <h3> REGIAO:  IMPLEMENTAR!! </h3>
-                <h3>👁‍🗨 CONFIRMADO: {add.confirmed ? "🥇🥇🥇🥇🥇🥇" : "🥉🥉🥉🥉🥉🥉🥉"} </h3>
-
-            </Card></div>
+            </Card>
+        </div>
     )
 }

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet"
 import * as React from "react"
 import { compose } from "recompose"
 import { reduxForm } from "redux-form"
@@ -9,12 +10,19 @@ import { FormTitle } from "./fields/title"
 import { FormUF } from "./fields/uf"
 import { FormCity } from "./fields/city"
 import { FormDescription } from "./fields/description"
+import { FormAddressName } from "./fields/street"
+import { FormAddressNumber } from "./fields/address.number"
+import { FormAddressComplemento } from "./fields/address.complemento"
+import { FormAddressBairro } from "./fields/address.bairro"
+import { FormAddressCEP } from "./fields/address.cep"
 import { SubmitButton } from "./fields/submit"
+import { FormWebsite } from "./fields/website"
 import { RandomButton } from "./fields/random"
 import { FormPaid } from "./fields/paid"
 import { FormConfirmed } from "./fields/confirmed"
 import { Categories } from "./fields/categories"
-import { addFactory } from "../../../shared/add.factory"
+import { Phones } from "./fields/phones"
+import { Images } from "./fields/images"
 
 const FormComponent = ({
     groups,
@@ -26,38 +34,56 @@ const FormComponent = ({
     pristine,
     submitting,
     reset
-}) => {
-    const randomADD = () => {
-        const add: IAdd = addFactory(groups)
-        setHomeStore({ add })
-    }
-    const submit = (add) => {
-        INSERT_ADD(add)
-        setHomeStore({ add: addFactory(groups) })
-    }
-    return (
+}) => (
         <div className={addFormCSS.container}>
+            <Helmet>
+                <title>AchaRH | Anúncie </title>
+            </Helmet>
             <div>
                 <form className={addFormCSS.form}>
                     <FormTitle />
+                    <FormWebsite />
                     <FormDescription />
-                    <div className={addFormCSS.flex}>
-                        <FormUF />
-                        <FormCity formState={formState} />
-                    </div>
                     <div className={addFormCSS.flex}>
                         <FormPaid />
                         <FormConfirmed />
                     </div>
-                    <Divider />
+                    <div id="add_address" >
+                        <h4>Address</h4>
+                        <Divider />
+                        <div className={addFormCSS.flex}>
+                            <FormAddressName />
+                            <FormAddressNumber />
+                        </div>
+                        <div className={addFormCSS.flex}>
+                            <FormAddressComplemento />
+                            <FormAddressBairro />
+                            <FormAddressCEP />
+                        </div>
+                        <div className={addFormCSS.flex}>
+                            <FormUF />
+                            <FormCity formState={formState} />
+                        </div>
+                    </div>
+                    <Images />
+                    <Phones />
                     <Categories categories={groups} />
-                    <SubmitButton send={handleSubmit(submit)} />
-                    <RandomButton send={randomADD} />
+                    <Divider />
+                    <SubmitButton
+                        groups={groups}
+                        INSERT_ADD={INSERT_ADD}
+                        handleSubmit={handleSubmit}
+                        setHomeStore={setHomeStore}
+                    />
+                    <Divider />
+                    <RandomButton
+                        setHomeStore={setHomeStore}
+                        groups={groups}
+                    />
                 </form>
             </div>
         </div>
     )
-}
 
 export const InsertAddForm = compose(
     withStyles(addFormCSS),
