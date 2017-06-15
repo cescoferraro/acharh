@@ -18,7 +18,6 @@ export const detailEpic = (action$, store) => {
     return action$
         .ofType(GET_ADD_ACTION_NAME)
         .mergeMap((action: IAction<IAdd>) => {
-            console.log(store)
             return Observable.fromPromise(
                 getFirebase().database().ref("adds/").child(action.payload).once("value")
             ).map((value: any) => (value.val()))

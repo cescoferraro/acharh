@@ -58,7 +58,6 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
                                 {catMain}
                             </Field>
                         </div>
-                        {console.log(fields.getAll()[index].main)}
                         <div className={CSS.quarenta}>
                             <Field
                                 name={`${member}.sub`}

@@ -59,7 +59,6 @@ const byCategory = (category) => (add: any) => {
 }
 
 const byUF = (uf) => (add: any) => {
-    console.info(uf)
     switch (uf) {
         case 0:
             return true

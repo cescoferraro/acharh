@@ -32,7 +32,6 @@ const renderMembers = ({ fields, meta: { error, submitFailed } }) => {
             <Divider />
             {
                 fields.map((member, index) => {
-                    console.log(`${member}.${index}`)
                     return <div className={CSS.flex} key={index}>
                         <div className={CSS.vinte}>
                             <Field

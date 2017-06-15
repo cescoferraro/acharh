@@ -18,7 +18,6 @@ export const insertEpic = (action$, store) => {
     return action$
         .ofType(INSERT_ADD_ACTION_NAME)
         .mergeMap((action: IAction<IAdd>) => {
-            console.log(store)
             return (Observable.fromPromise(
                 getFirebase().database().ref("adds").push(action.payload))
             )

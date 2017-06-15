@@ -37,8 +37,6 @@ export const DetailComponent = compose(
         groups: dataToJS(firebase, "/groups", {}),
     }))
 )(({ detail, groups }) => {
-    console.log(detail)
-    console.log(groups)
     return !isLoaded(groups) ?
         <Loading /> : isEmpty(groups) ? <Empty /> : (
             <div>
