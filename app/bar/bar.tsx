@@ -17,7 +17,7 @@ export const Bar = compose(
 )(({ app, ROUTER_EMITTER, FILTER_ACTION }) => {
     return (
         <AppBar
-            title="AchaRS"
+            title="AchaRH"
             className={barCSS.bar}
             iconClassNameRight="muidocs-icon-navigation-expand-more"
         />

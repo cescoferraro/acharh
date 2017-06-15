@@ -1,14 +1,15 @@
 import CancelIcon from "material-ui/svg-icons/navigation/cancel"
+import * as cs from "classnames"
 import AddIcon from "material-ui/svg-icons/content/add-circle"
 import Divider from "material-ui/Divider"
 import IconButton from "material-ui/IconButton"
 import * as React from "react"
-import * as  addFormCSS from "../css/add.form.pcss"
+import * as  CSS from "../css/add.form.pcss"
 import MenuItem from "material-ui/MenuItem"
 import { FieldArray, Field } from "redux-form"
 import { SelectField } from "redux-form-material-ui"
-import { TextField } from "redux-form-material-ui"
 import { categoryFactory } from "../../../../shared/add.factory"
+
 export const Categories = ({ categories }) => {
     return (
         <FieldArray
@@ -33,8 +34,9 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
     }
     return (
         <div>
-            <div className={addFormCSS.flex}>
-                <h4>Categories</h4>
+            <div className={CSS.flex}>
+
+                <h4 className={cs(CSS.down)}> Categories</h4> <Divider />
                 <Divider />
                 <IconButton onClick={pushcat}>
                     <AddIcon />
@@ -42,12 +44,13 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
             </div>
             {
                 fields.map((member, index) => (
-                    <div className={addFormCSS.flex} key={index}>
-                        <div className={addFormCSS.quarenta}>
+                    <div className={CSS.flex} key={index}>
+                        <div className={CSS.quarenta}>
                             <Field
                                 name={`${member}.main`}
                                 component={SelectField}
                                 type="number"
+                                floatingLabelText="Main Category"
                                 fullWidth={true}
                                 label="First Name"
                             >
@@ -55,22 +58,38 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
                                 {catMain}
                             </Field>
                         </div>
-                        <div className={addFormCSS.quarenta}>
+                        {console.log(fields.getAll()[index].main)}
+                        <div className={CSS.quarenta}>
                             <Field
                                 name={`${member}.sub`}
                                 type="number"
-                                component={TextField}
+                                component={SelectField}
                                 fullWidth={true}
+                                floatingLabelText="Sub Category"
                                 label="Last Name"
-                            />
+                            >
+                                <MenuItem primaryText="BLOCK" value={0} />
+                                {
+                                    categories
+                                        .filter((cat) => (cat.code === fields.getAll()[index].main))[0]
+                                        .children.map((sub) => (
+                                            <MenuItem
+                                                key={Math.random()}
+                                                value={sub.code}
+                                                primaryText={sub.name}
+                                            />
+                                        ))
+                                }
+                            </Field>
                         </div>
-                        <div className={addFormCSS.dez}>
+                        <div className={cs(CSS.dez, CSS.center, CSS.flex)} >
                             <IconButton onClick={() => fields.remove(index)}>
                                 <CancelIcon />
                             </IconButton>
                         </div>
                     </div>
-                ))
+                )
+                )
             }
         </div >
     )

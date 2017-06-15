@@ -5,4 +5,4 @@ RUN npm i -g tslint
 RUN npm i -g webpack 
 
 # GOPATH
-WORKDIR /srv/achars
+WORKDIR /srv/acharh

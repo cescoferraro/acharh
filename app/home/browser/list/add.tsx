@@ -1,43 +1,45 @@
 import * as React from "react"
-import { Card } from "material-ui/Card"
-/* import { states } from "../../../../shared/states"*/
-import { Link } from "react-router-dom"
-import * as addCSS from "../css/add.pcss"
+import * as CSS from "../css/add.pcss"
+import { ListItem } from "material-ui"
+import withStyles from "isomorphic-style-loader/lib/withStyles"
+import * as cs from "classnames"
 
-export const Add = ({ add, groups }) => {
-    const to = { pathname: `/add/${add.id}`, state: { modal: true } }
+export const Add = withStyles(CSS)((
+    { add, groups, ROUTER_EMITTER }:
+        { add: IAdd, groups: any, ROUTER_EMITTER: any }
+) => {
+
+    const goToDetails = () => (ROUTER_EMITTER({
+        pathname: `/add/${add.id}`,
+        state: { modal: true, groups, add }
+    }))
+
     return (
-        <div className={addCSS.add}>
-            <Card key={Math.random()}>
-                <Link key={add.id} to={to}> + DETAILS</Link>
-                <h3>Title</h3>
-                <h3>{add.title}</h3>
-                <h3>Descrição</h3>
-                <p>{add.description}</p>
-                <h3>👁‍🗨 CONFIRMADO: {add.confirmed ? "🥇🥇🥇🥇🥇🥇" : "🥉🥉🥉🥉🥉🥉🥉"} </h3>
-                <div>
-                    <h3>Categories</h3>
+
+        <ListItem
+            onClick={goToDetails}
+        >
+            <div className={cs(CSS.flex)}>
+                <div className={cs(CSS.image)} >
                     {
-                        add.categories !== undefined ? add.categories.map(
-                            (cat) => {
-                                return (
-                                    <div key={Math.random()}>
-                                        <p>
-                                            {groups.filter((group) => (group.code === cat.main))[0].name}
-                                            {" "}
-                                            {
-                                                groups
-                                                    .filter((group) => (group.code === cat.main))[0]
-                                                    .children
-                                                    .filter((category) => (category.code === cat.sub))[0].name
-                                            }
-                                        </p>
-                                    </div>)
-                            }
-                        ) : <div><h2>Not Categorie</h2></div>
+                        add.images[0] === null ?
+                            <div>No Images</div> :
+                            <div>
+                                <img alt="" src={add.images[0].url + "?cache=none"} />
+                            </div>
                     }
                 </div>
-            </Card>
-        </div>
+                <div className={cs(CSS.body)}>
+                    <h4>{add.title}</h4>
+                    {
+                        add.phones[0] === null ?
+                            <div>(XX)XXXX-XXXX</div> :
+                            <div>
+                                {"(" + add.phones[0].ddd + ") - " + add.phones[0].number}
+                            </div>
+                    }
+                </div>
+            </div>
+        </ListItem >
     )
-}
+})

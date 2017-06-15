@@ -23,6 +23,8 @@ import { FormConfirmed } from "./fields/confirmed"
 import { Categories } from "./fields/categories"
 import { Phones } from "./fields/phones"
 import { Images } from "./fields/images"
+import { FormSocial } from "./fields/social"
+import * as cs from "classnames"
 
 const FormComponent = ({
     groups,
@@ -41,6 +43,8 @@ const FormComponent = ({
             </Helmet>
             <div>
                 <form className={addFormCSS.form}>
+                    <h4 className={cs(addFormCSS.down)}>General</h4>
+                    <Divider />
                     <FormTitle />
                     <FormWebsite />
                     <FormDescription />
@@ -49,7 +53,7 @@ const FormComponent = ({
                         <FormConfirmed />
                     </div>
                     <div id="add_address" >
-                        <h4>Address</h4>
+                        <h4 className={cs(addFormCSS.down)}>Address</h4>
                         <Divider />
                         <div className={addFormCSS.flex}>
                             <FormAddressName />
@@ -68,6 +72,7 @@ const FormComponent = ({
                     <Images />
                     <Phones />
                     <Categories categories={groups} />
+                    <FormSocial />
                     <Divider />
                     <SubmitButton
                         groups={groups}
@@ -75,7 +80,6 @@ const FormComponent = ({
                         handleSubmit={handleSubmit}
                         setHomeStore={setHomeStore}
                     />
-                    <Divider />
                     <RandomButton
                         setHomeStore={setHomeStore}
                         groups={groups}

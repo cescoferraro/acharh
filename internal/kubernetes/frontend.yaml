@@ -2,18 +2,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: achars
-  name: achars-deploy
+  namespace: acharh
+  name: acharh-deploy
 spec:
   replicas: 1
   template:
     metadata:
-      namespace: achars
+      namespace: acharh
       labels:
-        name: achars-pods
+        name: acharh-pods
     spec:
       containers:
-        - image: cescoferraro/achars:latest
+        - image: cescoferraro/acharh:latest
           imagePullPolicy: Always
           name: frontend
           env:

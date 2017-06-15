@@ -33,8 +33,7 @@ interface IUser {
 
 interface ISocial {
     facebook: string
-    website: string
-    intagram: string
+    instagram: string
     twitter: string
     linkedin: string
 }
@@ -59,10 +58,10 @@ interface IPhone {
 
 interface IPhoto {
     url: string
-    default: boolean
 }
 
 interface IAdd {
+    id?: string
     title: string
     description: string
     paid: boolean
@@ -72,7 +71,7 @@ interface IAdd {
     website: string
     phones: IPhone[]
     images: IPhoto[]
-    // social: ISocial
-    // criadoPor: IUSer
+    social: ISocial
+    creator: string
     // responsável: IResposavel
 }

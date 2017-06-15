@@ -43,7 +43,20 @@ const LOADERS = (env, isClient)=>{
 		    emitFile: isClient,
 		    name: "fonts/font-[sha512:hash:base64:7].[ext]"
 		}}]},
-	{ test: /\.(jpe?g|png|gif|svg)$/,
+        {
+            test: /\.svg$/,
+            exclude: /node_modules/,
+            loader: 'svg-react-loader',
+            query: {
+                classIdPrefix: '[name]-[hash:8]__',
+                propsMap: {
+                    fillRule: 'fill-rule',
+                    foo: 'bar'
+                },
+                xmlnsTest: /^xmlns.*$/
+            }
+        },
+	{ test: /\.(jpe?g|png|gif)$/,
 	  use:[
 	      {loader: 'file-loader',
 	       options:{

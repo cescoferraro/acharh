@@ -24,7 +24,7 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 {HelmetApp.link.toComponent()}
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href="icons/favicon.ico" />
-                <link async={true} href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+
                 <style type="text/css"> {App[1].join(" ")} </style>
                 <Styler rules={require("-!raw-loader!react-redux-toastr/lib/css/react-redux-toastr.min.css")} />
             </head>

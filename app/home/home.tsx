@@ -8,10 +8,10 @@ import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { withRouter } from "react-router"
 import * as HomeStyle from "./home.pcss"
 import { Loading, Empty } from "../../shared/components/helpers"
-import { TabsAchaRS } from "./tabs"
+import { TabsAchaRH } from "./tabs"
 import { APP_ACTIONS } from "../../store/actions"
-import { AddModal } from "./details/add.page"
-import { AddPage } from "./details/add.modal"
+import { AddModal } from "./details/add.modal"
+import { AddPage, DetailComponent } from "./details/add.page"
 import { InsertAddForm } from "./insert/add.form"
 import { BrowserComponent } from "./browser/browser.component"
 
@@ -34,13 +34,13 @@ export class HomeContainerClass extends React.Component<any, any> {
         }
     }
 
-
     public render() {
         const browser = () => (
             <BrowserComponent
                 SET_FILTERS_ACTION={this.props.SET_FILTERS_ACTION}
                 SET_HOME_STORE_ACTION={this.props.SET_HOME_STORE_ACTION}
                 FILTER_ACTION={this.props.FILTER_ACTION}
+                ROUTER_EMITTER={this.props.ROUTER_EMITTER}
                 filters={this.props.filters}
                 groups={this.props.groups}
                 filteredAdds={this.props.filteredAdds}
@@ -63,7 +63,7 @@ export class HomeContainerClass extends React.Component<any, any> {
             this.previousLocation !== location
         )
         const thing = (
-            <TabsAchaRS
+            <TabsAchaRH
                 location={location}
                 CSS={HomeStyle}
                 home={this.props.home}
@@ -72,13 +72,24 @@ export class HomeContainerClass extends React.Component<any, any> {
             >
                 <Route exact={true} path="/" render={browser} />
                 <Route path="/insert" exact={true} render={insert} />
-            </TabsAchaRS>
+            </TabsAchaRH>
         )
-        const specific = (<Route path="/add/:id" component={AddPage} />)
+
+
+
+        const thatDet = () => (
+            <AddPage GET_ADD={this.props.GET_ADD} >
+                <DetailComponent detail={this.props.home.detail} />
+            </AddPage>
+        )
+        const pageP = (
+            <Route path="/add/:id" render={thatDet} />
+        )
+        /* const specific = (<Route path="/add/:id" component={pageP} />)*/
         return (
             <div>
                 <Switch location={isModal ? this.previousLocation : location}>
-                    {location.pathname.startsWith("/add") ? specific : thing}
+                    {location.pathname.startsWith("/add") ? pageP : thing}
                 </Switch>
                 {isModal ? <Route path="/add/:id" component={AddModal} /> : null}
             </div>

@@ -4,7 +4,7 @@ import SwipeableViews from "react-swipeable-views"
 import FaceIcon from "material-ui/svg-icons/action/face.js"
 import InboxIcon from "material-ui/svg-icons/content/inbox.js"
 
-interface ITabsAcharsProps {
+interface ITabsAcharhProps {
     ROUTER_EMITTER: any
     location: any
     CSS: any
@@ -12,7 +12,7 @@ interface ITabsAcharsProps {
     SET_HOME_STORE_ACTION: any
 }
 
-export class TabsAchaRS extends React.Component<ITabsAcharsProps, ITabsAcharsProps> {
+export class TabsAchaRH extends React.Component<ITabsAcharhProps, ITabsAcharhProps> {
 
     constructor(props) {
         super(props)

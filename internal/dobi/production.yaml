@@ -8,7 +8,7 @@ job=build:
     depends: [vars, clean]
 
 image=production:
-    image: cescoferraro/achars
+    image: cescoferraro/acharh
     tags: ["{env.VERSION}"]
     dockerfile: internal/docker/Dockerfile
     depends: [vars,build]

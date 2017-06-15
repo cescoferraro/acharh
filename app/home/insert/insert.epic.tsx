@@ -3,7 +3,8 @@ import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
 import { actions as toastrActions } from "react-redux-toastr"
 import { bindActionCreators } from "redux"
-import * as faker from "faker"
+/* import * as faker from "faker"*/
+
 const INSERT_ADD_ACTION_NAME = "INSERT_ADD"
 export const INSERT_ADD = (add: IAdd): IAction<any> => {
     return {

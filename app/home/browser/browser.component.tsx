@@ -21,10 +21,11 @@ class BrowserComponentClass extends React.Component<any, any> {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>AchaRH | Anúncios </title>
-                    <link rel="canonical" href="http://achars.cescoferraro.xyz" />
+                    <link rel="canonical" href="http://acharh.cescoferraro.xyz" />
                 </Helmet>
                 <AddsList
                     filters={this.props.filters}
+                    ROUTER_EMITTER={this.props.ROUTER_EMITTER}
                     groups={this.props.groups}
                     adds={this.props.filteredAdds}
                 />

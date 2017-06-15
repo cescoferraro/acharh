@@ -1,5 +1,5 @@
 FROM  mhart/alpine-node:latest
-WORKDIR /srv/achars
+WORKDIR /srv/acharh
 RUN npm i express
-ADD dist/ /srv/achars/
+ADD dist/ /srv/acharh/
 CMD ["node","server.js"]

@@ -1,5 +1,5 @@
 meta:
-    project: achars 
+    project: acharh
     default: dev 
     include: ['./internal/dobi/development.yaml',
                 './internal/dobi/utils.yaml', 
@@ -11,10 +11,10 @@ env=vars:
 
 mount=source:
     bind: .
-    path: /srv/achars
+    path: /srv/acharh
 
 image=dev:
-    image: cescoferraro/achars
+    image: cescoferraro/acharh
     tags: ["dev"]
     dockerfile: internal/docker/Dockerfile.dev
     description: "Build the dev-image"

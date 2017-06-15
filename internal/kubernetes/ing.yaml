@@ -2,14 +2,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  namespace: achars
-  name: achars-ing
+  namespace: acharh
+  name: acharh-ing
 spec:
   rules:
-  - host: achars.cescoferraro.xyz
+  - host: acharh.cescoferraro.xyz
     http:
       paths:
       - path: /
         backend:
-          serviceName: achars-svc
+          serviceName: acharh-svc
           servicePort: 4000
