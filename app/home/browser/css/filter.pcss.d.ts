@@ -5,3 +5,5 @@ export const uf: string;
 export const keyword: string;
 export const city: string;
 export const hidden: string;
+export const mymove: string;
+export const cescomove: string;

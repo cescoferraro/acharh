@@ -1,13 +1,13 @@
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import * as detailsCSS from "./css/details.pcss"
-import { AddGeneral } from "../browser/list/general";
-import { AddCategories } from "../browser/list/categories";
-import { AddPhones } from "../browser/list/phones";
-import { AddSocial } from "../browser/list/social";
-import { AddImages } from "../browser/list/images";
+import { AddGeneral } from "./components/general";
+import { AddCategories } from "./components/categories";
+import { AddPhones } from "./components/phones";
+import { AddImages } from "./components/images";
+import withStyles from "isomorphic-style-loader/lib/withStyles"
 
-export const AddModal = ({ history, match, location }) => {
+export const AddModal = withStyles(detailsCSS)(({ history, match, location }) => {
     const back = (e) => {
         e.stopPropagation()
         history.goBack()
@@ -33,6 +33,6 @@ export const AddModal = ({ history, match, location }) => {
         </div>
     )
 }
-
+)
 /* <Card className={addCSS.add} key={Math.random()}>*/
 /* </Card>*/

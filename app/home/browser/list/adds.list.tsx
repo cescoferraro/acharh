@@ -1,4 +1,5 @@
 import * as React from "react"
+import RaisedButton from "material-ui/RaisedButton"
 import Subheader from "material-ui/Subheader"
 import { compose } from "recompose"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
@@ -7,14 +8,15 @@ import * as classNames from "classnames"
 import { Add } from "./add"
 import { isLoaded, isEmpty } from "react-redux-firebase"
 import { List } from "material-ui"
+import { Spinner } from "../../../../shared/components/spinner";
 
 export const AddsList = compose(
     withStyles(addCSS)
-)(({ adds, filters, groups, ROUTER_EMITTER }) => {
+)(({ userAgent, adds, filters, groups, ROUTER_EMITTER, FILTER_ACTION }) => {
     const list = !isLoaded(groups)
-        ? <h2>LATER</h2>
+        ? <Spinner userAgent={userAgent} />
         : isEmpty(groups)
-            ? <h3>hey</h3> :
+            ? <Spinner userAgent={userAgent} /> :
             (adds.map((add) =>
                 (
                     <Add
@@ -29,7 +31,11 @@ export const AddsList = compose(
         classNames(addCSS.shirinkedList)
     return (
         <div className={shirinkList} >
-            <Subheader>Todos Anúncios:</Subheader>
+            {
+                adds.length === 0 ?
+                    <RaisedButton onClick={() => { FILTER_ACTION() }} fullWidth={true} label={"Go find something"} /> :
+                    <Subheader>Anúncios selecionados para você:</Subheader>
+            }
             <List >
                 {list}
             </List>

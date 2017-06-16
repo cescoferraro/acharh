@@ -85,7 +85,7 @@ const LOADERS_OPTIONS =  new webpack.LoaderOptionsPlugin({
 
 const SERVER_PLUGINS = [LOADERS_OPTIONS];
 const DEVTOOLS = (env)=> {
-    return  ( env.production ? "eval" : "eval" );
+    return  ( env.production ? "cheap-module-source-map" : "cheap-module-eval-source-map");
 }; 
 
 const CLIENT_PLUGINS = env => {

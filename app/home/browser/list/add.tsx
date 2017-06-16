@@ -19,14 +19,12 @@ export const Add = withStyles(CSS)((
         <ListItem
             onClick={goToDetails}
         >
-            <div className={cs(CSS.flex)}>
+            <div className={cs(CSS.flex, { [`${CSS.paid}`]: add.paid })}>
                 <div className={cs(CSS.image)} >
                     {
                         add.images[0] === null ?
                             <div>No Images</div> :
-                            <div>
-                                <img alt="" src={add.images[0].url + "?cache=none"} />
-                            </div>
+                            <img alt="" src={add.images[0].url + "?" + new Date().valueOf()} />
                     }
                 </div>
                 <div className={cs(CSS.body)}>

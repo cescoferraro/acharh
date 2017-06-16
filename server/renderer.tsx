@@ -15,7 +15,7 @@ export const Renderer = (url, userAgent, store) => {
             <MuiThemeProvider muiTheme={getMuiTheme({ userAgent })}>
                 <StaticRouter location={url} context={{}}>
                     <ReduxProvider store={store}>
-                        <Router />
+                        <Router userAgent={userAgent} />
                     </ReduxProvider>
                 </StaticRouter>
             </MuiThemeProvider>

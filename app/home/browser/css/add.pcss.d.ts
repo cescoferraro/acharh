@@ -5,4 +5,5 @@ export const test: string;
 export const flex: string;
 export const icons: string;
 export const image: string;
+export const paid: string;
 export const body: string;

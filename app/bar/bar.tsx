@@ -6,15 +6,19 @@ import { APP_ACTIONS } from "../../store/actions"
 import { dataToJS, firebaseConnect } from "react-redux-firebase"
 import { connect } from "react-redux"
 import AppBar from "material-ui/AppBar"
+import { withRouter } from "react-router"
 
 export const Bar = compose(
+    withRouter,
     withStyles(barCSS),
     firebaseConnect(["/app"]),
     connect(({ firebase }) => ({
 
         app: dataToJS(firebase, "/app", {})
     }), APP_ACTIONS)
-)(({ app, ROUTER_EMITTER, FILTER_ACTION }) => {
+)(({ match, location, app, ROUTER_EMITTER, FILTER_ACTION }) => {
+    console.info(match)
+    console.info(location)
     return (
         <AppBar
             title="AchaRH"

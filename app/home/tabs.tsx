@@ -48,8 +48,8 @@ export class TabsAchaRH extends React.Component<ITabsAcharhProps, ITabsAcharhPro
                     onChange={handleChange}
                     value={this.props.home.tab}
                 >
-                    <Tab icon={<InboxIcon />} label="BROWSE" value={0} />
-                    <Tab icon={<FaceIcon />} label="INSERT" value={1} />
+                    <Tab icon={<InboxIcon />} label="ANÚNCIOS" value={0} />
+                    <Tab icon={<FaceIcon />} label="ANUNCIAR" value={1} />
                 </Tabs>
                 <SwipeableViews
                     className={this.props.CSS.tabcontainer}

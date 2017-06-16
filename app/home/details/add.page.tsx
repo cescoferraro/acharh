@@ -2,14 +2,14 @@ import * as React from "react"
 import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
 import { APP_ACTIONS } from "../../../store/actions"
-import { AddGeneral } from "../browser/list/general";
-import { AddCategories } from "../browser/list/categories";
-import { AddPhones } from "../browser/list/phones";
-import { AddImages } from "../browser/list/images";
 import { withRouter } from "react-router"
 import { compose } from "recompose"
 import { dataToJS, firebaseConnect, isLoaded, isEmpty } from "react-redux-firebase"
-import { Empty, Loading } from "../../../shared/components/helpers";
+import { Empty, Loading } from "../../../shared/components/helpers"
+import { AddGeneral } from "./components/general"
+import { AddCategories } from "./components/categories"
+import { AddPhones } from "./components/phones"
+import { AddImages } from "./components/images"
 
 export class AddPageComponent extends React.Component<any, any> {
     constructor(props) {

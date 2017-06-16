@@ -6,13 +6,23 @@ import { compose } from "recompose"
 import * as HomeStyle from "../home.pcss"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 
+const isServer = () => !(typeof window !== "undefined" && window.document)
+
+
 class BrowserComponentClass extends React.Component<any, any> {
     constructor(props) {
         super(props)
     }
 
     public componentWillMount() {
-        this.props.FILTER_ACTION()
+        if (!isServer()) {
+            console.info("BROWSER")
+            var visited = localStorage.getItem('visited');
+            if (visited !== "true") {
+                alert("Please view this is Firefox");
+                localStorage.setItem('visited', "true");
+            }
+        }
     }
 
     public render() {
@@ -20,13 +30,15 @@ class BrowserComponentClass extends React.Component<any, any> {
             <div className={HomeStyle.container}>
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>AchaRH | Anúncios </title>
+                    <title>Anúncios | AchaRH </title>
                     <link rel="canonical" href="http://acharh.cescoferraro.xyz" />
                 </Helmet>
                 <AddsList
                     filters={this.props.filters}
                     ROUTER_EMITTER={this.props.ROUTER_EMITTER}
+                    userAgent={this.props.userAgent}
                     groups={this.props.groups}
+                    FILTER_ACTION={this.props.FILTER_ACTION}
                     adds={this.props.filteredAdds}
                 />
                 <FilterComponent

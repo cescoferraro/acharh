@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Helmet } from "react-helmet"
 import { Renderer, Vendor } from "./renderer"
+import { ssrBehavior } from "react-md-spinner"
 
 const Styler = ({ rules }) => {
     return (
@@ -25,6 +26,7 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href="icons/favicon.ico" />
 
+                <Styler rules={ssrBehavior.getStylesheetString(userAgent)} />
                 <style type="text/css"> {App[1].join(" ")} </style>
                 <Styler rules={require("-!raw-loader!react-redux-toastr/lib/css/react-redux-toastr.min.css")} />
             </head>

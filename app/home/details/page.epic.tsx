@@ -3,8 +3,6 @@ import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
 import { SET_HOME_STORE_ACTION_NAME } from "../home.store";
 
-
-
 const GET_ADD_ACTION_NAME = "GET ADD"
 
 export const GET_ADD = (id: string): IAction<any> => {

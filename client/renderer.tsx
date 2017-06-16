@@ -19,7 +19,7 @@ export const Renderer = (Component) => {
                 <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: navigator.userAgent })}>
                     <ReduxRouterProvider history={history}>
                         <AppContainer>
-                            <Component />
+                            {Component}
                         </AppContainer>
                     </ReduxRouterProvider>
                 </MuiThemeProvider>

@@ -8,8 +8,8 @@ import { isEmpty, isLoaded } from "react-redux-firebase"
 import { Loading, Empty } from "../../../../shared/components/helpers"
 import RaisedButton from "material-ui/RaisedButton"
 import { states } from "../../../../shared/states"
-import * as  filtersCSS from "../css/filter.pcss"
-import * as classNames from "classnames"
+import * as  CSS from "../css/filter.pcss"
+import * as cs from "classnames"
 import { eachItem } from "../../shared"
 
 class FilterComponentClass extends React.Component<any, any> {
@@ -60,14 +60,18 @@ class FilterComponentClass extends React.Component<any, any> {
             this.props.SET_FILTERS_ACTION({ hidden: !this.props.filters.hidden })
         }
         const hideFilter = !this.props.filters.hidden ?
-            classNames(filtersCSS.flex) : classNames(filtersCSS.hidden)
+            cs(CSS.flex) : cs(CSS.hidden)
         const buttonLabel = !this.props.filters.hidden ?
             "ESCONDER FILTROS" : "EXIBIR FILTROS"
         const hideContainer = !this.props.filters.hidden ?
-            classNames(filtersCSS.container) : classNames(filtersCSS.containerHidden)
+            cs(CSS.container) : cs(CSS.containerHidden)
+        const emptyBUTTON = (<div>
+            <RaisedButton fullWidth={true} label={buttonLabel} />
+        </div>)
         return (
             !isLoaded(this.props.groups) ?
-                <Loading /> : isEmpty(this.props.groups) ? <Empty /> :
+                emptyBUTTON : isEmpty(this.props.groups) ?
+                    emptyBUTTON :
                     (
                         <div className={hideContainer}>
                             <div className={hideFilter}>
@@ -93,7 +97,7 @@ class FilterComponentClass extends React.Component<any, any> {
                                 </SelectField>
                             </div>
                             <div className={hideFilter}>
-                                <div className={filtersCSS.uf}>
+                                <div className={CSS.uf}>
                                     <SelectField
                                         id={"WhateverUF"}
                                         floatingLabelText="UF"
@@ -105,7 +109,7 @@ class FilterComponentClass extends React.Component<any, any> {
                                         {estadosItems}
                                     </SelectField>
                                 </div>
-                                <div className={filtersCSS.city}>
+                                <div className={CSS.city}>
                                     <SelectField
                                         id={"cIDADES"}
                                         floatingLabelText="Cidades"
@@ -117,7 +121,7 @@ class FilterComponentClass extends React.Component<any, any> {
                                         {states.filter(isCurrentState).map(eachState)}
                                     </SelectField>
                                 </div>
-                                <div className={filtersCSS.keyword}>
+                                <div className={CSS.keyword}>
                                     <TextField
                                         fullWidth={true}
                                         onChange={setKeyword}
@@ -129,4 +133,4 @@ class FilterComponentClass extends React.Component<any, any> {
                         </div >))
     }
 }
-export const FilterComponent = compose(withStyles(filtersCSS))(FilterComponentClass)
+export const FilterComponent = compose(withStyles(CSS))(FilterComponentClass)

@@ -5,14 +5,16 @@ import withStyles from "isomorphic-style-loader/lib/withStyles"
 import * as baseCSS from "./css/base.pcss"
 import { HomeContainer } from "./home/home"
 import { Toaster } from "../shared/toaster"
-export let Router = withStyles(baseCSS)(() => {
+
+
+export let Router = withStyles(baseCSS)(({ userAgent }) => {
     return (
         <div>
             <Route component={Bar} />
             <Switch>
-                <Route path="/" component={HomeContainer} />
-                <Route path="/insert" component={HomeContainer} />
-                <Route path="/add" component={HomeContainer} />
+                <Route path="/" render={() => <HomeContainer userAgent={userAgent} />} />
+                <Route path="/insert" render={() => <HomeContainer userAgent={userAgent} />} />
+                <Route path="/add" render={() => <HomeContainer userAgent={userAgent} />} />
             </Switch>
             <Route component={Toaster} />
         </div>

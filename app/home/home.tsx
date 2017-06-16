@@ -42,6 +42,7 @@ export class HomeContainerClass extends React.Component<any, any> {
                 FILTER_ACTION={this.props.FILTER_ACTION}
                 ROUTER_EMITTER={this.props.ROUTER_EMITTER}
                 filters={this.props.filters}
+                userAgent={this.props.userAgent}
                 groups={this.props.groups}
                 filteredAdds={this.props.filteredAdds}
             />
@@ -100,7 +101,7 @@ export class HomeContainerClass extends React.Component<any, any> {
 export const HomeContainer = compose(
     withRouter,
     withStyles(HomeStyle),
-    firebaseConnect(["/app", "/adds", "/groups"]),
+    firebaseConnect(["/app", "/groups"]),
     connect(({ firebase, home, todos, filters, filteredAdds }) => ({
         filters,
         home,
