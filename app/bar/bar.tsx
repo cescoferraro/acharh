@@ -17,8 +17,6 @@ export const Bar = compose(
         app: dataToJS(firebase, "/app", {})
     }), APP_ACTIONS)
 )(({ match, location, app, ROUTER_EMITTER, FILTER_ACTION }) => {
-    console.info(match)
-    console.info(location)
     return (
         <AppBar
             title="AchaRH"

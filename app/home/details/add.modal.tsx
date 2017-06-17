@@ -4,7 +4,7 @@ import * as detailsCSS from "./css/details.pcss"
 import { AddGeneral } from "./components/general";
 import { AddCategories } from "./components/categories";
 import { AddPhones } from "./components/phones";
-import { AddImages } from "./components/images";
+import { AddImageDetail } from "./components/images";
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 
 export const AddModal = withStyles(detailsCSS)(({ history, match, location }) => {
@@ -23,7 +23,7 @@ export const AddModal = withStyles(detailsCSS)(({ history, match, location }) =>
                 <AddGeneral add={add} />
                 <AddCategories groups={groups} add={add} />
                 <AddPhones add={add} />
-                <AddImages add={add} />
+                <AddImageDetail add={add} />
                 <button
                     onClick={back}
                     type="button"

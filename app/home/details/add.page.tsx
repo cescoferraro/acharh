@@ -1,4 +1,5 @@
 import * as React from "react"
+import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import { connect } from "react-redux"
 import { Helmet } from "react-helmet"
 import { APP_ACTIONS } from "../../../store/actions"
@@ -9,7 +10,9 @@ import { Empty, Loading } from "../../../shared/components/helpers"
 import { AddGeneral } from "./components/general"
 import { AddCategories } from "./components/categories"
 import { AddPhones } from "./components/phones"
-import { AddImages } from "./components/images"
+import { AddImageDetail } from "./components/images"
+import * as CSS from "./css/details.pcss"
+
 
 export class AddPageComponent extends React.Component<any, any> {
     constructor(props) {
@@ -23,15 +26,15 @@ export class AddPageComponent extends React.Component<any, any> {
     }
 
     public render() {
-        return (<div>
+        return (<div className={CSS.container}>
             <Helmet>
                 <title>AchaRH | {this.props.match.params.id}</title>
             </Helmet>
             {this.props.children} </div>)
     }
 }
-
 export const DetailComponent = compose(
+    withStyles(CSS),
     firebaseConnect(["/groups"]),
     connect(({ firebase }) => ({
         groups: dataToJS(firebase, "/groups", {}),
@@ -39,11 +42,11 @@ export const DetailComponent = compose(
 )(({ detail, groups }) => {
     return !isLoaded(groups) ?
         <Loading /> : isEmpty(groups) ? <Empty /> : (
-            <div>
+            <div className={CSS.content}>
+                <AddImageDetail add={detail} />
                 <AddGeneral add={detail} />
                 <AddCategories groups={groups} add={detail} />
                 <AddPhones add={detail} />
-                <AddImages add={detail} />
             </div>
         )
 })

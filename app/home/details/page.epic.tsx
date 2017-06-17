@@ -1,4 +1,3 @@
-import "rxjs"
 import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
 import { SET_HOME_STORE_ACTION_NAME } from "../home.store";

@@ -4,7 +4,7 @@ import { Instagram } from "./instagram"
 import { Twitter } from "./twitter"
 import { LinkedIn } from "./linkedin"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
-import * as css from "../css/add.pcss"
+import * as css from "../css/details.pcss"
 
 export const AddSocial = withStyles(css)(({ add, css }: { add: IAdd, css: any }) => {
     return (

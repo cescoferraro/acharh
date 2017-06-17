@@ -1,4 +1,3 @@
-import "rxjs"
 import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
 import { FILTER_ACTION_NAME } from "./adds.store"

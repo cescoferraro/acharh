@@ -1,4 +1,3 @@
-import "rxjs"
 import { Observable } from "rxjs"
 import { push } from "connected-react-router"
 

@@ -1,8 +1,19 @@
-.container {
-    background-color: green;
-    height: calc( 100vh - 64px );
+@font-face {
+    font-family: 'slick';
+    src: url("../../../../node_modules/slick-carousel/slick/fonts/slick.woff") format('opentype');
 }
 
+.container {
+    display:flex;
+    background-color: green;
+    height: calc( 100vh - 48px );
+}
+.content{
+    background-color: purple;
+    display: block;
+    width:100vw;
+    overflow-y: auto;
+}
 .modal{
     height: calc( 100vh - 64px );
     position: absolute;
@@ -11,4 +22,40 @@
     left: 10%;
     overflow:auto;
     right: 10%;
+}
+.add{
+    margin-top: 15px;
+}
+
+.test {
+    background-color: #B22222;
+}
+.flex{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.icons {
+    width: 30px;
+    height: 30px;
+}
+
+.slickContainer{
+    width:100vw;
+    height:300px;
+}
+
+.slider{
+    /* margin: 0 auto; */
+    /* padding: 40px; */
+    width: 90%;
+    /* color: #333; */
+    /* background: #419be0; */
+
+    height: 200px
+}
+.img{
+
+    /* height: 100px */
+
 }

@@ -1,4 +1,4 @@
-import * as _ from "lodash"
+import { assign } from "lodash-es"
 
 interface IFilters {
     uf: number
@@ -20,7 +20,7 @@ const startup = { city: 0, hidden: true, uf: 0, group: 0, keyword: "", category:
 export const filters = (state = startup, action) => {
     switch (action.type) {
         case SET_FILTERS_ACTION_NAME:
-            return _.assign(state, action.payload)
+            return assign(state, action.payload)
         default:
             return state
     }

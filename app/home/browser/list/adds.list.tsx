@@ -5,7 +5,7 @@ import { compose } from "recompose"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import * as addCSS from "../css/add.pcss"
 import * as classNames from "classnames"
-import { Add } from "./add"
+import { AddListItem } from "./add"
 import { isLoaded, isEmpty } from "react-redux-firebase"
 import { List } from "material-ui"
 import { Spinner } from "../../../../shared/components/spinner";
@@ -19,7 +19,7 @@ export const AddsList = compose(
             ? <Spinner userAgent={userAgent} /> :
             (adds.map((add) =>
                 (
-                    <Add
+                    <AddListItem
                         key={Math.random()}
                         ROUTER_EMITTER={ROUTER_EMITTER}
                         groups={groups}

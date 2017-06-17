@@ -1,4 +1,5 @@
-import * as _ from "lodash"
+import { assign } from "lodash"
+
 import { addFactory, genericAddFactory } from "../../shared/add.factory"
 
 export const SET_HOME_STORE_ACTION_NAME = "SET_HOME_STORE"
@@ -19,7 +20,7 @@ const startup: IHome = {
 export const HomeReducers = (state: IHome = startup, action: IAction<IHome>) => {
     switch (action.type) {
         case SET_HOME_STORE_ACTION_NAME:
-            return _.assign(state, action.payload)
+            return assign(state, action.payload)
         default:
             return state
     }

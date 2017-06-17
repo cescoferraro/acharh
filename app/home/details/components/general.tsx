@@ -1,5 +1,5 @@
 import * as React from "react"
-import * as css from "../css/add.pcss"
+import * as css from "../css/details.pcss"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 
 export const AddGeneral = withStyles(css)(

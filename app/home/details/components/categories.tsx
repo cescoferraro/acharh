@@ -2,7 +2,7 @@ import * as React from "react"
 import Chip from "material-ui/Chip"
 import Avatar from "material-ui/Avatar"
 import { blue300, indigo900 } from "material-ui/styles/colors"
-import * as CSS from "../css/add.pcss"
+import * as CSS from "../css/details.pcss"
 
 export const AddCategories = ({ groups, add }: { add: IAdd, groups: any }) => {
     return (

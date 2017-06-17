@@ -3,8 +3,10 @@ import * as CSS from "../css/add.pcss"
 import { ListItem } from "material-ui"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import * as cs from "classnames"
+import { ImageBIT } from "./image"
+import { INFOBIT } from "./info"
 
-export const Add = withStyles(CSS)((
+export const AddListItem = withStyles(CSS)((
     { add, groups, ROUTER_EMITTER }:
         { add: IAdd, groups: any, ROUTER_EMITTER: any }
 ) => {
@@ -16,27 +18,10 @@ export const Add = withStyles(CSS)((
 
     return (
 
-        <ListItem
-            onClick={goToDetails}
-        >
+        <ListItem onClick={goToDetails} >
             <div className={cs(CSS.flex, { [`${CSS.paid}`]: add.paid })}>
-                <div className={cs(CSS.image)} >
-                    {
-                        add.images[0] === null ?
-                            <div>No Images</div> :
-                            <img alt="" src={add.images[0].url + "?" + new Date().valueOf()} />
-                    }
-                </div>
-                <div className={cs(CSS.body)}>
-                    <h4>{add.title}</h4>
-                    {
-                        add.phones[0] === null ?
-                            <div>(XX)XXXX-XXXX</div> :
-                            <div>
-                                {"(" + add.phones[0].ddd + ") - " + add.phones[0].number}
-                            </div>
-                    }
-                </div>
+                <ImageBIT add={add} />
+                <INFOBIT add={add} />
             </div>
         </ListItem >
     )
