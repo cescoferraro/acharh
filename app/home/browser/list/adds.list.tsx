@@ -7,7 +7,7 @@ import * as addCSS from "../css/add.pcss"
 import * as classNames from "classnames"
 import { AddListItem } from "./add"
 import { isLoaded, isEmpty } from "react-redux-firebase"
-import { List } from "material-ui"
+import List from "material-ui/List"
 import { Spinner } from "../../../../shared/components/spinner";
 
 export const AddsList = compose(

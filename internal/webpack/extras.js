@@ -107,6 +107,26 @@ const CLIENT_PLUGINS = env => {
 		name: "react-vendor",
 		filename: "vendor/react.js",
 		chunks: ["client", "react"]
+	    }),
+	    new webpack.optimize.CommonsChunkPlugin({
+		name: "rxjs-vendor",
+		filename: "vendor/rxjs.js",
+		chunks: ["client", "rxjs"]
+	    }),
+	    new webpack.optimize.CommonsChunkPlugin({
+		name: "faker-vendor",
+		filename: "vendor/faker.js",
+		chunks: ["client", "faker"]
+	    }),
+	    new webpack.optimize.CommonsChunkPlugin({
+		name: "material-vendor",
+		filename: "vendor/material.js",
+		chunks: ["client", "material"]
+	    }),
+	    new webpack.optimize.CommonsChunkPlugin({
+		name: "firebase-vendor",
+		filename: "vendor/firebase.js",
+		chunks: ["client", "firebase"]
 	    })
 	);
     } else {

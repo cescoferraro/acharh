@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as CSS from "../css/add.pcss"
-import { ListItem } from "material-ui"
+import ListItem from "material-ui/List/ListItem"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import * as cs from "classnames"
 import { ImageBIT } from "./image"

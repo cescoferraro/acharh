@@ -4,16 +4,22 @@
   "description": "Cutting edge React.js boilerplate.",
   "main": "index.js",
   "scripts": {
+
+    "docker/build": "docker build -f internal/docker/Dockerfile -t cescoferraro/acharh:latest .",
+    "docker/run": "docker run -p 4000:4000 -v dist/:/srv/acharh cescoferraro/acharh:latest",
+    "docker/push": "docker push cescoferraro/acharh:latest",
+
+    "test": "jest",
     "clean": "rm -rf dist/",
+    "analyzer": " webpack --config internal/webpack/client.js  -p --env.production --env.analyzer ",
     "dll": "webpack --config internal/webpack/dll.js ",
     "dev": "node hot.js",
-    "start": "yarn run clean && yarn run dll && yarn run dev",
-    "test": "jest",
+    "start": "yarn run dll && yarn run dev",
+
+   
     "build": "webpack -p --config webpack.config.js --env.production",
-    "docker/build": "docker build -f internal/docker/Dockerfile -t cescoferraro/acharh:latest .",
-    "docker/push": "docker push cescoferraro/acharh:latest",
-    "docker/preview": "yarn docker/build && yarn docker/run",
-    "docker/run": "docker run -p 4000:4000 cescoferraro/acharh:latest",
+    "preview":"yarn run clean && yarn build && cd dist/ && node server.js",
+    "docker/preview": "yarn build && yarn docker/run",
     "push": "yarn run clean && yarn run build && yarn run docker/build && yarn run docker/push"
   },
   "author": "",

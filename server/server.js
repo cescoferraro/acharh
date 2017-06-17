@@ -1,6 +1,8 @@
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const app = express();
+app.use(compression());
 app.disable('x-powered-by');
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/vendor', express.static(path.join(__dirname, 'vendor')));

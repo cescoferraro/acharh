@@ -1,4 +1,14 @@
 import { Observable } from "rxjs"
+
+/* import { Observable } from "rxjs/Observable"*/
+/* import 'rxjs/add/observable/of';*/
+/* import 'rxjs/add/observable/pairs';*/
+/* import 'rxjs/add/operator/map';*/
+/* import 'rxjs/add/operator/mergeMap';*/
+/* import 'rxjs/add/operator/filter';*/
+
+
+
 import { getFirebase } from "react-redux-firebase"
 import { FILTER_ACTION_NAME } from "./adds.store"
 import { DISPLAY_FILTERED_ADDS_ACTION_NAME } from "./filter.store"
