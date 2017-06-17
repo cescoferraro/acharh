@@ -24,6 +24,6 @@ export const Renderer = (url, userAgent, store) => {
 }
 
 export const Vendor = ({ path, isProduction }) => {
-    return (isProduction ? null :
-        <script type={"text/javascript"} async={true} src={path} />)
+    return (isProduction ?
+        <script type={"text/javascript"} async={true} src={path} /> : null)
 }

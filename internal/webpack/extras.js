@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
+let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const resolve = {
     extensions: ['.js', '.ts', '.tsx', '.json', 'pcss']
@@ -89,11 +90,24 @@ const DEVTOOLS = (env)=> {
 }; 
 
 const CLIENT_PLUGINS = env => {
-    let og = [];
+    let og = [
+	new webpack.NamedModulesPlugin(),
+	new webpack.NoEmitOnErrorsPlugin(),
+	new FaviconsWebpackPlugin({
+	    prefix: 'icons/',
+	    logo: './shared/icon/favicon.png'
+	}),
+	LOADERS_OPTIONS
+    ];
     if (env.production){
 	og.push(
 	    new CopyWebpackPlugin([ {from: "./server/server.js",to:"./server.js"} ]),
-	    new CopyWebpackPlugin([ {from: "./server/index.html",to:"./index.html"} ])
+	    new CopyWebpackPlugin([ {from: "./server/index.html",to:"./index.html"} ]),
+	    new webpack.optimize.CommonsChunkPlugin({
+		name: "react-vendor",
+		filename: "vendor/react.js",
+		chunks: ["client", "react"]
+	    })
 	);
     } else {
 	og.push(
@@ -103,16 +117,10 @@ const CLIENT_PLUGINS = env => {
 		manifest: require("../../dll/vendor.json")
 	    }));
     }
-    og.push(
-	new webpack.NamedModulesPlugin(),
-	new webpack.NoEmitOnErrorsPlugin(),
-	new FaviconsWebpackPlugin({
-	    prefix: 'icons/',
-	    logo: './shared/icon/favicon.png'
-	}),
-	LOADERS_OPTIONS
-    );
-    return  ( og );
+    if(env.analyzer){
+	og.push(new BundleAnalyzerPlugin());
+    }
+    return og;
 };
 
 module.exports = {

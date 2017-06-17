@@ -38,9 +38,10 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
 
                 <Vendor
                     path={"/vendor.js"}
-                    isProduction={production}
+                    isProduction={!production}
                 />
 
+                <Vendor path={"/vendor/react.js"} isProduction={production} />
                 <script type={"text/javascript"} async={true} src={"/js/client.js"} />
             </body>
         </html>)
