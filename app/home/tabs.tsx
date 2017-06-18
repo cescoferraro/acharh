@@ -45,16 +45,26 @@ export class TabsAchaRH extends React.Component<ITabsAcharhProps, ITabsAcharhPro
             >
                 <Tabs
                     className={this.props.CSS.tabs}
-                    onChange={handleChange}
                     value={this.props.home.tab}
                 >
-                    <Tab icon={<InboxIcon />} label="ANÚNCIOS" value={0} />
-                    <Tab icon={<FaceIcon />} label="ANUNCIAR" value={1} />
+                    <Tab icon={<InboxIcon />}
+                        onClick={() => {
+                            this.props.SET_HOME_STORE_ACTION({ tab: 0 })
+                            this.props.ROUTER_EMITTER({ pathname: "/" })
+                            console.log("dsfds")
+                        }}
+                        label="ANÚNCIOS" value={0} />
+                    <Tab icon={<FaceIcon />}
+                        onClick={() => {
+                            this.props.SET_HOME_STORE_ACTION({ tab: 1 })
+                            this.props.ROUTER_EMITTER({ pathname: "/insert" })
+                            console.log("dsfds")
+                        }}
+                        label="ANUNCIAR" value={1} />
                 </Tabs>
                 <SwipeableViews
                     className={this.props.CSS.tabcontainer}
                     index={this.props.home.tab}
-                    onChangeIndex={handleChange}
                 >
                     {this.props.children}
                 </SwipeableViews>

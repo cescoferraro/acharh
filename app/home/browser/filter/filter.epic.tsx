@@ -1,12 +1,10 @@
-import { Observable } from "rxjs"
-
-/* import { Observable } from "rxjs/Observable"*/
-/* import 'rxjs/add/observable/of';*/
-/* import 'rxjs/add/observable/pairs';*/
-/* import 'rxjs/add/operator/map';*/
-/* import 'rxjs/add/operator/mergeMap';*/
-/* import 'rxjs/add/operator/filter';*/
-
+import { Observable } from "rxjs/Observable"
+import 'rxjs/add/observable/of'
+import 'rxjs/add/observable/pairs'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/filter'
+import 'rxjs/add/operator/toArray'
+import 'rxjs/add/observable/fromPromise'
 
 
 import { getFirebase } from "react-redux-firebase"

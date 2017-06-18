@@ -66,6 +66,7 @@ const LOADERS = (env, isClient)=>{
 	       }}]}];
     return ( {rules: rules} ); 
 };
+
 const HOTLOADER = (entry, env)=>{
     if (!env.production) {
 	return ['react-hot-loader/patch',
@@ -79,6 +80,7 @@ const HOTLOADER = (entry, env)=>{
 const LOADERS_OPTIONS =  new webpack.LoaderOptionsPlugin({
     minimize: false,
     debug: true,
+    cache: true,
     options: {
 	context: '/'
     }
@@ -134,8 +136,9 @@ const CLIENT_PLUGINS = env => {
 	    new webpack.HotModuleReplacementPlugin(),
 	    new webpack.DllReferencePlugin({
 		context: process.cwd(),
+		sourceType: "var",
 		manifest: require("../../dll/vendor.json")
-	    }));
+	    })	);
     }
     if(env.analyzer){
 	og.push(new BundleAnalyzerPlugin());

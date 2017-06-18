@@ -19,7 +19,7 @@
    
     "build": "webpack -p --config webpack.config.js --env.production",
     "preview":"yarn run clean && yarn build && cd dist/ && node server.js",
-    "docker/preview": "yarn build && yarn docker/run",
+    "docker/preview": "yarn run clean && yarn build && yarn docker/run",
     "push": "yarn run clean && yarn run build && yarn run docker/build && yarn run docker/push"
   },
   "author": "",

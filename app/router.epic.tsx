@@ -1,4 +1,6 @@
-import { Observable } from "rxjs"
+import { Observable } from "rxjs/Observable"
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/mergeMap';
 import { push } from "connected-react-router"
 
 const ROUTER_EMITTER_ACTION_NAME = "ROUTER-EMIITER"

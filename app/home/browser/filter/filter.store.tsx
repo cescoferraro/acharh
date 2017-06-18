@@ -1,4 +1,4 @@
-import { assign } from "lodash"
+import * as assign from "lodash/fp/assign"
 
 interface IFilters {
     uf: number

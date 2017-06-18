@@ -23,5 +23,8 @@ module.exports = ( env = {production:false}) => {
 	config.entry.faker = ["faker"];
 	config.entry.material= ["material-ui"];
 	config.entry.rxjs = ["rxjs"];
-    }
+    } else {
+	config.externals={
+	};
+    };
     return config; };

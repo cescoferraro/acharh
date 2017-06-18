@@ -31,22 +31,17 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 <Styler rules={require("-!raw-loader!react-redux-toastr/lib/css/react-redux-toastr.min.css")} />
             </head>
             <body {...BodyAttr} >
-                <div
-                    id="root"
-                    dangerouslySetInnerHTML={{ __html: App[0] }}
-                />
+                <div id="root" dangerouslySetInnerHTML={{ __html: App[0] }} />
+                <Vendor async={false} path={"/js/client.js"} isProduction={!production} />
 
-                <Vendor
-                    path={"/vendor.js"}
-                    isProduction={!production}
-                />
 
-                <Vendor path={"/vendor/react.js"} isProduction={production} />
-                <Vendor path={"/vendor/firebase.js"} isProduction={production} />
-                <Vendor path={"/vendor/rxjs.js"} isProduction={production} />
-                <Vendor path={"/vendor/faker.js"} isProduction={production} />
-                <Vendor path={"/vendor/material.js"} isProduction={production} />
-                <script type={"text/javascript"} async={true} src={"/js/client.js"} />
+                <Vendor async={false} path={"/vendor/react.js"} isProduction={production} />
+                <Vendor async={false} path={"/vendor/firebase.js"} isProduction={production} />
+                <Vendor async={false} path={"/vendor/rxjs.js"} isProduction={production} />
+                <Vendor async={false} path={"/vendor/faker.js"} isProduction={production} />
+                <Vendor async={false} path={"/vendor/material.js"} isProduction={production} />
+                <Vendor async={true} path={"/js/client.js"} isProduction={production} />
+
             </body>
         </html>)
 }

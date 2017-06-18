@@ -1,8 +1,11 @@
-import { Observable } from "rxjs"
+import { Observable } from "rxjs/Observable"
+import "rxjs/add/operator/map"
+import "rxjs/add/operator/mapTo"
+import "rxjs/add/observable/fromPromise"
 import { getFirebase } from "react-redux-firebase"
 import { actions as toastrActions } from "react-redux-toastr"
 import { bindActionCreators } from "redux"
-import * as faker from "faker/locale/pt_BR"
+import { uuid } from "../../../shared/uuid"
 
 const INSERT_ADD_ACTION_NAME = "INSERT_ADD"
 export const INSERT_ADD = (add: IAdd): IAction<any> => {
@@ -17,12 +20,11 @@ export const insertEpic = (action$, store) => {
     return action$
         .ofType(INSERT_ADD_ACTION_NAME)
         .mergeMap((action: IAction<IAdd>) => {
-            const id = faker.random.uuid()
             return (Observable.fromPromise(getFirebase().database().ref("adds").push(action.payload))
             )
                 .mapTo(toaster
                     .add({
-                        id: id,
+                        id: uuid(),
                         type: "success",
                         title: action.payload.title,
                         attention: true,

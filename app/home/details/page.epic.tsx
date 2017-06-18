@@ -1,6 +1,8 @@
-import { Observable } from "rxjs"
 import { getFirebase } from "react-redux-firebase"
 import { SET_HOME_STORE_ACTION_NAME } from "../home.store";
+import { Observable } from "rxjs/Observable"
+import 'rxjs/add/operator/map'
+import 'rxjs/add/observable/fromPromise'
 
 const GET_ADD_ACTION_NAME = "GET ADD"
 

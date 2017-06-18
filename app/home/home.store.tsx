@@ -1,5 +1,4 @@
-import { assign } from "lodash"
-
+import * as assign from "lodash/fp/assign"
 import { addFactory, genericAddFactory } from "../../shared/add.factory"
 
 export const SET_HOME_STORE_ACTION_NAME = "SET_HOME_STORE"
