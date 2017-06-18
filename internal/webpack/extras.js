@@ -138,6 +138,10 @@ const CLIENT_PLUGINS = env => {
 		context: process.cwd(),
 		sourceType: "var",
 		manifest: require("../../dll/vendor.json")
+	    }),
+	    new webpack.optimize.CommonsChunkPlugin({
+		name: "dev",
+		filename: "js/dev.js", chunks: ["client", "vendor"]
 	    })	);
     }
     if(env.analyzer){

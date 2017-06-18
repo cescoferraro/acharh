@@ -32,6 +32,7 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
             </head>
             <body {...BodyAttr} >
                 <div id="root" dangerouslySetInnerHTML={{ __html: App[0] }} />
+                <Vendor async={false} path={"/js/dev.js"} isProduction={!production} />
                 <Vendor async={false} path={"/js/client.js"} isProduction={!production} />
 
 

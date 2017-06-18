@@ -24,7 +24,6 @@ module.exports = ( env = {production:false}) => {
 	config.entry.material= ["material-ui"];
 	config.entry.rxjs = ["rxjs"];
     } else {
-	config.externals={
-	};
+	config.entry.vendor = require("./libs.js")  ;
     };
-    return config; };
+ return config; };
