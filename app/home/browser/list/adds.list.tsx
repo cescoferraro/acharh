@@ -13,6 +13,7 @@ import { Spinner } from "../../../../shared/components/spinner";
 export const AddsList = compose(
     withStyles(addCSS)
 )(({ userAgent, adds, filters, groups, ROUTER_EMITTER, FILTER_ACTION }) => {
+    console.log(groups)
     const list = !isLoaded(groups)
         ? <Spinner userAgent={userAgent} />
         : isEmpty(groups)
@@ -37,7 +38,7 @@ export const AddsList = compose(
                     <Subheader>Anúncios selecionados para você:</Subheader>
             }
             <List >
-                {list}
+                {adds.length !== 0 ? list : null}
             </List>
         </div>
     )

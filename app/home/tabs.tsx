@@ -45,6 +45,7 @@ export class TabsAchaRH extends React.Component<ITabsAcharhProps, ITabsAcharhPro
             >
                 <Tabs
                     className={this.props.CSS.tabs}
+                    onChange={handleChange}
                     value={this.props.home.tab}
                 >
                     <Tab icon={<InboxIcon />}
@@ -64,11 +65,12 @@ export class TabsAchaRH extends React.Component<ITabsAcharhProps, ITabsAcharhPro
                 </Tabs>
                 <SwipeableViews
                     className={this.props.CSS.tabcontainer}
+                    onChangeIndex={handleChange}
                     index={this.props.home.tab}
                 >
                     {this.props.children}
                 </SwipeableViews>
-            </div>
+            </div >
         )
     }
 }

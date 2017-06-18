@@ -9,16 +9,27 @@ import MenuItem from "material-ui/MenuItem"
 import { FieldArray, Field } from "redux-form"
 import { SelectField } from "redux-form-material-ui"
 import { categoryFactory } from "../../../../shared/add.factory"
+import { isLoaded, isEmpty, firebaseConnect, dataToJS } from "react-redux-firebase";
+import { Loading, Empty } from "../../../../shared/components/helpers";
+import { compose } from "recompose";
+import { connect } from "react-redux";
 
-export const Categories = ({ categories }) => {
-    return (
-        <FieldArray
-            name="categories"
-            categories={categories}
-            component={renderMembers}
-        />
-    )
-}
+export const Categories = compose(
+    firebaseConnect(["/groups"]),
+    connect(({ firebase }) => ({
+        groups: dataToJS(firebase, "/groups", {}),
+    }))
+)(({ categories, groups }) => {
+    return !isLoaded(groups) ?
+        <Loading /> : isEmpty(groups) ? <Empty /> :
+            (
+                <FieldArray
+                    name="categories"
+                    categories={categories}
+                    component={renderMembers}
+                />
+            )
+})
 
 const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) => {
     const catMain = categories

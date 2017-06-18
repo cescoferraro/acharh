@@ -101,12 +101,7 @@ export class HomeContainerClass extends React.Component<any, any> {
 export const HomeContainer = compose(
     withRouter,
     withStyles(HomeStyle),
-    firebaseConnect(["/app", "/groups"]),
-    connect(({ firebase, home, todos, filters, filteredAdds }) => ({
-        filters,
-        home,
-        filteredAdds,
-        groups: dataToJS(firebase, "/groups", {}),
-        app: dataToJS(firebase, "/app", {})
-    }), APP_ACTIONS)
+    connect(
+        ({ home, filters, groups, filteredAdds }) =>
+            ({ filters, home, groups, filteredAdds, }), APP_ACTIONS)
 )(HomeContainerClass)
