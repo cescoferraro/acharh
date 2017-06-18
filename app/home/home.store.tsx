@@ -16,7 +16,7 @@ const startup: IHome = {
     detail: genericAddFactory()
 }
 
-export const HomeReducers = (state: IHome = startup, action: IAction<IHome>) => {
+export const HomeReducers = (state: IHome = startup, action: any) => {
     switch (action.type) {
         case SET_HOME_STORE_ACTION_NAME:
             return assign(state, action.payload)
