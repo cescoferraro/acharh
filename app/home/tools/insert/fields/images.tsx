@@ -7,7 +7,7 @@ import * as React from "react"
 import * as  CSS from "../css/add.form.pcss"
 import { FieldArray, Field } from "redux-form"
 import { TextField } from "redux-form-material-ui"
-import { imageFactory } from "../../../../shared/add.factory"
+import { imageFactory } from "../../../../../shared/add.factory"
 
 export const Images = ({ }) => {
     return (

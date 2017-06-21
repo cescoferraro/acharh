@@ -8,9 +8,9 @@ import * as  CSS from "../css/add.form.pcss"
 import MenuItem from "material-ui/MenuItem"
 import { FieldArray, Field } from "redux-form"
 import { SelectField } from "redux-form-material-ui"
-import { categoryFactory } from "../../../../shared/add.factory"
+import { categoryFactory } from "../../../../../shared/add.factory"
 import { isLoaded, isEmpty, firebaseConnect, dataToJS } from "react-redux-firebase";
-import { Loading, Empty } from "../../../../shared/components/helpers";
+import { Loading, Empty } from "../../../../../shared/components/helpers";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 

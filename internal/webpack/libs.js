@@ -5,7 +5,6 @@ module.exports = [
     "rxjs", 
     "material-ui", 
     "firebase", 
-    "faker",
     "lodash", 
     "react-redux", 
     "recompose",

@@ -1,8 +1,8 @@
-export const SET_APP_GROUPS = " SET_APP_GROUP"
+export const DISPLAY_GROUPS_ACTION = "DISPLAY_GROUPS"
 
 export const GroupsReducers = (state = [], action: any) => {
     switch (action.type) {
-        case SET_APP_GROUPS:
+        case DISPLAY_GROUPS_ACTION:
             return action.payload
         default:
             return state

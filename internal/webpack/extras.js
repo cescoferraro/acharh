@@ -99,12 +99,16 @@ const CLIENT_PLUGINS = env => {
 	    prefix: 'icons/',
 	    logo: './shared/icon/favicon.png'
 	}),
+	new webpack.optimize.ModuleConcatenationPlugin(),
 	LOADERS_OPTIONS
     ];
+
     if (env.production){
 	og.push(
 	    new CopyWebpackPlugin([ {from: "./server/server.js",to:"./server.js"} ]),
 	    new CopyWebpackPlugin([ {from: "./server/index.html",to:"./index.html"} ]),
+	    new CopyWebpackPlugin([ {from: "./shared/FB35B4FE618262EF0B9F299C03184A31.txt",
+				     to:"./ssl/FB35B4FE618262EF0B9F299C03184A31.txt"} ]),
 	    new webpack.optimize.CommonsChunkPlugin({
 		name: "react-vendor",
 		filename: "vendor/react.js",
@@ -114,11 +118,6 @@ const CLIENT_PLUGINS = env => {
 		name: "rxjs-vendor",
 		filename: "vendor/rxjs.js",
 		chunks: ["client", "rxjs"]
-	    }),
-	    new webpack.optimize.CommonsChunkPlugin({
-		name: "faker-vendor",
-		filename: "vendor/faker.js",
-		chunks: ["client", "faker"]
 	    }),
 	    new webpack.optimize.CommonsChunkPlugin({
 		name: "material-vendor",

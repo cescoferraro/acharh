@@ -15,7 +15,6 @@ export const AddImageDetail = withStyles(CSS)(({ add }) => {
 
 
 const ImagesList = ({ add }: { add: IAdd }) => {
-    console.log("hello")
     return add.images !== null && add.images.length > 0 ?
         (
             <div>

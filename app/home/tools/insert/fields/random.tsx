@@ -1,6 +1,6 @@
 import * as React from "react"
 import RaisedButton from "material-ui/RaisedButton"
-import { addFactory } from "../../../../shared/add.factory"
+import { addFactory } from "../../../../../shared/add.factory"
 
 export const RandomButton = ({ setHomeStore, groups }) => {
     const randomADD = () => {

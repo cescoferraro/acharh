@@ -1,4 +1,16 @@
-import * as faker from "faker/locale/pt_BR"
+import { uuid } from "./uuid";
+import {
+    FakerTitle,
+    FakerUrl,
+    FakerParahraph,
+    FakerStreetName,
+    FakerAddressNumber,
+    FakerComplemento,
+    FakerNeighbouhood,
+    FakerZipCode,
+    FakerName,
+    FakerImgUrl
+} from "./faker";
 
 const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min)
@@ -36,21 +48,21 @@ export const genericAddFactory = () => {
 
 export const addFactory = (groups = [{ code: 3849, children: [{ code: 970 }] }]) => {
     return ({
-        title: faker.commerce.productName(),
-        website: faker.internet.url(),
-        creator: faker.random.uuid(),
+        title: FakerTitle(),
+        website: FakerUrl(),
+        creator: uuid(),
         phones: RandomSizeArray(phoneFactory),
         images: RandomSizeArray(imageFactory),
-        description: faker.lorem.paragraph(),
+        description: FakerParahraph(),
         categories: CatRandomSizeArray(categoryFactory, groups),
         confirmed: Math.random() >= 0.5,
         paid: Math.random() >= 0.5,
         address: {
-            name: faker.address.streetName(),
-            number: parseInt(faker.address.zipCode(), 10),
-            complemento: faker.address.secondaryAddress(),
-            bairro: faker.address.county(),
-            cep: parseInt(faker.address.zipCode(), 10),
+            name: FakerStreetName(),
+            number: FakerAddressNumber(),
+            complemento: FakerComplemento(),
+            bairro: FakerNeighbouhood(),
+            cep: FakerZipCode(),
             uf: getRandomIntInclusive(1, 27),
             city: getRandomIntInclusive(1, 27)
         },
@@ -67,17 +79,17 @@ const CatRandomSizeArray = (func, groups) => {
 }
 
 export const socialFactory = (): ISocial => {
-    const username = faker.internet.userName()
+    const username = FakerName()
     return {
-        facebook: username + faker.random.uuid().substring(1, 5),
-        instagram: username + faker.random.uuid().substring(1, 5),
-        linkedin: username + faker.random.uuid().substring(1, 5),
-        twitter: username + faker.random.uuid().substring(1, 5)
+        facebook: username + uuid().substring(1, 5),
+        instagram: username + uuid().substring(1, 5),
+        linkedin: username + uuid().substring(1, 5),
+        twitter: username + uuid().substring(1, 5)
     }
 }
 
 export const imageFactory = () => {
-    return { url: faker.image.imageUrl(100, 100, "people") }
+    return { url: FakerImgUrl() }
 }
 
 export const phoneFactory = () => {

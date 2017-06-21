@@ -1,9 +1,9 @@
 import * as React from "react"
 import { SelectField } from "redux-form-material-ui"
 import { Field } from "redux-form"
-import { states } from "../../../../shared/states"
+import { states } from "../../../../../shared/states"
 import MenuItem from "material-ui/MenuItem"
-import { eachItem } from "../../shared"
+import { eachItem } from "../../../../../shared/mix"
 
 const eachCity = (state) => (state.children.map(eachItem))
 const isCurrentState = (uf) =>

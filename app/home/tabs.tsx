@@ -1,8 +1,10 @@
+import withStyles from "isomorphic-style-loader/lib/withStyles"
 import * as React from "react"
 import { Tabs, Tab } from "material-ui/Tabs"
 import SwipeableViews from "react-swipeable-views"
 import FaceIcon from "material-ui/svg-icons/action/face.js"
 import InboxIcon from "material-ui/svg-icons/content/inbox.js"
+import * as CSS from "./css/home.pcss"
 
 interface ITabsAcharhProps {
     ROUTER_EMITTER: any
@@ -12,39 +14,31 @@ interface ITabsAcharhProps {
     SET_HOME_STORE_ACTION: any
 }
 
-export class TabsAchaRH extends React.Component<ITabsAcharhProps, ITabsAcharhProps> {
+const urls = ["/", "/tools"]
 
-    constructor(props) {
-        super(props)
-    }
+class TabsAchaRHComponent extends React.Component<ITabsAcharhProps, ITabsAcharhProps> {
+
+    constructor(props) { super(props) }
 
     public componentWillMount() {
-        console.warn("[TABS]")
         const url = this.props.location.pathname
         if (url === "/") {
             this.props.SET_HOME_STORE_ACTION({ tab: 0 })
         }
-        if (url === "/insert") {
+        if (url.startsWith("/tools")) {
             this.props.SET_HOME_STORE_ACTION({ tab: 1 })
         }
     }
 
     public render() {
         const handleChange = (value) => {
-            const urls = ["/", "/insert"]
             this.props.SET_HOME_STORE_ACTION({ tab: value })
-            this.props.ROUTER_EMITTER({
-                pathname: urls[value]
-                // this is the trick!
-            })
+            this.props.ROUTER_EMITTER({ pathname: urls[value] })
         }
         return (
-            <div
-                id="tabs"
-                className={this.props.CSS.page}
-            >
+            <div id="tabs" className={CSS.page} >
                 <Tabs
-                    className={this.props.CSS.tabs}
+                    className={CSS.tabs}
                     onChange={handleChange}
                     value={this.props.home.tab}
                 >
@@ -52,19 +46,17 @@ export class TabsAchaRH extends React.Component<ITabsAcharhProps, ITabsAcharhPro
                         onClick={() => {
                             this.props.SET_HOME_STORE_ACTION({ tab: 0 })
                             this.props.ROUTER_EMITTER({ pathname: "/" })
-                            console.log("dsfds")
                         }}
                         label="ANÚNCIOS" value={0} />
                     <Tab icon={<FaceIcon />}
                         onClick={() => {
                             this.props.SET_HOME_STORE_ACTION({ tab: 1 })
-                            this.props.ROUTER_EMITTER({ pathname: "/insert" })
-                            console.log("dsfds")
+                            this.props.ROUTER_EMITTER({ pathname: "/tools" })
                         }}
-                        label="ANUNCIAR" value={1} />
+                        label="TOOLS" value={1} />
                 </Tabs>
                 <SwipeableViews
-                    className={this.props.CSS.tabcontainer}
+                    className={CSS.tabcontainer}
                     onChangeIndex={handleChange}
                     index={this.props.home.tab}
                 >
@@ -74,3 +66,4 @@ export class TabsAchaRH extends React.Component<ITabsAcharhProps, ITabsAcharhPro
         )
     }
 }
+export const TabsAchaRH = withStyles(CSS)(TabsAchaRHComponent)

@@ -5,8 +5,6 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/filter'
 import 'rxjs/add/operator/toArray'
 import 'rxjs/add/observable/fromPromise'
-
-
 import { getFirebase } from "react-redux-firebase"
 import { FILTER_ACTION_NAME } from "./adds.store"
 import { DISPLAY_FILTERED_ADDS_ACTION_NAME } from "./filter.store"
@@ -18,9 +16,7 @@ export const filterEpic = (action$, store) => {
             const reduxFilter = store.getState().filters
             return Observable.fromPromise(
                 getFirebase().database().ref("adds").once("value"))
-                .flatMap((db: any) => {
-                    return Observable.pairs(db.val())
-                })
+                .flatMap((db: any) => (Observable.pairs(db.val())))
                 .map((array) => {
                     const result: any = array[1]
                     result.id = array[0]

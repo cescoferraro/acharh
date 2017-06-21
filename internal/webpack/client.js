@@ -20,7 +20,6 @@ module.exports = ( env = {production:false}) => {
     if (env.production){
 	config.entry.react = ["react", "react-dom"];
 	config.entry.firebase = ["firebase"];
-	config.entry.faker = ["faker"];
 	config.entry.material= ["material-ui"];
 	config.entry.rxjs = ["rxjs"];
     } else {

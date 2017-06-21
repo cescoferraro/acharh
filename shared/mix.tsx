@@ -10,3 +10,5 @@ export const eachItem = (group) => {
         />
     )
 }
+
+export const isServer = () => !(typeof window !== "undefined" && window.document)

@@ -36,7 +36,7 @@ export function FILTER_ACTION(): IAction<any> {
 }
 
 export const DISPLAY_FILTERED_ADDS_ACTION_NAME = "DISPLAY_ADDS"
-export const filteredAdds = (state = [], action) => {
+export const adds = (state = [], action) => {
     switch (action.type) {
         case DISPLAY_FILTERED_ADDS_ACTION_NAME:
             return action.payload

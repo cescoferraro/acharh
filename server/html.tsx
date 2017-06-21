@@ -39,7 +39,6 @@ export const HTML = ({ production, userAgent, url, store, title }) => {
                 <Vendor async={false} path={"/vendor/react.js"} isProduction={production} />
                 <Vendor async={false} path={"/vendor/firebase.js"} isProduction={production} />
                 <Vendor async={false} path={"/vendor/rxjs.js"} isProduction={production} />
-                <Vendor async={false} path={"/vendor/faker.js"} isProduction={production} />
                 <Vendor async={false} path={"/vendor/material.js"} isProduction={production} />
                 <Vendor async={true} path={"/js/client.js"} isProduction={production} />
 
