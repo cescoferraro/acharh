@@ -5,6 +5,9 @@ import withStyles from "isomorphic-style-loader/lib/withStyles"
 import { APP_ACTIONS } from "../../store/actions"
 import { connect } from "react-redux"
 import AppBar from "material-ui/AppBar"
+import IconButton from "material-ui/IconButton"
+import NavigationClose from "material-ui/svg-icons/navigation/close"
+import FlatButton from "material-ui/FlatButton"
 import { withRouter } from "react-router"
 
 export const Bar = compose(
@@ -16,7 +19,8 @@ export const Bar = compose(
         <AppBar
             title="AchaRH"
             className={barCSS.bar}
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            iconElementLeft={<FlatButton label="Save" />}
+            iconElementRight={<FlatButton label="Save" />}
         />
     )
 })

@@ -11,11 +11,12 @@ injectTapEventPlugin()
 export default function serverRenderer({ production, clientStats, serverStats, title }) {
     return (req, res, next) => {
         const store = configureStore()
-
         res.send("<!DOCTYPE html>" +
             renderToStaticMarkup(
                 <HTML
                     title={title}
+                    clientStats={clientStats}
+                    serverStats={serverStats}
                     production={production}
                     userAgent={req.headers["user-agent"]}
                     url={req.url}

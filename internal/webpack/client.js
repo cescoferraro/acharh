@@ -10,10 +10,11 @@ module.exports = ( env = {production:false}) => {
 	},
 	output: {
 	    path:  path.join(__dirname, '../../dist'),
-	    filename: 'js/[name].js'
+	    filename: 'js/[name].js',
+	    publicPath: extras.PUBLIC_PATH(env) 
 	},
 	devtool: extras.DEVTOOLS(env),
-	plugins: extras.CLIENT_PLUGINS(env,true), 
+	plugins: extras.CLIENT_PLUGINS(env), 
 	module:  extras.LOADERS(env),
 	resolve: extras.resolve 
     } );
@@ -23,6 +24,6 @@ module.exports = ( env = {production:false}) => {
 	config.entry.material= ["material-ui"];
 	config.entry.rxjs = ["rxjs"];
     } else {
-	config.entry.vendor = require("./libs.js")  ;
-    };
- return config; };
+	config.entry.libs= require("./libs.js");
+    }
+    return config; };

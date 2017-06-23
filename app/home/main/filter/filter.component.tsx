@@ -67,7 +67,11 @@ class FilterComponentClass extends React.Component<any, any> {
         const hideContainer = !this.props.filters.hidden ?
             cs(CSS.container) : cs(CSS.containerHidden)
         const emptyBUTTON = (<div>
-            <RaisedButton fullWidth={true} label={buttonLabel} />
+            <RaisedButton
+                secondary={true}
+                fullWidth={true}
+                label={buttonLabel}
+            />
         </div>)
         return (
             <div className={hideContainer}>
@@ -127,7 +131,12 @@ class FilterComponentClass extends React.Component<any, any> {
                         />
                     </div>
                 </div>
-                <RaisedButton fullWidth={true} onClick={showHide} label={buttonLabel} />
+                <RaisedButton
+                    secondary={true}
+                    fullWidth={true}
+                    onClick={showHide}
+                    label={buttonLabel}
+                />
             </div >)
     }
 }

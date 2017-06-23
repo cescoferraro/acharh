@@ -1,47 +1,46 @@
+import { flushChunkNames } from 'react-universal-component/server'
+import * as ReactLodable from 'react-loadable'
 import * as React from "react"
-import { Helmet } from "react-helmet"
 import { Renderer, Vendor } from "./renderer"
 import { ssrBehavior } from "react-md-spinner"
+import { flushModuleIds } from 'react-universal-component/server'
+import flushChunks from 'webpack-flush-chunks'
+import { flushFiles } from 'webpack-flush-chunks'
+import { Styler } from "../shared/mix";
+import { Helmator } from "./util"
+import universal from 'react-universal-component'
+declare const System: any
 
-const Styler = ({ rules }) => {
-    return (
-        <style
-            type="text/css"
-            dangerouslySetInnerHTML={{ __html: rules }}
-        />
-    )
-}
 
-export const HTML = ({ production, userAgent, url, store, title }) => {
-    const App = Renderer(url, userAgent, store)
-    const HelmetApp = Helmet.renderStatic()
-    const HtmlAttr = HelmetApp.htmlAttributes.toComponent()
-    const BodyAttr = HelmetApp.bodyAttributes.toComponent()
+export const HTML = ({ clientStats, serverStats, production, userAgent, url, store, title }) => {
+    const App = Renderer(url, userAgent, store, production)
+    const Helamn = Helmator()
+    const rules = require("-!raw-loader!react-redux-toastr/lib/css/react-redux-toastr.min.css")
     return (
-        <html lang="pt" {...HtmlAttr}>
+        <html
+            lang="pt" {...Helamn.html}>
             <head>
-                {HelmetApp.title.toComponent()}
-                {HelmetApp.meta.toComponent()}
-                {HelmetApp.link.toComponent()}
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="shortcut icon" href="icons/favicon.ico" />
+                {Helamn.title}
+                {Helamn.meta}
+                {Helamn.link}
                 {production ? <link rel="manifest" href="/icons/manifest.json" /> : null}
                 <Styler rules={ssrBehavior.getStylesheetString(userAgent)} />
-                <style type="text/css"> {App[1].join(" ")} </style>
-                <Styler rules={require("-!raw-loader!react-redux-toastr/lib/css/react-redux-toastr.min.css")} />
+                <Styler rules={App[1].join(" ")} />
+                <Styler rules={rules} />
             </head>
-            <body {...BodyAttr} >
+            <body {...Helamn.body} >
                 <div id="root" dangerouslySetInnerHTML={{ __html: App[0] }} />
-                <Vendor async={false} path={"/js/dev.js"} isProduction={!production} />
-                <Vendor async={false} path={"/js/client.js"} isProduction={!production} />
-
-
-                <Vendor async={false} path={"/vendor/react.js"} isProduction={production} />
-                <Vendor async={false} path={"/vendor/firebase.js"} isProduction={production} />
-                <Vendor async={false} path={"/vendor/rxjs.js"} isProduction={production} />
-                <Vendor async={false} path={"/vendor/material.js"} isProduction={production} />
-                <Vendor async={true} path={"/js/client.js"} isProduction={production} />
-
+                {/* {development} */}
+                <Vendor async={false} path={"/js/bootstrap.js"} condition={!production} />
+                <Vendor async={false} path={"/js/vendor.js"} condition={!production} />
+                <Vendor async={false} path={"/js/client.js"} condition={!production} />
+                {/* {production} */}
+                <Vendor condition={production} path={"/vendor/react.js"} />
+                <Vendor condition={production} path={"/vendor/firebase.js"} />
+                <Vendor condition={production} path={"/vendor/rxjs.js"} />
+                <Vendor condition={production} path={"/vendor/material.js"} />
+                <Vendor condition={production} path={"/js/client.js"} defer={true} />
             </body>
-        </html>)
+        </html>
+    )
 }

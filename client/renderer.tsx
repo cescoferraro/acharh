@@ -8,6 +8,7 @@ import { Provider as ReduxProvider } from "react-redux"
 import { configureStore } from "../store/createStore"
 import { ConnectedRouter as ReduxRouterProvider } from "connected-react-router"
 import { createBrowserHistory } from "history"
+import { AchaRHTheme } from "../shared/theme";
 export const tag = document.getElementById("root")
 
 export const Renderer = (Component) => {
@@ -16,7 +17,7 @@ export const Renderer = (Component) => {
     ReactDOM.render(
         <WithStylesContext onInsertCss={inserter}>
             <ReduxProvider store={configureStore(history)}>
-                <MuiThemeProvider muiTheme={getMuiTheme({ userAgent: navigator.userAgent })}>
+                <MuiThemeProvider muiTheme={getMuiTheme(AchaRHTheme, { userAgent: navigator.userAgent })}>
                     <ReduxRouterProvider history={history}>
                         <AppContainer>
                             {Component}

@@ -1,7 +1,6 @@
 import * as React from "react"
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import { connect } from "react-redux"
-import { Helmet } from "react-helmet"
 import { APP_ACTIONS } from "../../../store/actions"
 import { withRouter } from "react-router"
 import { compose } from "recompose"
@@ -12,6 +11,7 @@ import { AddCategories } from "./components/categories"
 import { AddPhones } from "./components/phones"
 import { AddImageDetail } from "./components/images"
 import * as CSS from "./css/details.pcss"
+import { MyHelmet } from "../../../shared/mix";
 
 
 export class AddPageComponent extends React.Component<any, any> {
@@ -27,9 +27,7 @@ export class AddPageComponent extends React.Component<any, any> {
 
     public render() {
         return (<div className={CSS.container}>
-            <Helmet>
-                <title>AchaRH | {this.props.match.params.id}</title>
-            </Helmet>
+            <MyHelmet title={this.props.match.params.id} />
             {this.props.children} </div>)
     }
 }

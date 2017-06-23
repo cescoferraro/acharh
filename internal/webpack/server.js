@@ -9,10 +9,10 @@ module.exports = ( env= {production:false} ) => ( {
         path: path.join(__dirname, '../../dist'),
         filename: 'js/middleware.js',
         libraryTarget: 'commonjs2',
-	publicPath: env.production ? "http://acharh.cescoferraro.xyz" : "http://localhost:4000"
+	publicPath: extras.PUBLIC_PATH(env) 
     },
     devtool: extras.DEVTOOLS(env), 
     module:  extras.LOADERS(env,false),
     resolve: extras.resolve,
-    plugins: extras.SERVER_PLUGINS 
+    plugins: extras.SERVER_PLUGINS(env)
 } );

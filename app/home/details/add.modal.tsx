@@ -1,11 +1,11 @@
 import * as React from "react"
-import { Helmet } from "react-helmet"
 import * as detailsCSS from "./css/details.pcss"
 import { AddGeneral } from "./components/general";
 import { AddCategories } from "./components/categories";
 import { AddPhones } from "./components/phones";
 import { AddImageDetail } from "./components/images";
 import withStyles from "isomorphic-style-loader/lib/withStyles"
+import { MyHelmet } from "../../../shared/mix";
 
 export const AddModal = withStyles(detailsCSS)(({ history, match, location }) => {
     const back = (e) => {
@@ -16,9 +16,7 @@ export const AddModal = withStyles(detailsCSS)(({ history, match, location }) =>
     const groups = location.state.groups
     return (
         <div onClick={back} className={detailsCSS.container} >
-            <Helmet>
-                <title>AchaRH | {match.params.id}</title>
-            </Helmet>
+            <MyHelmet title={match.params.id} />
             <div className={detailsCSS.modal} >
                 <AddGeneral add={add} />
                 <AddCategories groups={groups} add={add} />

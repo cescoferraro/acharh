@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet"
 import * as React from "react"
 import { compose } from "recompose"
 import { reduxForm } from "redux-form"
@@ -25,6 +24,7 @@ import { Phones } from "./fields/phones"
 import { Images } from "./fields/images"
 import { FormSocial } from "./fields/social"
 import * as cs from "classnames"
+import { MyHelmet } from "../../../../shared/mix";
 
 const FormComponent = ({
     groups,
@@ -38,9 +38,7 @@ const FormComponent = ({
     reset
 }) => (
         <div className={addFormCSS.container}>
-            <Helmet>
-                <title>AchaRH | Anúncie </title>
-            </Helmet>
+            <MyHelmet title="Anuncie" />
             <div>
                 <form className={addFormCSS.form}>
                     <h4 className={cs(addFormCSS.down)}>General</h4>

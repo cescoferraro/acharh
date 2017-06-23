@@ -44,7 +44,12 @@ class AddsListComponent extends React.Component<any, any>{
                 className={shirinkList} >
                 {
                     adds.length === 0 ?
-                        <RaisedButton onClick={fetch} fullWidth={true} label={"Go find something"} /> :
+                        <RaisedButton
+                            secondary={true}
+                            onClick={fetch}
+                            fullWidth={true}
+                            label={"Go find something"}
+                        /> :
                         <Subheader>Anúncios selecionados para você:</Subheader>
                 }
                 <List >

@@ -1,11 +1,10 @@
 import * as React from "react"
 import { AddsList } from "./list/adds.list"
 import { FilterComponent } from "./filter/filter.component"
-import { Helmet } from "react-helmet"
 import { compose } from "recompose"
 import * as HomeStyle from "../css/home.pcss"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
-import { isServer } from "../../../shared/mix"
+import { isServer, MyHelmet } from "../../../shared/mix"
 
 class MainComponentClass extends React.Component<any, any> {
     constructor(props) {
@@ -24,11 +23,7 @@ class MainComponentClass extends React.Component<any, any> {
     public render() {
         return (
             <div className={HomeStyle.container} >
-                <Helmet>
-                    <meta charSet="utf-8" />
-                    <title>Anúncios | AchaRH </title>
-                    <link rel="canonical" href="http://acharh.cescoferraro.xyz" />
-                </Helmet>
+                <MyHelmet title="Anúncios" />
                 <AddsList {...this.props} />
                 <FilterComponent {...this.props} />
             </div >

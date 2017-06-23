@@ -5,6 +5,10 @@ metadata:
   namespace: acharh
   name: acharh-ing
 spec:
+  tls:		
+  - hosts:		
+    - acharh.cescoferraro.xyz		
+    secretName: acharh-tls 
   rules:
   - host: acharh.cescoferraro.xyz
     http:

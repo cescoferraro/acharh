@@ -1,7 +1,9 @@
 const webpack = require("webpack");
-let FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-let CopyWebpackPlugin = require('copy-webpack-plugin');
-let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+
 
 const resolve = {
     extensions: ['.js', '.ts', '.tsx', '.json', 'pcss']
@@ -77,38 +79,50 @@ const HOTLOADER = (entry, env)=>{
 
 };
 
-const LOADERS_OPTIONS =  new webpack.LoaderOptionsPlugin({
-    minimize: false,
-    debug: true,
-    cache: true,
-    options: {
-	context: '/'
-    }
-});
+const LOADERS_OPTIONS = (env)=> [
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
 
-const SERVER_PLUGINS = [LOADERS_OPTIONS];
+    new FaviconsWebpackPlugin({
+	prefix: 'icons/',
+	logo: './shared/icon/favicon.png',
+	config: {
+	    appName: "acharh",
+	    lang: "pt",
+	    start_url: '/?pwa=true',
+	    theme_color: '#00bfff'
+	}
+    }),
+    new webpack.LoaderOptionsPlugin({
+	minimize: env.production,
+	debug: true,
+	cache: true,
+	options: {
+	    context: '/'
+	}
+    })
+];
+
+const SERVER_PLUGINS = (env) => [...LOADERS_OPTIONS(env)];
 const DEVTOOLS = (env)=> {
     return  ( env.production ? "cheap-module-source-map" : "cheap-module-eval-source-map");
 }; 
 
 const CLIENT_PLUGINS = env => {
-    let og = [
-	new webpack.NamedModulesPlugin(),
-	new webpack.NoEmitOnErrorsPlugin(),
-	new FaviconsWebpackPlugin({
-	    prefix: 'icons/',
-	    logo: './shared/icon/favicon.png'
-	}),
-	new webpack.optimize.ModuleConcatenationPlugin(),
-	LOADERS_OPTIONS
-    ];
+    let og = LOADERS_OPTIONS(env);
 
     if (env.production){
 	og.push(
+	    new SWPrecacheWebpackPlugin({
+		staticFileGlobs: ['/?pwa=true'],
+		staticFileGlobsIgnorePatterns: [/\.map$/], 
+		mergeStaticsConfig: true
+	    }),
 	    new CopyWebpackPlugin([ {from: "./server/server.js",to:"./server.js"} ]),
+	    new CopyWebpackPlugin([ {from: "./shared/ssl",to:"./ssl"} ]),
 	    new CopyWebpackPlugin([ {from: "./server/index.html",to:"./index.html"} ]),
-	    new CopyWebpackPlugin([ {from: "./shared/FB35B4FE618262EF0B9F299C03184A31.txt",
-				     to:"./ssl/FB35B4FE618262EF0B9F299C03184A31.txt"} ]),
+	    new CopyWebpackPlugin([ {from: "./shared/4C945DCD9BF98AD34B33F5773DF474FB.txt",
+				     to:"./ssl/4C945DCD9BF98AD34B33F5773DF474FB.txt"} ]),
 	    new webpack.optimize.CommonsChunkPlugin({
 		name: "react-vendor",
 		filename: "vendor/react.js",
@@ -139,8 +153,13 @@ const CLIENT_PLUGINS = env => {
 		manifest: require("../../dll/vendor.json")
 	    }),
 	    new webpack.optimize.CommonsChunkPlugin({
-		name: "dev",
-		filename: "js/dev.js", chunks: ["client", "vendor"]
+		names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
+		filename: 'js/[name].js',
+		minChunks: Infinity
+	    }),
+	    new webpack.optimize.CommonsChunkPlugin({
+		name: "vendor",
+		filename: "js/vendor.js", chunks: ["client", "libs"]
 	    })	);
     }
     if(env.analyzer){
@@ -149,11 +168,15 @@ const CLIENT_PLUGINS = env => {
     return og;
 };
 
+const PUBLIC_PATH = (env) => 
+      env.production ? "https://acharh.cescoferraro.xyz/" : "http://localhost:4000/";
+
 module.exports = {
     resolve: resolve,
     SERVER_PLUGINS: SERVER_PLUGINS,
     HOTLOADER:HOTLOADER,
     DEVTOOLS: DEVTOOLS,
+    PUBLIC_PATH: PUBLIC_PATH,
     CLIENT_PLUGINS: CLIENT_PLUGINS,
     LOADERS: LOADERS 
 };

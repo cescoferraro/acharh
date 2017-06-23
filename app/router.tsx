@@ -6,15 +6,24 @@ import * as baseCSS from "./css/base.pcss"
 import { HomeContainer } from "./home/home"
 import { Toaster } from "../shared/toaster"
 
-
-export let Router = withStyles(baseCSS)(({ userAgent }) => {
+export let Router = withStyles(baseCSS)(({ userAgent, production }) => {
+    console.log("hey hey")
     return (
         <div>
             <Route component={Bar} />
             <Switch>
-                <Route path="/" render={() => <HomeContainer userAgent={userAgent} />} />
-                <Route path="/insert" render={() => <HomeContainer userAgent={userAgent} />} />
-                <Route path="/add" render={() => <HomeContainer userAgent={userAgent} />} />
+                <Route
+                    path="/"
+                    render={() => <HomeContainer userAgent={userAgent} />}
+                />
+                <Route
+                    path="/insert"
+                    render={() => <HomeContainer userAgent={userAgent} />}
+                />
+                <Route
+                    path="/add"
+                    render={() => <HomeContainer userAgent={userAgent} />}
+                />
             </Switch>
             <Route component={Toaster} />
         </div>
