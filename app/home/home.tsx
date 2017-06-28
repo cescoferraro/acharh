@@ -25,10 +25,9 @@ export class HomeContainerClass extends React.Component<any, any> {
     }
 
     public render() {
-	console.log("hey hey ")
+        console.log("hey hey ")
         const browser = () => (<MainComponent {...this.props} />)
-        const tools = () => (
-            <Tools {...this.props} />)
+        const tools = () => (<Tools {...this.props} />)
         const { location } = this.props
         const isModal = !!(
             location.state &&

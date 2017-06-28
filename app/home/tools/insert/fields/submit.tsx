@@ -16,6 +16,7 @@ export const SubmitButton = ({
         <RaisedButton
             onClick={handleSubmit(submit)}
             fullWidth={true}
+            secondary={true}
             label=" Anunciar"
         />
     )

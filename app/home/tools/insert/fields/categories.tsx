@@ -14,22 +14,15 @@ import { Loading, Empty } from "../../../../../shared/components/helpers";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-export const Categories = compose(
-    firebaseConnect(["/groups"]),
-    connect(({ firebase }) => ({
-        groups: dataToJS(firebase, "/groups", {}),
-    }))
-)(({ categories, groups }) => {
-    return !isLoaded(groups) ?
-        <Loading /> : isEmpty(groups) ? <Empty /> :
-            (
-                <FieldArray
-                    name="categories"
-                    categories={categories}
-                    component={renderMembers}
-                />
-            )
-})
+export const Categories = ({ categories }) => {
+    return (
+        <FieldArray
+            name="categories"
+            categories={categories}
+            component={renderMembers}
+        />
+    )
+}
 
 const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) => {
     const catMain = categories
@@ -40,10 +33,8 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
                 primaryText={cat.name}
 
             />))
-    const pushcat = () => {
-        fields.push(categoryFactory(categories))
-    }
-    return (
+    const pushcat = () => { fields.push(categoryFactory(categories)) }
+    return categories != 0 ? (
         <div>
             <div className={CSS.flex}>
 
@@ -80,7 +71,7 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
                             >
                                 <MenuItem primaryText="BLOCK" value={0} />
                                 {
-                                    categories
+                                    categories.length != 0 ? categories
                                         .filter((cat) => (cat.code === fields.getAll()[index].main))[0]
                                         .children.map((sub) => (
                                             <MenuItem
@@ -88,7 +79,7 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
                                                 value={sub.code}
                                                 primaryText={sub.name}
                                             />
-                                        ))
+                                        )) : null
                                 }
                             </Field>
                         </div>
@@ -102,5 +93,5 @@ const renderMembers = ({ categories, fields, meta: { error, submitFailed } }) =>
                 )
             }
         </div >
-    )
+    ) : <div><h2>not categories fetched</h2></div>
 }

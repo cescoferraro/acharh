@@ -1,7 +1,4 @@
 import { Helmet } from "react-helmet"
-import * as React from "react"
-
-const REQUIRER = ({ path }) => (<script> {require(path)} </script>)
 
 export const Helmator = () => {
     const HelmetApp = Helmet.renderStatic()

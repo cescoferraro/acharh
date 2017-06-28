@@ -10,6 +10,7 @@ export const RandomButton = ({ setHomeStore, groups }) => {
     return <RaisedButton
         onClick={randomADD}
         fullWidth={true}
+        secondary={true}
         label="Embaralhar"
     />
 }

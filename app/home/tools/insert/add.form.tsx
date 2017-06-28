@@ -24,7 +24,7 @@ import { Phones } from "./fields/phones"
 import { Images } from "./fields/images"
 import { FormSocial } from "./fields/social"
 import * as cs from "classnames"
-import { MyHelmet } from "../../../../shared/mix";
+import { MyHelmet } from "../../../../shared/mix"
 
 const FormComponent = ({
     groups,

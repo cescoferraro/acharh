@@ -25,7 +25,6 @@ export const detailEpic = (action$, store) => {
                     payload: { detail: add }
                 }))
         })
-
 }
 
 

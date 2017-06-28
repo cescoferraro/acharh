@@ -6,7 +6,6 @@ import * as React from "react"
 import { runServiceWorker } from "./sw"
 
 injectTapEventPlugin()
-
 Renderer(<Router userAgent={navigator.userAgent} />)
 runServiceWorker()
 

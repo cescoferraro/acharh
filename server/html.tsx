@@ -1,11 +1,8 @@
-import { flushChunkNames } from 'react-universal-component/server'
-import * as ReactLodable from 'react-loadable'
+import { flushModuleIds, flushChunkNames } from 'require-universal-module/server'
+import flushChunks from 'webpack-flush-chunks'
 import * as React from "react"
 import { Renderer, Vendor } from "./renderer"
 import { ssrBehavior } from "react-md-spinner"
-import { flushModuleIds } from 'react-universal-component/server'
-import flushChunks from 'webpack-flush-chunks'
-import { flushFiles } from 'webpack-flush-chunks'
 import { Styler } from "../shared/mix";
 import { Helmator } from "./util"
 import universal from 'react-universal-component'
@@ -14,6 +11,7 @@ declare const System: any
 
 export const HTML = ({ clientStats, serverStats, production, userAgent, url, store, title }) => {
     const App = Renderer(url, userAgent, store, production)
+
     const Helamn = Helmator()
     const rules = require("-!raw-loader!react-redux-toastr/lib/css/react-redux-toastr.min.css")
     return (

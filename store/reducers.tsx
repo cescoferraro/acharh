@@ -3,7 +3,7 @@ import { combineReducers } from "redux"
 import { adds } from "../app/home/main/filter/filter.store"
 import { reducer as reduxFormReducer } from "redux-form"
 import { filters } from "../app/home/main/filter/filter.store"
-import { HomeReducers as home } from "../app/home/home.store"
+import { HomeReducers as home } from "./home/home.store"
 import { reducer as toastrReducer } from "react-redux-toastr"
 import { GroupsReducers } from "../shared/groups.reducer"
 

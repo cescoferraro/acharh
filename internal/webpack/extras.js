@@ -37,7 +37,7 @@ const LOADERS = (env, isClient)=>{
 		   ]
 	       }}]
 	},
-	{ test: /\.tsx?$/, exclude: /node_modules/, loader: "ts-loader" },
+	{ test: /\.tsx?$/, exclude: /node_modules/, loader: "awesome-typescript-loader" },
 	{ enforce: "pre",  exclude: /node_modules/, test: /\.js$/, loader: "source-map-loader" },
 	{ test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
 	  use:[
@@ -46,8 +46,7 @@ const LOADERS = (env, isClient)=>{
 		    emitFile: isClient,
 		    name: "fonts/font-[sha512:hash:base64:7].[ext]"
 		}}]},
-        {
-            test: /\.svg$/,
+        {test: /\.svg$/,
             exclude: /node_modules/,
             loader: 'svg-react-loader',
             query: {
@@ -89,7 +88,7 @@ const LOADERS_OPTIONS = (env)=> [
 	config: {
 	    appName: "acharh",
 	    lang: "pt",
-	    start_url: '/?pwa=true',
+	    start_url: '/',
 	    theme_color: '#00bfff'
 	}
     }),
