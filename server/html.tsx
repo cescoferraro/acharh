@@ -6,7 +6,6 @@ import { ssrBehavior } from "react-md-spinner"
 import { Styler } from "../shared/mix";
 import { Helmator } from "./util"
 import universal from 'react-universal-component'
-declare const System: any
 
 
 export const HTML = ({ clientStats, serverStats, production, userAgent, url, store, title }) => {
